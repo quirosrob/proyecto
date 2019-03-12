@@ -89,7 +89,8 @@ class AdminController extends AppController
     
     public function event($event_id){
 		if($this->getParameter('formAction')=='updateEvent'){
-			$this->salfadeco->updateEvent($event_id, $this->getParameter('name'), $this->getParameter('date'), $this->getParameter('description'), null, null);
+			$image=$this->File->receiveImageFromBrowser('image_id');
+			$this->salfadeco->updateEvent($event_id, $this->getParameter('name'), $this->getParameter('date'), $this->getParameter('description'), $image, null);
 		}
 		
 		$this->set([
@@ -102,10 +103,10 @@ class AdminController extends AppController
     }
     
     public function NewEvent(){
-//		if($this->getParameter('formAction')=='addEvent'){
-//			$image=$this->File->receiveImageFromBrowser('image_id');
-//			$this->salfadeco->addEvent($this->getParameter('name'), $this->getParameter('date'), $this->getParameter('description'), null, null);
-//		}
+		if($this->getParameter('formAction')=='addEvent'){
+			$image=$this->File->receiveImageFromBrowser('image_id');
+			$this->salfadeco->addEvent($this->getParameter('name'), $this->getParameter('date'), $this->getParameter('description'), $image, null);
+		}
     }
     
     public function logout(){

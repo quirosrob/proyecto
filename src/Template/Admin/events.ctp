@@ -14,7 +14,19 @@
 		<div>
 			<div class='itemListDetails'>
 				<div class="info">
-					<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>"/img/events/diaDeporte.jpg"])?>");' onclick="openImageZoom('/img/events/diaDeporte.jpg')"></div>
+					<?php
+					if(!empty($event['image']['filename'])){
+						$path="/img/uploads/{$event['image']['filename']}";
+						?>
+						<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
+						<?php
+					}
+					else{
+						?>
+						<div class='main_image'></div>
+						<?php
+					}
+					?>
 					<div class='details'>
 						<div class="name"><?=$event['name']?></div>
 						<div class="date"><?=$event['date']?></div>

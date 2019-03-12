@@ -6,7 +6,15 @@
 </div>
 <form class='ajax'>
 	<div class="sectionInfo">
-		<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>"/img/events/diaDeporte.jpg"])?>");' onclick="openImageZoom('/img/events/diaDeporte.jpg')"></div>
+		
+		<?php
+		if(!empty($event['image']['filename'])){
+			$path="/img/uploads/{$event['image']['filename']}";
+			?>
+			<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
+			<?php
+		}
+		?>
 
 		<div class="formResponsive">
 			<div>

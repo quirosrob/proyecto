@@ -23,16 +23,14 @@ class FileComponent extends Component
 				return null;
 			}
 			
-			$finalDirectory=realpath(dirname(__FILE__))."/../../webroot/img/uploads/";
+			$finalDirectory=realpath(dirname(__FILE__)).DS."..".DS."..".DS."..".DS."webroot/img/uploads/";
 			if(!file_exists($finalDirectory)){
 				mkdir($finalDirectory, 0777);
 			}
-			
-			echo $finalDirectory;
 
 			$storedFileName=microtime(true).".".$this->getFileExtension($fileName);
 			move_uploaded_file($fileNameTmp, $finalDirectory.DS.$storedFileName);
-			return ['storedFileName'=>$storedFileName, "fileName"=>$fileName];
+			return $storedFileName;
 		}
 		return null;
 	}
