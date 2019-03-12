@@ -4,7 +4,7 @@
 		<?=$this->element('buttonXs', ['label'=>'Galería'])?>
     </a>
 </div>
-<form method="get">
+<form class='ajax'>
 	<div class="sectionInfo">
 		<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>"/img/events/diaDeporte.jpg"])?>");' onclick="openImageZoom('/img/events/diaDeporte.jpg')"></div>
 

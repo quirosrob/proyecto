@@ -1,6 +1,6 @@
 <?php ?>
 <h3 class='text-center'>Nueva Noticia</h3>
-<form method="get">
+<form class='ajax'>
 	<div class="formResponsive">
 		<div>
 			<div>Nombre</div>

@@ -4,10 +4,14 @@ function openMenuXs(){
 
 function openModal(selector){
     $(selector).modal({
-	backdrop: 'static',
-	keyboard: false,
-	focus: true
+		backdrop: 'static',
+		keyboard: false,
+		focus: true
     });
+}
+
+function closeModal(selector){
+	$(selector).modal('hide');
 }
 
 function makeRichtTextAreas(){

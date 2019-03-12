@@ -102,13 +102,10 @@ class AdminController extends AppController
     }
     
     public function NewEvent(){
-		if($this->getParameter('formAction')=='addEvent'){
-			$image=$this->File->receiveImageFromBrowser('image_id');
-			
-			echo $image;
-			
-			$this->salfadeco->addEvent($this->getParameter('name'), $this->getParameter('date'), $this->getParameter('description'), null, null);
-		}
+//		if($this->getParameter('formAction')=='addEvent'){
+//			$image=$this->File->receiveImageFromBrowser('image_id');
+//			$this->salfadeco->addEvent($this->getParameter('name'), $this->getParameter('date'), $this->getParameter('description'), null, null);
+//		}
     }
     
     public function logout(){

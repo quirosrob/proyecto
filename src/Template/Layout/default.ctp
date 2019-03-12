@@ -32,6 +32,8 @@
 		<script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js?<?=$version?>" type="text/javascript"></script>
 		<script src="/js/functions.js?<?=$version?>" type="text/javascript"></script>
 		<script src="/spectrum/spectrum.js?<?=$version?>" type="text/javascript"></script>
+		<script src="/js/ajax.js?<?=$version?>" type="text/javascript"></script>
+		<script src="/js/formHelper.js?<?=$version?>" type="text/javascript"></script>
 	</head>
 	<body>
 		<div id='mainHead'>
@@ -51,5 +53,10 @@
 
 		<?=$this->element('modalMenuXs')?>
 		<?=$this->element('imageZoom')?>
+		<?=$this->element('modalAjaxBlock')?>
+		<script>
+			setFormsSubmitEvent();
+		</script>
+		
 	</body>
 </html>
