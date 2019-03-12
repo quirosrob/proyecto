@@ -2,26 +2,28 @@
 namespace App\Controller;
 use Cake\Event\Event;
 
+use salfadeco\Crud;
+
 class GuessController extends AppController
 {
     public function beforeFilter(Event $event){
-	parent::beforeFilter($event);
-	$menuItems=[
-	    ['desc'=>"Inicio", "link"=>"/Guess/Events"],
-	    ['desc'=>"Miembros", "link"=>"/Guess/Members"],
-	    ['desc'=>"Deportes", "link"=>"/Guess/Sports"],
-	    ['desc'=>"Juntas Directivas", "link"=>"/Guess/DirectorsTeams"],
-	    ['desc'=>"Contáctenos", "link"=>"/Guess/ContacUs"],
-	    ['desc'=>"Galerías", "link"=>"/Guess/Galleries"],
-		['desc'=>"Historia", "link"=>"/Guess/History"],
-	    ['desc'=>"Ingresar", "link"=>"/Guess/Login"],
-	];
-	
-	$this->selectCurrentMenuItem($menuItems);
-	
-	$this->set([
-	    'menuItems'=>$menuItems
-	]);
+		parent::beforeFilter($event);
+		$menuItems=[
+			['desc'=>"Inicio", "link"=>"/Guess/Events"],
+			['desc'=>"Miembros", "link"=>"/Guess/Members"],
+			['desc'=>"Deportes", "link"=>"/Guess/Sports"],
+			['desc'=>"Juntas Directivas", "link"=>"/Guess/DirectorsTeams"],
+			['desc'=>"Contáctenos", "link"=>"/Guess/ContacUs"],
+			['desc'=>"Galerías", "link"=>"/Guess/Galleries"],
+			['desc'=>"Historia", "link"=>"/Guess/History"],
+			['desc'=>"Ingresar", "link"=>"/Guess/Login"],
+		];
+
+		$this->selectCurrentMenuItem($menuItems);
+
+		$this->set([
+			'menuItems'=>$menuItems
+		]);
     }
     
     public function sports(){
@@ -53,11 +55,15 @@ class GuessController extends AppController
     }
     
     public function events(){
-        
+		$this->set([
+			'events'=>$this->salfadeco->getEvents()
+		]);
     }
     
     public function event($event_id){
-	
+		$this->set([
+			'event'=>$this->salfadeco->getEvent($event_id)
+		]);
     }
     
     public function galleries(){

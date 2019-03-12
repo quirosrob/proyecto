@@ -13,9 +13,9 @@
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
 namespace App\Controller;
-
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use salfadeco\Salfadeco;
 
 /**
  * Application Controller
@@ -27,6 +27,23 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
+	var $salfadeco=null;
+	
+	public function beforeFilter(Event $event){
+		parent::beforeFilter($event);
+		$this->salfadeco=new Salfadeco();
+	}
+	
+	public function getParameter($name){
+		if(isset($_POST[$name])){
+			return $_POST[$name];
+		}
+		if(isset($_GET[$name])){
+			return $_GET[$name];
+		}
+		return "";
+	}
+	
 
     /**
      * Initialization hook method.
@@ -54,14 +71,14 @@ class AppController extends Controller
     }
     
     public function selectCurrentMenuItem(&$menuItems){
-	$controller=$this->request->getParam('controller');
-	$action=$this->request->getParam('action');
-	$link=strtolower("{$controller}{$action}");
-	
-	foreach($menuItems as &$menuItem){
-	    if(str_replace("/","", strtolower($menuItem['link']))==$link){
-		$menuItem['active']=true;
-	    }
-	}
+		$controller=$this->request->getParam('controller');
+		$action=$this->request->getParam('action');
+		$link=strtolower("{$controller}{$action}");
+
+		foreach($menuItems as &$menuItem){
+			if(str_replace("/","", strtolower($menuItem['link']))==$link){
+				$menuItem['active']=true;
+			}
+		}
     }
 }

@@ -1,2 +1,2 @@
 <?php ?>
-<button type="button" class="btn btn-xs btn-custom <?=@$class?>"><?=$label?></button>
+<button type="submit" class="btn btn-xs btn-custom <?=@$class?>"><?=$label?></button>
