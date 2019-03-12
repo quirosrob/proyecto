@@ -201,3 +201,7 @@ Type::build('timestamp')
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
+
+
+$path=realpath(dirname(__FILE__));
+require_once($path.DS."..".DS."vendor".DS."salfadeco".DS."Salfadeco.php");
