@@ -1,0 +1,21 @@
+.image_group{
+    text-align: center;
+}
+
+.image_group .item{
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 200px;
+    width: 200px;
+    margin: 5px;
+    border: 1px solid #85843B;
+    border-radius: 4px;
+    background-color: #DEDDAA;
+	cursor: pointer;
+}
+
+.image_group .item:hover{
+	 background-color: #CFCE8D;
+}

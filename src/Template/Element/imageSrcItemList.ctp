@@ -1,0 +1,1 @@
+<?=$this->element("imageSrc", ['path'=>$path, 'w'=>200, 'h'=>200])?>

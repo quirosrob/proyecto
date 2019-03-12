@@ -1,0 +1,88 @@
+#header{
+    display: table;
+    width: 100%;
+}
+
+#header .logo{
+    display: table-cell;
+    height: 100px;
+    width: 100px;
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 95%, auto;
+}
+
+#header .headerRight{
+    display: table-cell;
+    height: 100px;
+}
+
+#header .name{
+    text-align: left;
+    font-size: 20pt;
+    font-weight: bold;
+    height: 60px;
+    padding: 10px;
+    background-color: #A9A768;
+    border-radius: 0 8px 0 0;
+}
+
+#header .divisor{
+    background-color: #555413;
+    height: 4px;
+}
+
+#header .menu{
+    text-align: right;
+    height: 35px;
+    padding: 2px;
+}
+
+#header .menu a{
+    text-decoration: none;
+}
+
+#header .menu > div{
+    display: inline-block;
+}
+
+#header .menu .button:hover{
+    background-color: #85843B;
+}
+
+
+#headerXs{
+    display: none;
+    height: 100%;
+}
+
+
+#headerXs > div{
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+}
+
+#headerXs .name{
+    text-align: left;
+    font-weight: bold;
+    padding-left: 10px;
+    font-size: 16pt;
+    color: #555413;
+}
+
+#headerXs .openMenuXsWrap{
+    width: 50px;
+}
+
+@media (max-width: 992px) {
+    #header{
+		display: none;
+    }
+    
+    #headerXs{
+		display: table;
+		width: 100%;
+    }
+}

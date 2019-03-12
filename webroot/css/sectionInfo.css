@@ -1,0 +1,18 @@
+.sectionInfo .name{
+    text-align: center;
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+.sectionInfo .main_image{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 200px;
+    width: 100%;
+	cursor: pointer;
+}
+
+.sectionInfo .details{
+	text-align: justify;
+}

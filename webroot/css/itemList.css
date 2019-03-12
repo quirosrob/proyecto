@@ -1,0 +1,83 @@
+.itemList{
+    margin-top: 10px;
+}
+
+.itemList > div{
+    padding: 10px;
+    border-left: 1px solid #9F9D4F;
+    border-right: 1px solid #9F9D4F;
+    border-top: 1px solid #9F9D4F;
+}
+
+.itemList > div:first-child{
+    border-radius: 4px 4px 0 0;
+}
+
+.itemList > div:last-child{
+    border-bottom: 1px solid #9F9D4F;
+    border-radius: 0 0 4px 4px;
+}
+
+.itemListDetails .info{
+    display: table;
+    width: 100%;
+}
+
+.itemListDetails .main_image{
+    display: table-cell;
+    width: 130px;
+    height: 100px;
+	cursor: pointer;
+    
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.itemListDetails .details{
+    display: table-cell;
+    padding-left: 10px;
+}
+
+.itemListDetails .description{
+	max-height: 100px;
+	overflow: hidden;
+	
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0)), linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+	-webkit-mask-size: 100% 90%;
+	-webkit-mask-position: left top, left bottom;
+}
+
+.itemListDetails .name{
+    font-weight: bold;
+    font-size: 14pt;
+    text-align: left;
+}
+
+.itemListDetails .job{
+	font-style: italic;
+    text-align: left;
+}
+
+
+@media (max-width: 992px) {
+    .itemListDetails .details,
+    .itemListDetails .main_image,
+    .itemListDetails .info{
+		display: inline-block;
+		width: 100%;
+    }
+    
+    
+    .itemListDetails .main_image{
+		background-position: center;
+    }
+    
+    .itemListDetails .name,
+	.itemListDetails .job,
+	.itemListDetails .sports,
+	.itemListDetails .year{
+		text-align: center;
+    }
+}

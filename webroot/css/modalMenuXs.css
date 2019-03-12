@@ -1,0 +1,34 @@
+#modalMenuXs .menu > div{
+    text-align: left;
+    border-top: 1px solid #85843B;
+    border-left: 1px solid #85843B;
+    border-right: 1px solid #85843B;
+    background-color: #F0EFCA;
+}
+
+#modalMenuXs .menu > div:hover{
+    background-color: #A9A768;
+}
+
+#modalMenuXs .menu > div:first-child{
+    border-radius: 4px 4px 0 0;
+}
+
+#modalMenuXs .menu > div:last-child{
+    border-bottom: 1px solid #85843B;
+    border-radius: 0 0 4px 4px;
+}
+
+#modalMenuXs .menu > div div{
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    color: #555413;
+    font-weight: bold;
+	font-size: 15pt;
+}
+
+#modalMenuXs a{
+    text-decoration: none;
+}
