@@ -1,6 +1,6 @@
 <?php ?>
 <div class="text-right">
-    <a href='/Admin/EventGalery/1'>
+    <a href='/Admin/EventGalery/<?=$event['id']?>'>
 		<?=$this->element('buttonXs', ['label'=>'Galería'])?>
     </a>
 </div>
@@ -29,7 +29,7 @@
 				<div>Imagen</div>
 				<div>
 
-					<input type='file' name='image_id' value=''/>
+					<input type='file' name='image' value=''/>
 				</div>
 			</div>
 		</div>

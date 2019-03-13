@@ -15,13 +15,6 @@
     <div class='details'>
 		<?=$event['description']?>
     </div>
-    <?=$this->element('image_group', ['images'=>[
-		['path'=>"/img/events/diaDeporte.jpg"],
-		['path'=>"/img/events/diaDeporte.jpg"],
-		['path'=>"/img/events/diaDeporte.jpg"],
-		['path'=>"/img/events/diaDeporte.jpg"],
-		['path'=>"/img/events/diaDeporte.jpg"],
-		['path'=>"/img/events/diaDeporte.jpg"],
-		['path'=>"/img/events/diaDeporte.jpg"],
-	]])?>
+		
+	<?=$this->element('image_group', ['images'=>$event['imageGroupItems']])?>
 </div>

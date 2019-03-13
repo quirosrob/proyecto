@@ -35,9 +35,11 @@
 				</div>
 			</div>
 			<div class="text-right">
-				<a href="?formAction=deleteEvent&event_id=<?=$event['id']?>">
-					<button type="button" class="btn btn-xs btn-danger">Eliminar</button>
-				</a>
+				<form class='ajax' question="¿Eliminar Evento?" style="display: inline-block">
+					<input type="hidden" name='event_id' value="<?=$event['id']?>"/>
+					<input type="hidden" name='formAction' value="deleteEvent"/>
+					<button type="submit" class="btn btn-xs btn-danger">Eliminar</button>
+				</form>
 				<a href="/Admin/Event/<?=$event['id']?>">
 					<?=$this->element('buttonXs', ['label'=>"Editar"])?>
 				</a>

@@ -16,6 +16,7 @@ class Salfadeco {
 		$events=$crud->load();
 		foreach($events as &$event){
 			$event['image']=$this->getImage($event['image_id']);
+			$event['imageGroupItems']=$this->getImageGroupImages($event['image_group_id']);
 		}
 		return $events;
 	}
@@ -26,6 +27,7 @@ class Salfadeco {
 		$crud->setClausule('id', '=', $event_id);
 		$event=$crud->loadFirst();
 		$event['image']=$this->getImage($event['image_id']);
+		$event['imageGroupItems']=$this->getImageGroupImages($event['image_group_id']);
 		return $event;
 	}
 	
@@ -83,5 +85,52 @@ class Salfadeco {
 		$crud->setTable('event');
 		$crud->setClausule('id', '=', $id);
 		$crud->delete();
+	}
+	
+	public function addImageToEvent($event_id, $image){
+		$event=$this->getEvent($event_id);
+		$image_group_id=$event['image_group_id'];
+		if(empty($image_group_id)){
+			$image_group_id=$this->createImageGroup();
+			$crud=new Crud();
+			$crud->setTable('event');
+			$crud->setValue('image_group_id', $image_group_id);
+			$crud->setClausule('id', '=', $event_id);
+			$crud->update();
+		}
+		$this->addImageToImageGroup($image_group_id, $image);
+	}
+	
+	public function addImageToImageGroup($image_group_id, $filename){
+		if(!empty($filename) && !empty($image_group_id)){
+			$image_id=$this->addImage($filename, '');
+			$crud=new Crud();
+			$crud->setTable('image_group_item');
+			$crud->setValue('image_group_id', $image_group_id);
+			$crud->setValue('image_id', $image_id);
+			$crud->insert();
+		}
+	}
+	
+	public function createImageGroup(){
+		$crud=new Crud();
+		$crud->setTable('image_group');
+		return $crud->insert();
+	}
+	
+	private function getImageGroupImages($image_group_id){
+		if(empty($image_group_id)){
+			return [];
+		}
+		
+		$images=[];
+		$crud=new Crud();
+		$crud->setTable('image_group_item');
+		$crud->setClausule('image_group_id', '=', $image_group_id);
+		$items=$crud->load();
+		foreach($items as $item){
+			$images[]=$this->getImage($item['image_id']);
+		}
+		return $images;
 	}
 }

@@ -89,7 +89,7 @@ class AdminController extends AppController
     
     public function event($event_id){
 		if($this->getParameter('formAction')=='updateEvent'){
-			$image=$this->File->receiveImageFromBrowser('image_id');
+			$image=$this->File->receiveImageFromBrowser('image');
 			$this->salfadeco->updateEvent($event_id, $this->getParameter('name'), $this->getParameter('date'), $this->getParameter('description'), $image, null);
 		}
 		
@@ -98,13 +98,20 @@ class AdminController extends AppController
 		]);
     }
 	
-    public function eventGalery(){
-	
+    public function eventGalery($event_id){
+		if($this->getParameter('formAction')=='addImageToEvent'){
+			$image=$this->File->receiveImageFromBrowser('image');
+			$this->salfadeco->addImageToEvent($event_id, $image);
+		}
+		
+		$this->set([
+			'event'=>$this->salfadeco->getEvent($event_id)
+		]);
     }
     
     public function NewEvent(){
 		if($this->getParameter('formAction')=='addEvent'){
-			$image=$this->File->receiveImageFromBrowser('image_id');
+			$image=$this->File->receiveImageFromBrowser('image');
 			$this->salfadeco->addEvent($this->getParameter('name'), $this->getParameter('date'), $this->getParameter('description'), $image, null);
 		}
     }
