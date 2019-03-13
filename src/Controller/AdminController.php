@@ -90,7 +90,7 @@ class AdminController extends AppController
     public function event($event_id){
 		if($this->getParameter('formAction')=='updateEvent'){
 			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->updateEvent($event_id, $this->getParameter('name'), $this->getParameter('date'), $this->getParameter('description'), $image, null);
+			$this->salfadeco->updateEvent($event_id, $this->getParameter('name'), $this->getParameter('date'), $this->getParameter('description'), $image);
 		}
 		
 		$this->set([

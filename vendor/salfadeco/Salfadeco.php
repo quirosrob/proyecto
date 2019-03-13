@@ -64,7 +64,7 @@ class Salfadeco {
 		$crud->insert();
 	}
 	
-	public function updateEvent($id, $name, $date, $description, $image, $image_group_id){
+	public function updateEvent($id, $name, $date, $description, $image){
 		$image_id=!empty($image)? $this->addImage($image, '') : "";
 		
 		$crud=new Crud();
@@ -75,7 +75,6 @@ class Salfadeco {
 		if(!empty($image_id)){
 			$crud->setValue('image_id', $image_id);
 		}
-		$crud->setValue('image_group_id', $image_group_id);
 		$crud->setClausule('id', '=', $id);
 		$crud->update();
 	}
