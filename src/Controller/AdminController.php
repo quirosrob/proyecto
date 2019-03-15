@@ -58,7 +58,10 @@ class AdminController extends AppController
     }
     
     public function newSport(){
-	
+		if($this->getParameter('formAction')=='addSport'){
+			$image=$this->File->receiveImageFromBrowser('image');
+			$this->salfadeco->addSport($this->getParameter('name'), $this->getParameter('description'), $image, null);
+		}
     }
     
     public function directorsTeams(){

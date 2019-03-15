@@ -132,4 +132,18 @@ class Salfadeco {
 		}
 		return $images;
 	}
+	
+	public function addSport($name, $description, $image){
+		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		
+		$crud=new Crud();
+		$crud->setTable('sport');
+		$crud->setValue('name', $name);
+		$crud->setValue('description', $description);
+		if(!empty($image_id)){
+			$crud->setValue('image_id', $image_id);
+		}
+		$crud->setValue('image_group_id', null);
+		$crud->insert();
+	}
 }

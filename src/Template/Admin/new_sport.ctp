@@ -1,27 +1,28 @@
 <?php ?>
 <h3 class='text-center'>Nuevo Deporte</h3>
 
-<div class="formResponsive">
-    <div>
-		<div>Nombre</div>
-		<div><input class='form-control' type='text' name='name' value=''/></div>
-    </div>
-    <div>
-		<div>Imagen</div>
+<form class='ajax'>
+	<div class="formResponsive">
 		<div>
-
-			<input type='file' name='image_id' value=''/>
+			<div>Nombre</div>
+			<div><input class='form-control' type='text' name='name' value=''/></div>
 		</div>
-    </div>
-</div>
+		<div>
+			<div>Imagen</div>
+			<div>
+				<input type='file' name='image' value=''/>
+			</div>
+		</div>
+	</div>
 
-<textarea name='detail' class='richTextArea'></textarea>
+	<textarea name='description' class='richTextArea'></textarea>
 
-<br/>
-<div class='text-center'>
-    <?=$this->element('button', ['label'=>"Salvar"])?>
-</div>
-
+	<br/>
+	<div class='text-center'>
+		<input type='hidden' name='formAction' value='addSport'/>
+		<?=$this->element('button', ['label'=>"Salvar"])?>
+	</div>
+</form>
 <script>
 	makeRichtTextAreas();
 </script>

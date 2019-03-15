@@ -55,8 +55,14 @@ class GuessController extends AppController
     }
     
     public function events(){
+		//pedir parametro
+		
+		
+		//ejecutar algo
+		
+		//devlver algo a la vista
 		$this->set([
-			'events'=>$this->salfadeco->getEvents()
+			'events'=>$this->salfadeco->getEvents(),
 		]);
     }
     
