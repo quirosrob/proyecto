@@ -77,6 +77,10 @@ class AdminController extends AppController
     }
     
     public function NewDirectorsTeam(){
+        if($this->getParameter('formAction')=='addDirectorsTeam'){
+           $image= $this->File->receiveImageFromBrowser('image');
+           $this->salfadeco->addDirectorsTeam($this->getParameter('name'), $this->getParameter('description'), $image, null);  
+        }
 	
     }
     

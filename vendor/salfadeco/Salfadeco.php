@@ -146,4 +146,18 @@ class Salfadeco {
 		$crud->setValue('image_group_id', null);
 		$crud->insert();
 	}
+        
+        public function addDirectorsTeam($name, $description, $image){
+		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		
+		$crud=new Crud();
+                $crud->setTable('directors_team');
+		$crud->setValue('name', $name);
+		$crud->setValue('description', $description);
+		if(!empty($image_id)){
+			$crud->setValue('image_id', $image_id);
+		}
+		$crud->setValue('image_group_id', null);
+		$crud->insert();
+	}
 }
