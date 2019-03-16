@@ -3,48 +3,76 @@
     Miembros
 </h3>
 
-<div class="formResponsive">
-    <div>
-		<div>Nombre</div>
-		<div><input class='form-control' type='text' name='filter' value=''/></div>
-    </div>
-	<div>
-		<div>Deporte</div>
+<form class='ajax'>
+	<div class="formResponsive">
 		<div>
-			<select name='sport' class='form-control'>
-				<option value=''></option>
-				<option value='1' <?=$sport_id==1? "selected" : ""?> >Baloncesto</option>
-				<option value='2'>Ciclismo</option>
-				<option value='3'>Natacion</option>
-				<option value='4'>Atletismo</option>
-				<option value='5'>Boxeo</option>
-			</select>
+			<div>Nombre</div>
+			<div><input class='form-control' type='text' name='filter' value='<?=$filter?>'/></div>
 		</div>
-    </div>
-</div>
+		<div>
+			<div>Deporte</div>
+			<div>
+				<select name='sport_id' class='form-control'>
+					<option value=''></option>
+					<?php
+					foreach($sports as $sport){
+						?>
+						<option value='<?=$sport['id']?>' <?=$sport['id']==$sport_id? "selected":""?>>
+							<?=$sport['name']?>
+						</option>
+						<?php
+					}
+					?>
+				</select>
+			</div>
+		</div>
+	</div>
 
-<div class='text-center'>
-    <?=$this->element('button', ['label'=>"Filtrar"])?>
-</div>
+	<div class='text-center'>
+		<?=$this->element('button', ['label'=>"Filtrar"])?>
+	</div>
+</form>
+
 
 <div class='itemList'>
     <?php
-    for($i=0; $i<10; $i++){
+    foreach($members as $member){
 		?>
 		<div>
 			<div class='itemListDetails'>
 				<div class="info">
-					<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>"/img/members/094.jpg"])?>");' onclick="openImageZoom('/img/members/094.jpg')"></div>
+					<?php
+					if(!empty($member['image']['filename'])){
+						$path="/img/uploads/{$member['image']['filename']}";
+						?>
+						<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
+						<?php
+					}
+					else{
+						?>
+						<div class='main_image'></div>
+						<?php
+					}
+					?>
 					<div class='details'>
-						<div class="name">Osvaldo Pandolfo Rímolo</div>
-						<div class="sports">Baloncesto</div>
-						<div class="year">1977</div>
+						<div class="name"><?=$member['name']?></div>
+						<div class="sports">
+							<?php
+							foreach($member['sports'] as $sport){
+								?>
+								<?=$sport['name']?>
+								<?php
+							}
+							?>
+						</div>
+						<div class="year"><?=date("Y", strtotime($member['date_entry']))?></div>
+						<div class="description"><?=$member['biography']?></div>
 					</div>
 				</div>
 			</div>
 			<div class="text-right">
-				<a href="/Guess/Member/1">
-					<?=$this->element('buttonXs', ['label'=>"Detalles"])?>
+				<a href="/Guess/Member/<?=$member['id']?>">
+				<?=$this->element('buttonXs', ['label'=>"Detalles"])?>
 				</a>
 			</div>
 		</div>

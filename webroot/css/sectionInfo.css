@@ -16,3 +16,13 @@
 .sectionInfo .details{
 	text-align: justify;
 }
+
+.sectionInfo .year{
+	text-align: center;
+	font-weight: bold;
+}
+
+.sectionInfo .sports{
+	text-align: center;
+	font-style: italic;
+}

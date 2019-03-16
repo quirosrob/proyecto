@@ -35,15 +35,18 @@ class GuessController extends AppController
     }
     
     public function members(){
-        $sport_id = $this->request->getQuery('sport_id');
-		
 		$this->set([
-			'sport_id'=>$sport_id
+			'members'=>$this->salfadeco->getMembers($this->getParameter('filter'), $this->getParameter('sport_id')),
+			'sports'=>$this->salfadeco->getSports(),
+			'filter'=>$this->getParameter('filter'),
+			'sport_id'=>$this->getParameter('sport_id')
 		]);
     }
     
     public function member($member_id){
-        
+        $this->set([
+			'member'=>$this->salfadeco->getMember($member_id),
+		]);
     }
     
     public function directorsTeams(){
