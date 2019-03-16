@@ -254,7 +254,17 @@ class AdminController extends AppController
 	}
 	
 	public function contacUs(){
+		if($this->getParameter('formAction')=='updateContactUs'){
+			$this->salfadeco->setConfiguration('contact_us_email', $this->getParameter('contact_us_email'));
+			$this->salfadeco->setConfiguration('contact_us_phone', $this->getParameter('contact_us_phone'));
+			$this->salfadeco->setText('contact_us_address', $this->getParameter('contact_us_address'));
+		}
 		
+		$this->set([
+			'contact_us_email'=>$this->salfadeco->getConfiguration('contact_us_email'),
+			'contact_us_phone'=>$this->salfadeco->getConfiguration('contact_us_phone'),
+			'contact_us_address'=>$this->salfadeco->getText('contact_us_address'),
+		]);
 	}
 	
 	public function configuration(){

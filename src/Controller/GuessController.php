@@ -103,6 +103,10 @@ class GuessController extends AppController
 	}
 	
 	public function contacUs(){
-		
+		$this->set([
+			'contact_us_email'=>$this->salfadeco->getConfiguration('contact_us_email'),
+			'contact_us_phone'=>$this->salfadeco->getConfiguration('contact_us_phone'),
+			'contact_us_address'=>$this->salfadeco->getText('contact_us_address'),
+		]);
 	}
 }

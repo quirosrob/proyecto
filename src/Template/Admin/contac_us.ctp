@@ -1,24 +1,27 @@
 <?php ?>
 <h3 class="text-center">Contáctenos</h3>
 
-<div class="formResponsive">
-    <div>
-		<div>Correo</div>
-		<div><input class='form-control' type='text' name='email' value='info@salfadeco.com'/></div>
-    </div>
-	
-    <div>
-		<div>Teléfono</div>
-		<div><input class='form-control' type='tel' name='phone' value='22554455'/></div>
-    </div>
-    <div>
-		<div>Dirección</div>
+<form class='ajax'>
+	<div class="formResponsive">
 		<div>
-			<textarea class="form-control" style="height: 150px;">San Jose. Mata Redonda. Sabana este, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
+			<div>Correo</div>
+			<div><input class='form-control' type='text' name='contact_us_email' value='<?=$contact_us_email?>'/></div>
 		</div>
-    </div>
-</div>
 
-<div class='text-center'>
-	<?=$this->element("button", ['label'=>"Salvar"])?>
-</div>
+		<div>
+			<div>Teléfono</div>
+			<div><input class='form-control' type='tel' name='contact_us_phone' value='<?=$contact_us_phone?>'/></div>
+		</div>
+		<div>
+			<div>Dirección</div>
+			<div>
+				<textarea class="form-control" style="height: 150px;" name='contact_us_address'><?=$contact_us_address?></textarea>
+			</div>
+		</div>
+	</div>
+
+	<div class='text-center'>
+		<input type='hidden' name='formAction' value='updateContactUs'/>
+		<?=$this->element("button", ['label'=>"Salvar"])?>
+	</div>
+</form>
