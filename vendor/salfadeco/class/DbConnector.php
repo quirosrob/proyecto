@@ -61,7 +61,7 @@ class DbConnector extends Singleton{
 			}
 			return $rows;
 		}catch(Exception $e){
-			$this->logError($e);
+			$this->logError("ERROR: {$e}, SQL:{$sql}");
 			return null;
 		}
 	}
