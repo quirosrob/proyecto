@@ -96,7 +96,10 @@ class GuessController extends AppController
     }
 	
 	public function history(){
-		
+		$this->set([
+			'site_history'=>$this->salfadeco->getText('site_history'),
+			'images'=>$this->salfadeco->getImagesHistory()
+		]);
 	}
 	
 	public function contacUs(){

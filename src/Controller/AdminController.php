@@ -233,11 +233,24 @@ class AdminController extends AppController
     }
 	
 	public function history(){
+		if($this->getParameter('formAction')=='updateHistory'){
+			$this->salfadeco->setText('site_history', $this->getParameter('site_history'));
+		}
 		
+		$this->set([
+			'site_history'=>$this->salfadeco->getText('site_history')
+		]);
 	}
 	
 	public function historyGalery(){
+		if($this->getParameter('formAction')=='addImageToHistory'){
+			$image=$this->File->receiveImageFromBrowser('image');
+			$this->salfadeco->addImageToHistory($image);
+		}
 		
+		$this->set([
+			'images'=>$this->salfadeco->getImagesHistory()
+		]);
 	}
 	
 	public function contacUs(){

@@ -462,5 +462,19 @@ class Salfadeco {
 		$row=$crud->loadFirst();
 		return @$row['text'];
 	}
+	
+	public function addImageToHistory($image){
+		$image_group_id=$this->getConfiguration('history_image_group_id');
+		if(empty($image_group_id)){
+			$image_group_id=$this->createImageGroup();
+			$this->setConfiguration('history_image_group_id', $image_group_id);
+		}
+		$this->addImageToImageGroup($image_group_id, $image);
+	}
+	
+	public function getImagesHistory(){
+		$image_group_id=$this->getConfiguration('history_image_group_id');
+		return $this->getImageGroupImages($image_group_id);
+	}
 }
 
