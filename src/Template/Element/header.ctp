@@ -7,13 +7,13 @@
 	<div class='menu'>
 	    <?php
 	    foreach($menuItems as $menuItem){
-		?>
-		<div>
-		    <a href="<?=$menuItem['link']?>">
-			<?=$this->element('buttonSm', ['label'=>$menuItem['desc'], 'class'=>@$menuItem['active']? "active":""])?>
-		    </a>
-		</div>
-		<?php
+			?>
+			<div>
+				<a href="<?=$menuItem['link']?>">
+					<?=$this->element('buttonSm', ['label'=>$menuItem['desc'], 'class'=>@$menuItem['active']? "active":""])?>
+				</a>
+			</div>
+			<?php
 	    }
 	    ?>
 	</div>
