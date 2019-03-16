@@ -31,7 +31,7 @@ class Salfadeco {
 		return $event;
 	}
 	
-	private function getImage($image_id){
+	public function getImage($image_id){
 		if(empty($image_id)){
 			return null;
 		}
@@ -41,7 +41,7 @@ class Salfadeco {
 		return $crud->loadFirst();
 	}
 	
-	private function addImage($filename, $description){
+	public function addImage($filename, $description){
 		$crud=new Crud();
 		$crud->setTable('image');
 		$crud->setValue('filename', $filename);

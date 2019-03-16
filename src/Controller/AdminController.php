@@ -285,6 +285,12 @@ class AdminController extends AppController
 			$this->salfadeco->setConfiguration('site_color_bottom_background_active', $this->getParameter('site_color_bottom_background_active'));
 			$this->salfadeco->setConfiguration('site_color_bottom_border_active', $this->getParameter('site_color_bottom_border_active'));
 			$this->salfadeco->setConfiguration('site_color_bottom_text_active', $this->getParameter('site_color_bottom_text_active'));
+			
+			$logo=$this->File->receiveImageFromBrowser('logo');
+			if(!empty($logo)){
+				$site_logo_image_id=$this->salfadeco->addImage($logo, '');
+				$this->salfadeco->setConfiguration('site_logo_image_id', $site_logo_image_id);
+			}
 		}
 	}
 	

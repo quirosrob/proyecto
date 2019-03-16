@@ -52,11 +52,11 @@ body{
 
 @media (max-width: 992px) {
     #mainHead{
-	height: 40px;
+		height: 40px;
     }
     
     #mainBodyWrap{
-	padding-top: 45px;
+		padding-top: 45px;
     }
 }
 
@@ -68,4 +68,13 @@ a{
 	overflow: hidden;
 	white-space: nowrap; 
 	text-overflow: ellipsis;
+}
+
+.logo_image{
+	height: 100px;
+    width: 100px;
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 95%, auto;
 }
