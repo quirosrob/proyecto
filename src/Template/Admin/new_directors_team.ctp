@@ -4,15 +4,14 @@
 <form class='ajax'>
     <div class="formResponsive">
         <div>
-                    <div>Nombre</div>
-                    <div><input class='form-control' type='text' name='name' value=''/></div>
+			<div>Nombre</div>
+			<div><input class='form-control' type='text' name='name' value=''/></div>
         </div>
         <div>
-                    <div>Imagen</div>
-                    <div>
-
-                            <input type='file' name='image_id' value=''/>
-                    </div>
+			<div>Imagen</div>
+			<div>
+				<input type='file' name='image' value=''/>
+			</div>
         </div>
     </div>
 

@@ -16,12 +16,27 @@ class DbConnector extends Singleton{
 		return $this->conection;
 	}
 	
+	private function logError($error){
+		$path=realpath(dirname(__FILE__));
+		$filePath="$path/../logs/error.log";
+		$fp = fopen($filePath,"a");
+		fwrite($fp, PHP_EOL);
+		fwrite($fp, date("Y-m-d H:i:s").PHP_EOL);
+		fwrite($fp, $error.PHP_EOL);
+		fclose($fp);
+	}
+	
 	public function execStatement($sql){
 		$conn=$this->getConnection();
 		try{
 			$conn->query($sql);
+			if(!empty($conn->error)){
+				$this->logError("ERROR: {$conn->error}, SQL:{$sql}");
+				return false;
+			}
 			return true;
 		}catch(Exception $e){
+			$this->logError("ERROR: {$e}, SQL:{$sql}");
 			return false;
 		}
 	}
@@ -30,6 +45,12 @@ class DbConnector extends Singleton{
 		$conn=$this->getConnection();
 		try{
 			$results=$conn->query($sql);
+			
+			if(!empty($conn->error)){
+				$this->logError("ERROR: {$conn->error}, SQL:{$sql}");
+				return null;
+			}
+			
 			if(!$results){
 				return null;
 			}
@@ -40,6 +61,7 @@ class DbConnector extends Singleton{
 			}
 			return $rows;
 		}catch(Exception $e){
+			$this->logError($e);
 			return null;
 		}
 	}
