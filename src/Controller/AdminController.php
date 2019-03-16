@@ -185,7 +185,7 @@ class AdminController extends AppController
     public function NewEvent(){
 		if($this->getParameter('formAction')=='addEvent'){
 			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->addEvent($this->getParameter('name'), $this->getParameter('date'), $this->getParameter('description'), $image, null);
+			$this->salfadeco->addEvent($this->getParameter('name'), $this->getParameter('date'), $this->getParameter('description'), $image);
 		}
     }
     
@@ -194,19 +194,42 @@ class AdminController extends AppController
     }
     
     public function galleries(){
-	
+		if($this->getParameter('formAction')=='deleteGallery'){
+			$this->salfadeco->deleteGallery($this->getParameter('gallery_id'));
+		}
+		
+		$this->set([
+			'galleries'=>$this->salfadeco->getGalleries()
+		]);
     }
     
     public function gallery($gallery_id){
-	
+		if($this->getParameter('formAction')=='updateGallery'){
+			$image=$this->File->receiveImageFromBrowser('image');
+			$this->salfadeco->updateGallery($gallery_id, $this->getParameter('name'), $this->getParameter('description'), $image);
+		}
+		
+		$this->set([
+			'gallery'=>$this->salfadeco->getGallery($gallery_id)
+		]);
     }
     
     public function galleryImages($gallery_id){
-	
+		if($this->getParameter('formAction')=='addImageToGallery'){
+			$image=$this->File->receiveImageFromBrowser('image');
+			$this->salfadeco->addImageToGallery($gallery_id, $image);
+		}
+		
+		$this->set([
+			'gallery'=>$this->salfadeco->getGallery($gallery_id)
+		]);
     }
     
     public function newGalery(){
-	
+		if($this->getParameter('formAction')=='addGallery'){
+			$image=$this->File->receiveImageFromBrowser('image');
+			$this->salfadeco->addGallery($this->getParameter('name'), $this->getParameter('description'), $image);
+		}
     }
 	
 	public function history(){

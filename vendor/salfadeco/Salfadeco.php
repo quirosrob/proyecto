@@ -49,7 +49,7 @@ class Salfadeco {
 		return $crud->insert();
 	}
 	
-	public function addEvent($name, $date, $description, $image, $image_group_id){
+	public function addEvent($name, $date, $description, $image){
 		$image_id=!empty($image)? $this->addImage($image, '') : "";
 		
 		$crud=new Crud();
@@ -60,7 +60,6 @@ class Salfadeco {
 		if(!empty($image_id)){
 			$crud->setValue('image_id', $image_id);
 		}
-		$crud->setValue('image_group_id', $image_group_id);
 		$crud->insert();
 	}
 	
@@ -356,6 +355,77 @@ class Salfadeco {
 			$crud->setTable('member');
 			$crud->setValue('image_group_id', $image_group_id);
 			$crud->setClausule('id', '=', $member_id);
+			$crud->update();
+		}
+		$this->addImageToImageGroup($image_group_id, $image);
+	}
+	
+	public function addGallery($name, $description, $image){
+		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		
+		$crud=new Crud();
+		$crud->setTable('gallery');
+		$crud->setValue('name', $name);
+		$crud->setValue('description', $description);
+		if(!empty($image_id)){
+			$crud->setValue('image_id', $image_id);
+		}
+		$crud->insert();
+	}
+	
+	public function getGalleries(){
+		$crud=new Crud();
+		$crud->setTable('gallery');
+		$crud->setOrder('name');
+		$galleries=$crud->load();
+		foreach($galleries as &$gallery){
+			$gallery['image']=$this->getImage($gallery['image_id']);
+			$gallery['imageGroupItems']=$this->getImageGroupImages($gallery['image_group_id']);
+		}
+		return $galleries;
+	}
+	
+	public function getGallery($gallery_id){
+		$crud=new Crud();
+		$crud->setTable('gallery');
+		$crud->setClausule('id', '=', $gallery_id);
+		$gallery=$crud->loadFirst();
+		$gallery['image']=$this->getImage($gallery['image_id']);
+		$gallery['imageGroupItems']=$this->getImageGroupImages($gallery['image_group_id']);
+		return $gallery;
+	}
+	
+	public function deleteGallery($gallery_id){
+		$crud=new Crud();
+		$crud->setTable('gallery');
+		$crud->setClausule('id', '=', $gallery_id);
+		$crud->delete();
+	}
+	
+	public function updateGallery($id, $name, $description, $image){
+		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		
+		$crud=new Crud();
+		$crud->setTable('gallery');
+		$crud->setValue('name', $name);
+		$crud->setValue('description', $description);
+		if(!empty($image_id)){
+			$crud->setValue('image_id', $image_id);
+		}
+		$crud->setClausule('id', '=', $id);
+		$crud->update();
+	}
+	
+	
+	public function addImageToGallery($gallery_id, $image){
+		$gallery=$this->getGallery($gallery_id);
+		$image_group_id=$gallery['image_group_id'];
+		if(empty($image_group_id)){
+			$image_group_id=$this->createImageGroup();
+			$crud=new Crud();
+			$crud->setTable('gallery');
+			$crud->setValue('image_group_id', $image_group_id);
+			$crud->setClausule('id', '=', $gallery_id);
 			$crud->update();
 		}
 		$this->addImageToImageGroup($image_group_id, $image);
