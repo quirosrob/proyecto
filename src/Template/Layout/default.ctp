@@ -26,6 +26,7 @@
 		<link href="/css/modalMenuXs.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/spectrum/spectrum.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/css/imageZoom.css?<?=$version?>" rel="stylesheet" type="text/css"/>
+		<link href="/css/richTextArea.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 
 		<script src="/js/jquery-1.11.3.min.js?<?=$version?>" type="text/javascript"></script>
 		<script src="/tinymce/js/tinymce/tinymce.min.js?<?=$version?>" type="text/javascript"></script>
