@@ -1,71 +1,49 @@
 <?php ?>
 <h3 class='text-center'>Nuevo Miembro</h3>
 
-<div class="formResponsive">
-    <div>
-		<div>Nombre</div>
-		<div><input class='form-control' type='text' name='name' value=''/></div>
-    </div>
-    <div>
-		<div>Año ingreso</div>
-		<div><input class='form-control' type='text' name='name' value=''/></div>
-    </div>
-    <div>
-		<div>Imagen</div>
+<form class='ajax'>
+	<div class="formResponsive">
 		<div>
-
-			<input type='file' name='image_id' value=''/>
+			<div>Nombre</div>
+			<div><input class='form-control' type='text' name='name' value=''/></div>
 		</div>
-    </div>
-    <div>
-		<div>Deporte</div>
 		<div>
+			<div>Fecha ingreso</div>
+			<div><input class='form-control' type='text' name='date_entry' value='2019-01-01'/></div>
+		</div>
+		<div>
+			<div>Imagen</div>
 			<div>
-				<label>
-					<input type='checkbox' value='sport_1' value='Y' />
-					Tenis
-				</label>
-			</div>
-			<div>
-				<label>
-					<input type='checkbox' value='sport_1' value='Y' />
-					Ciclismo
-				</label>
-			</div>
-			<div>
-				<label>
-					<input type='checkbox' value='sport_1' value='Y' />
-					Tenis
-				</label>
-			</div>
-			<div>
-				<label>
-					<input type='checkbox' value='sport_1' value='Y' />
-					Natacion
-				</label>
-			</div>
-			<div>
-				<label>
-					<input type='checkbox' value='sport_1' value='Y' />
-					Atletismo
-				</label>
-			</div>
-			<div>
-				<label>
-					<input type='checkbox' value='sport_1' value='Y' />
-					Boxeo
-				</label>
+				<input type='file' name='image' value=''/>
 			</div>
 		</div>
-    </div>
-</div>
+		<div>
+			<div>Deporte</div>
+			<div>
+				<?php
+				foreach($sports as $sport){
+					?>
+					<div>
+						<label>
+							<input type='checkbox' name='sport_<?=$sport['id']?>' value='Y' />
+							<?=$sport['name']?>
+						</label>
+					</div>
+					<?php
+				}
+				?>
+			</div>
+		</div>
+	</div>
 
-<textarea name='detail' class='richTextArea'></textarea>
+	<textarea name='biography' class='richTextArea'></textarea>
 
-<br/>
-<div class='text-center'>
-    <?=$this->element('button', ['label'=>"Salvar"])?>
-</div>
+	<br/>
+	<div class='text-center'>
+		<input type='hidden' name='formAction' value='addMember'/>
+		<?=$this->element('button', ['label'=>"Salvar"])?>
+	</div>
+</form>
 
 <script>
 	makeRichtTextAreas();

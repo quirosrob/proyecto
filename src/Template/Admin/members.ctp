@@ -15,13 +15,17 @@
 	<div>
 		<div>Deporte</div>
 		<div>
-			<select name='sport' class='form-control'>
+			<select name='sport_id' class='form-control'>
 				<option value=''></option>
-				<option value='1'>Tenis</option>
-				<option value='1'>Ciclismo</option>
-				<option value='1'>Natacion</option>
-				<option value='1'>Atletismo</option>
-				<option value='1'>Boxeo</option>
+				<?php
+				foreach($sports as $sport){
+					?>
+					<option value='<?=$sport['id']?>'>
+						<?=$sport['name']?>
+					</option>
+					<?php
+				}
+				?>
 			</select>
 		</div>
     </div>
@@ -33,24 +37,47 @@
 
 <div class='itemList'>
     <?php
-    for($i=0; $i<10; $i++){
+    foreach($members as $member){
 		?>
 		<div>
 			<div class='itemListDetails'>
 				<div class="info">
-					<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>"/img/members/094.jpg"])?>");' onclick="openImageZoom('/img/members/094.jpg')"></div>
+					<?php
+					if(!empty($member['image']['filename'])){
+						$path="/img/uploads/{$member['image']['filename']}";
+						?>
+						<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
+						<?php
+					}
+					else{
+						?>
+						<div class='main_image'></div>
+						<?php
+					}
+					?>
 					<div class='details'>
-						<div class="name">Osvaldo Pandolfo Rímolo</div>
-						<div class="sports">Baloncesto</div>
-						<div class="year">1977</div>
+						<div class="name"><?=$member['name']?></div>
+						<div class="sports">
+							<?php
+							foreach($member['sports'] as $sport){
+								?>
+								<?=$sport['name']?>
+								<?php
+							}
+							?>
+						</div>
+						<div class="year"><?=date("Y", strtotime($member['date_entry']))?></div>
+						<div class="description"><?=$member['biography']?></div>
 					</div>
 				</div>
 			</div>
 			<div class="text-right">
-				<a href="?delete_id=<?=$i?>">
-					<button type="button" class="btn btn-xs btn-danger">Eliminar</button>
-				</a>
-				<a href="/Admin/Member/1">
+				<form class='ajax' question="¿Eliminar Miembro?" style="display: inline-block">
+					<input type="hidden" name='member_id' value="<?=$member['id']?>"/>
+					<input type="hidden" name='formAction' value="deleteMember"/>
+					<button type="submit" class="btn btn-xs btn-danger">Eliminar</button>
+				</form>
+				<a href="/Admin/Member/<?=$member['id']?>">
 				<?=$this->element('buttonXs', ['label'=>"Editar"])?>
 				</a>
 			</div>

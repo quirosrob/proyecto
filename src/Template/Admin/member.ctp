@@ -1,88 +1,62 @@
 <?php ?>
 <div class="text-right">
-    <a href='/Admin/MemberGalery/1'>
+    <a href='/Admin/MemberGalery/<?=$member['id']?>'>
 		<?=$this->element('buttonXs', ['label'=>'Galería'])?>
     </a>
 </div>
+<form class='ajax'>
+	<div class="sectionInfo">
+		<?php
+		if(!empty($member['image']['filename'])){
+			$path="/img/uploads/{$member['image']['filename']}";
+			?>
+			<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
+			<?php
+		}
+		?>
 
-<div class="sectionInfo">
-	<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>"/img/members/094.jpg"])?>");' onclick="openImageZoom('/img/members/094.jpg')"></div>
-
-	<div class="formResponsive">
-		<div>
-			<div>Nombre</div>
-			<div><input class='form-control' type='text' name='name' value='Osvaldo Pandolfo Rímolo'/></div>
-		</div>
-		<div>
-			<div>Año ingreso</div>
-			<div><input class='form-control' type='text' name='name' value=''/></div>
-		</div>
-		<div>
-			<div>Imagen</div>
+		<div class="formResponsive">
 			<div>
-
-				<input type='file' name='image_id' value=''/>
+				<div>Nombre</div>
+				<div><input class='form-control' type='text' name='name' value='<?=$member['name']?>'/></div>
 			</div>
-		</div>
-		<div>
-			<div>Deporte</div>
 			<div>
+				<div>Año ingreso</div>
+				<div><input class='form-control' type='text' name='date_entry' value='<?=$member['date_entry']?>'/></div>
+			</div>
+			<div>
+				<div>Imagen</div>
 				<div>
-					<label>
-						<input type='checkbox' value='sport_1' value='Y' />
-						Tenis
-					</label>
+					<input type='file' name='image' value=''/>
 				</div>
+			</div>
+			<div>
+				<div>Deporte</div>
 				<div>
-					<label>
-						<input type='checkbox' value='sport_1' value='Y' />
-						Ciclismo
-					</label>
-				</div>
-				<div>
-					<label>
-						<input type='checkbox' value='sport_1' value='Y' />
-						Tenis
-					</label>
-				</div>
-				<div>
-					<label>
-						<input type='checkbox' value='sport_1' value='Y' />
-						Natacion
-					</label>
-				</div>
-				<div>
-					<label>
-						<input type='checkbox' value='sport_1' value='Y' />
-						Atletismo
-					</label>
-				</div>
-				<div>
-					<label>
-						<input type='checkbox' value='sport_1' value='Y' />
-						Boxeo
-					</label>
+					<?php
+					foreach($sports as $sport){
+						?>
+						<div>
+							<label>
+								<input type='checkbox' name='sport_<?=$sport['id']?>' value='Y' <?=isset($member['sports'][$sport['id']])? "checked='true'":""?> />
+								<?=$sport['name']?>
+							</label>
+						</div>
+						<?php
+					}
+					?>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<textarea name='detail' class='richTextArea'>
-		<p>
-		Nació en San José el día 22 de agosto de 1949. Desde muy jóven, en 1964 y como alumno del Colegio Los Angeles se dedicó a la práctica del baloncesto, integrando el equipo estudiantíl primero en segunda división y ascendiendo a la primera categoría en 1966, ganando el Campeonato de Copa. Por espacio de ocho años consecutivos, entre 1967 y 1975 juega con la Universidad de Costa Rica, obteniendo 4 Campeonatos Nacionales, 2 Subcampeonatos, 3 Campeonatos de Copa y 1 Subcampeonato Centroamericano. Cambiando de equipo, juega con el Liceo de Costa Rica y Reyco entre los años 1976 y 1980. 
-		</p>
-		<p>
-		Entre 1970 y 1977 forma parte de la Selección Nacional de Baloncesto, ocupando el puesto de Capitán del equipo, al igual que le ocurría en su participación con los equipos de Primera División; distinguiéndose siempre por su juego limpio y disciplinado, lo que le valió el reconocimiento del Círculo de Periodistas y Locutores Deportivos de Costa Rica en 1977.
-		</p>
-		<p>
-		Luego de su retiro en 1980, alterna su actividad deportiva como jugador de maxibaloncesto, teniendo grandes éxitos a nivel internacional con la Universidad Nacional y la Selección Nacional; con cargos de directivo, labores de entrenador y la práctica profesional como Ingeniero Agrónomo graduado en la Universidad de Costa Rica, llegando a ocupar el Viceministerio de Agricultura y Ganadería entre 1986 a 1990.
-		</p>
-	</textarea>
-	<br/>
-	<div class='text-center'>
-		<?=$this->element('button', ['label'=>"Salvar"])?>
+		<textarea name='biography' class='richTextArea'><?=$member['biography']?></textarea>
+		<br/>
+		<div class='text-center'>
+			<input type='hidden' name='formAction' value='updateMember'/>
+			<?=$this->element('button', ['label'=>"Salvar"])?>
+		</div>
 	</div>
-</div>
+</form>
 
 <script>
 	makeRichtTextAreas();

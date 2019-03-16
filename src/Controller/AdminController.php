@@ -37,7 +37,6 @@ class AdminController extends AppController
 		$this->set([
 			'sports'=>$this->salfadeco->getSports()
 		]);
-		
     }
     
     public function sport($sport_id){
@@ -52,19 +51,62 @@ class AdminController extends AppController
     }
     
     public function members(){
-        
+		if($this->getParameter('formAction')=='deleteMember'){
+			$this->salfadeco->deleteMember($this->getParameter('member_id'));
+		}
+		
+        $this->set([
+			'members'=>$this->salfadeco->getMembers($this->getParameter('name'), $this->getParameter('sport_id')),
+			'sports'=>$this->salfadeco->getSports()
+		]);
     }
     
     public function member($member_id){
-        
+		$sports=$this->salfadeco->getSports();
+		if($this->getParameter('formAction')=='updateMember'){
+			$sport_ids=[];
+			foreach($sports as $sport){
+				if($this->getParameter("sport_{$sport['id']}")=='Y'){
+					$sport_ids[]=$sport['id'];
+				}
+			}
+			$image=$this->File->receiveImageFromBrowser('image');
+			$this->salfadeco->updateMember($member_id, $this->getParameter('name'), $this->getParameter('date_entry'), $this->getParameter('biography'), $sport_ids, $image);
+		}
+		
+        $this->set([
+			'member'=>$this->salfadeco->getMember($member_id),
+			'sports'=>$sports
+		]);
     }
     
     public function memberGalery($member_id){
-	
+		if($this->getParameter('formAction')=='addImageToMember'){
+			$image=$this->File->receiveImageFromBrowser('image');
+			$this->salfadeco->addImageToMember($member_id, $image);
+		}
+		
+		$this->set([
+			'member'=>$this->salfadeco->getMember($member_id)
+		]);
     }
     
     public function newMember(){
-        
+		$sports=$this->salfadeco->getSports();
+		if($this->getParameter('formAction')=='addMember'){
+			$sport_ids=[];
+			foreach($sports as $sport){
+				if($this->getParameter("sport_{$sport['id']}")=='Y'){
+					$sport_ids[]=$sport['id'];
+				}
+			}
+			$image=$this->File->receiveImageFromBrowser('image');
+			$this->salfadeco->addMember($this->getParameter('name'), $this->getParameter('date_entry'), $this->getParameter('biography'), $sport_ids, $image);
+		}
+		
+        $this->set([
+			'sports'=>$sports
+		]);
     }
     
     public function sportGalery($sport_id){
@@ -81,7 +123,7 @@ class AdminController extends AppController
     public function newSport(){
 		if($this->getParameter('formAction')=='addSport'){
 			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->addSport($this->getParameter('name'), $this->getParameter('description'), $image, null);
+			$this->salfadeco->addSport($this->getParameter('name'), $this->getParameter('description'), $image);
 		}
     }
     
