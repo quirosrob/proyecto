@@ -2,9 +2,7 @@
 <div id='header'>
     <div class='logo' style='background-image: url(<?=$this->element('imageSrc', ['path'=>'/img/logo_salfadeco.png', 'w'=>100, 'h'=>100])?>);'></div>
     <div class='headerRight'>
-	<div class='name'>
-	    Salón de la Fama del deporte Costarricense
-	</div>
+	<div class='name'><?=$site_title?></div>
 	<div class='divisor'></div>
 	<div class='menu'>
 	    <?php
@@ -23,12 +21,10 @@
 </div>
 
 <div id='headerXs'>
-    <div class='name'>
-	SALFADECO
-    </div>
+    <div class='name'><?=$site_title_short?></div>
     <div class='openMenuXsWrap'>
-	<button type="button" class="btn btn-custom" onclick="openMenuXs();">
-	    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-	</button>
+		<button type="button" class="btn btn-custom" onclick="openMenuXs();">
+			<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+		</button>
     </div>
 </div>

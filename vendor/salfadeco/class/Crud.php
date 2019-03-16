@@ -54,7 +54,10 @@ class Crud{
 	}
 	
 	public function fixColumn($val){
-		return $val;
+		if(preg_match("/(.*)\.(.*)/", $val, $match)){
+			return "{$match[1]}.`{$match[2]}`";
+		}
+		return "`{$val}`";
 	}
 	
 	public function fixValue($val){
@@ -110,7 +113,7 @@ class Crud{
 	}
 	
 	private function clausuleToStr($clausule){
-		$columName=$clausule[0];
+		$columName=$this->fixColumn($clausule[0]);
 		$operator=trim($clausule[1]);
 
 		if($operator=='in'){

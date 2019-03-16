@@ -430,5 +430,37 @@ class Salfadeco {
 		}
 		$this->addImageToImageGroup($image_group_id, $image);
 	}
+	
+	public function setConfiguration($key, $value){
+		$crud=new Crud();
+		$crud->setTable('configuration');
+		$crud->setValue('key', $key);
+		$crud->setValue('value', $value);
+		$crud->replace();
+	}
+	
+	public function getConfiguration($key){
+		$crud=new Crud();
+		$crud->setTable('configuration');
+		$crud->setClausule('key', '=', $key);
+		$row=$crud->loadFirst();
+		return @$row['value'];
+	}
+	
+	public function setText($key, $text){
+		$crud=new Crud();
+		$crud->setTable('text');
+		$crud->setValue('key', $key);
+		$crud->setValue('text', $text);
+		$crud->replace();
+	}
+	
+	public function getText($key){
+		$crud=new Crud();
+		$crud->setTable('text');
+		$crud->setClausule('key', '=', $key);
+		$row=$crud->loadFirst();
+		return @$row['text'];
+	}
 }
 

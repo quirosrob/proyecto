@@ -5,7 +5,7 @@
 		<?= $this->Html->charset() ?>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 		<title>
-			Salon de la Fama del Deporte Costarricense
+			<?=$site_title?>
 		</title>
 
 		<?php
@@ -47,8 +47,7 @@
 		</div>
 		<div id='mainFooter'>
 			<div id="mainFooterPadding">
-				En el año 1960 se crea la Galeria del Deporte Costarricese, como una forma de perpetuar en la memoria de todos los tiempos,
-				maximos exponente de la mayoria de diciplinas deportivas que se practican en el país.
+				<?=nl2br($site_footer)?>
 			</div>
 		</div>
 

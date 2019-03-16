@@ -34,6 +34,28 @@ class AppController extends Controller
 		$this->salfadeco=new Salfadeco();
 	}
 	
+	public function beforeRender(Event $event) {
+		parent::beforeRender($event);
+		$this->set([
+			'site_title'=>$this->salfadeco->getConfiguration('site_title'),
+			'site_title_short'=>$this->salfadeco->getConfiguration('site_title_short'),
+			'site_footer'=>$this->salfadeco->getText('site_footer'),
+			'site_color_header_1'=>$this->salfadeco->getConfiguration('site_color_header_1'),
+			'site_color_header_2'=>$this->salfadeco->getConfiguration('site_color_header_2'),
+			'site_color_text'=>$this->salfadeco->getConfiguration('site_color_text'),
+			'site_color_body_background'=>$this->salfadeco->getConfiguration('site_color_body_background'),
+			'site_color_body_border'=>$this->salfadeco->getConfiguration('site_color_body_border'),
+			'site_color_footer_background'=>$this->salfadeco->getConfiguration('site_color_footer_background'),
+			'site_color_footer_border'=>$this->salfadeco->getConfiguration('site_color_footer_border'),
+			'site_color_bottom_background'=>$this->salfadeco->getConfiguration('site_color_bottom_background'),
+			'site_color_bottom_border'=>$this->salfadeco->getConfiguration('site_color_bottom_border'),
+			'site_color_bottom_text'=>$this->salfadeco->getConfiguration('site_color_bottom_text'),
+			'site_color_bottom_background_active'=>$this->salfadeco->getConfiguration('site_color_bottom_background_active'),
+			'site_color_bottom_border_active'=>$this->salfadeco->getConfiguration('site_color_bottom_border_active'),
+			'site_color_bottom_text_active'=>$this->salfadeco->getConfiguration('site_color_bottom_text_active'),
+		]);
+	}
+	
 	public function getParameter($name){
 		if(isset($_POST[$name])){
 			return $_POST[$name];

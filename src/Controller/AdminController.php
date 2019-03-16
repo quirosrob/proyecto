@@ -245,7 +245,24 @@ class AdminController extends AppController
 	}
 	
 	public function configuration(){
-	
+		if($this->getParameter('formAction')=='updateConfiguration'){
+			$this->salfadeco->setConfiguration('site_title', $this->getParameter('site_title'));
+			$this->salfadeco->setConfiguration('site_title_short', $this->getParameter('site_title_short'));
+			$this->salfadeco->setText('site_footer', $this->getParameter('site_footer'));
+			$this->salfadeco->setConfiguration('site_color_header_1', $this->getParameter('site_color_header_1'));
+			$this->salfadeco->setConfiguration('site_color_header_2', $this->getParameter('site_color_header_2'));
+			$this->salfadeco->setConfiguration('site_color_text', $this->getParameter('site_color_text'));
+			$this->salfadeco->setConfiguration('site_color_body_background', $this->getParameter('site_color_body_background'));
+			$this->salfadeco->setConfiguration('site_color_body_border', $this->getParameter('site_color_body_border'));
+			$this->salfadeco->setConfiguration('site_color_footer_background', $this->getParameter('site_color_footer_background'));
+			$this->salfadeco->setConfiguration('site_color_footer_border', $this->getParameter('site_color_footer_border'));
+			$this->salfadeco->setConfiguration('site_color_bottom_background', $this->getParameter('site_color_bottom_background'));
+			$this->salfadeco->setConfiguration('site_color_bottom_border', $this->getParameter('site_color_bottom_border'));
+			$this->salfadeco->setConfiguration('site_color_bottom_text', $this->getParameter('site_color_bottom_text'));
+			$this->salfadeco->setConfiguration('site_color_bottom_background_active', $this->getParameter('site_color_bottom_background_active'));
+			$this->salfadeco->setConfiguration('site_color_bottom_border_active', $this->getParameter('site_color_bottom_border_active'));
+			$this->salfadeco->setConfiguration('site_color_bottom_text_active', $this->getParameter('site_color_bottom_text_active'));
+		}
 	}
 	
 	public function access(){
