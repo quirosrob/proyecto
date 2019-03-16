@@ -12,6 +12,7 @@ class Crud{
 	var $start=null;
 	var $quantity=null;
 	var $tableName=null;
+	var $joins=[];
 	
 	public function setTable($table, $alias=''){
 		$this->tableName=$table;
@@ -28,6 +29,10 @@ class Crud{
 	
 	public function setClausuleOR($clausules){
 		$this->clausulesOR[]=$clausules;
+	}
+	
+	public function setJoin($col1, $op, $col2){
+		$this->joins[]=[$col1, $op, $col2];
 	}
 	
 	public function setLimits($start, $quantity){
@@ -116,16 +121,16 @@ class Crud{
 			$value="({$list})";
 		}
 		else if($operator=='=' && $clausule[2]===null){
-			return " `{$columName}` is null ";
+			return " {$columName} is null ";
 		}
 		else if($operator=='<>' && $clausule[2]===null){
-			return " `{$columName}` is not null ";
+			return " {$columName} is not null ";
 		}
 		else{
 			$value="'".$this->fixValue($clausule[2])."'";
 		}
 
-		return " `{$columName}` {$operator} {$value} ";
+		return " {$columName} {$operator} {$value} ";
 	}
 	
 	private function clausuleORToStr($clausuleOR){
@@ -153,6 +158,10 @@ class Crud{
 				$clausules.=" \n and ";
 			}
 			$clausules.=$this->clausuleORToStr($clausuleOR);
+		}
+		
+		foreach($this->joins as $join){
+			$clausules.=" \n and {$join[0]} {$join[1]} {$join[2]} ";
 		}
 		
 		return !empty($clausules)? "where $clausules " : "";
@@ -297,7 +306,6 @@ class Crud{
 	public function getPrimarykey(){
 		$sql="describe {$this->tableName};";
 		$rows=$this->execQuery($sql);
-		
 		foreach($rows as $row){
 			if($row['Key']=='PRI'){
 				return $row['Field'];

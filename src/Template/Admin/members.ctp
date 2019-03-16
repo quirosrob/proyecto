@@ -6,34 +6,35 @@
 </div>
 
 <h3 class='text-center'>Miembros</h3>
-
-<div class="formResponsive">
-    <div>
-		<div>Nombre</div>
-		<div><input class='form-control' type='text' name='filter' value=''/></div>
-    </div>
-	<div>
-		<div>Deporte</div>
+<form class='ajax'>
+	<div class="formResponsive">
 		<div>
-			<select name='sport_id' class='form-control'>
-				<option value=''></option>
-				<?php
-				foreach($sports as $sport){
-					?>
-					<option value='<?=$sport['id']?>'>
-						<?=$sport['name']?>
-					</option>
-					<?php
-				}
-				?>
-			</select>
+			<div>Nombre</div>
+			<div><input class='form-control' type='text' name='filter' value='<?=$filter?>'/></div>
 		</div>
-    </div>
-</div>
+		<div>
+			<div>Deporte</div>
+			<div>
+				<select name='sport_id' class='form-control'>
+					<option value=''></option>
+					<?php
+					foreach($sports as $sport){
+						?>
+						<option value='<?=$sport['id']?>' <?=$sport['id']==$sport_id? "selected":""?>>
+							<?=$sport['name']?>
+						</option>
+						<?php
+					}
+					?>
+				</select>
+			</div>
+		</div>
+	</div>
 
-<div class='text-center'>
-    <?=$this->element('buttonSm', ['label'=>"Filtrar"])?>
-</div>
+	<div class='text-center'>
+		<?=$this->element('buttonSm', ['label'=>"Filtrar"])?>
+	</div>
+</form>
 
 <div class='itemList'>
     <?php

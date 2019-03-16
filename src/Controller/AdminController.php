@@ -51,13 +51,16 @@ class AdminController extends AppController
     }
     
     public function members(){
+		
 		if($this->getParameter('formAction')=='deleteMember'){
 			$this->salfadeco->deleteMember($this->getParameter('member_id'));
 		}
 		
         $this->set([
-			'members'=>$this->salfadeco->getMembers($this->getParameter('name'), $this->getParameter('sport_id')),
-			'sports'=>$this->salfadeco->getSports()
+			'members'=>$this->salfadeco->getMembers($this->getParameter('filter'), $this->getParameter('sport_id')),
+			'sports'=>$this->salfadeco->getSports(),
+			'filter'=>$this->getParameter('filter'),
+			'sport_id'=>$this->getParameter('sport_id')
 		]);
     }
     

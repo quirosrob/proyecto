@@ -254,11 +254,27 @@ class Salfadeco {
 		$crud->delete();
 	}
 	
-	public function getMembers($name, $sport_id){
+	public function getMembers($filter, $sport_id){
 		$crud=new Crud();
-		$crud->setTable('member');
+		$crud->setTable('member', 'm');
+		
+		if(!empty($filter)){
+			$words= explode(' ', $filter);
+			foreach($words as $word){
+				if(!empty($word)){
+					$crud->setClausule('name', 'like', "%$word%");
+				}
+			}
+		}
+		
+		if(!empty($sport_id)){
+			$crud->setTable('member_sport', "ms");
+			$crud->setClausule('ms.sport_id', '=', $sport_id);
+			$crud->setJoin("m.id", '=',"ms.member_id");
+		}
+		
 		$crud->setOrder('name');
-		$members=$crud->load();
+		$members=$crud->load(['m.*']);
 		foreach($members as &$member){
 			$member['image']=$this->getImage($member['image_id']);
 			$member['imageGroupItems']=$this->getImageGroupImages($member['image_group_id']);
