@@ -28,7 +28,6 @@
 			<div>
 				<div>Imagen</div>
 				<div>
-
 					<input type='file' name='image' value=''/>
 				</div>
 			</div>

@@ -146,6 +146,63 @@ class Salfadeco {
 		$crud->setValue('image_group_id', null);
 		$crud->insert();
 	}
+	
+	public function getSports(){
+		$crud=new Crud();
+		$crud->setTable('sport');
+		$crud->setOrder('name');
+		$sports=$crud->load();
+		foreach($sports as &$sport){
+			$sport['image']=$this->getImage($sport['image_id']);
+			$sport['imageGroupItems']=$this->getImageGroupImages($sport['image_group_id']);
+		}
+		return $sports;
+	}
+	
+	public function getSport($sport_id){
+		$crud=new Crud();
+		$crud->setTable('sport');
+		$crud->setClausule('id', '=', $sport_id);
+		$sport=$crud->loadFirst();
+		$sport['image']=$this->getImage($sport['image_id']);
+		$sport['imageGroupItems']=$this->getImageGroupImages($sport['image_group_id']);
+		return $sport;
+	}
+	
+	public function deleteSport($id){
+		$crud=new Crud();
+		$crud->setTable('sport');
+		$crud->setClausule('id', '=', $id);
+		$crud->delete();
+	}
+	
+	public function updateSport($id, $name, $description, $image){
+		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		
+		$crud=new Crud();
+		$crud->setTable('sport');
+		$crud->setValue('name', $name);
+		$crud->setValue('description', $description);
+		if(!empty($image_id)){
+			$crud->setValue('image_id', $image_id);
+		}
+		$crud->setClausule('id', '=', $id);
+		$crud->update();
+	}
+	
+	public function addImageToSport($sport_id, $image){
+		$sport=$this->getSport($sport_id);
+		$image_group_id=$sport['image_group_id'];
+		if(empty($image_group_id)){
+			$image_group_id=$this->createImageGroup();
+			$crud=new Crud();
+			$crud->setTable('sport');
+			$crud->setValue('image_group_id', $image_group_id);
+			$crud->setClausule('id', '=', $sport_id);
+			$crud->update();
+		}
+		$this->addImageToImageGroup($image_group_id, $image);
+	}
         
 	public function addDirectorsTeam($name, $description, $image){
 		$image_id=!empty($image)? $this->addImage($image, '') : "";

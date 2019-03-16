@@ -9,25 +9,40 @@
 
 <div class='itemList'>
     <?php
-    for($i=0; $i<10; $i++){
+    foreach($sports as $sport){
 		?>
 		<div>
 			<div class='itemListDetails'>
 				<div class="info">
-					<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>"/img/sports/basketball.png"])?>");' onclick="openImageZoom('/img/sports/basketball.png')"></div>
+					<?php
+					if(!empty($sport['image']['filename'])){
+						$path="/img/uploads/{$sport['image']['filename']}";
+						?>
+						<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
+						<?php
+					}
+					else{
+						?>
+						<div class='main_image'></div>
+						<?php
+					}
+					?>
 					<div class='details'>
-						<div class="name">Baloncesto</div>
+						<div class="name"><?=$sport['name']?></div>
+						<div class="description"><?=$sport['description']?></div>
 					</div>
 				</div>
 			</div>
 			<div class="text-right">
-				<a href="?delete_id=<?=$i?>">
-					<button type="button" class="btn btn-xs btn-danger">Eliminar</button>
-				</a>
-				<a href="/Admin/Members/?sport_id=1">
+				<form class='ajax' question="¿Eliminar Deporte?" style="display: inline-block">
+					<input type="hidden" name='sport_id' value="<?=$sport['id']?>"/>
+					<input type="hidden" name='formAction' value="deleteSport"/>
+					<button type="submit" class="btn btn-xs btn-danger">Eliminar</button>
+				</form>
+				<a href="/Admin/Members/?sport_id=<?=$sport['id']?>">
 					<?=$this->element('buttonXs', ['label'=>"Miembros"])?>
 				</a>
-				<a href="/Admin/Sport/1">
+				<a href="/Admin/Sport/<?=$sport['id']?>">
 					<?=$this->element('buttonXs', ['label'=>"Editar"])?>
 				</a>
 			</div>

@@ -30,11 +30,25 @@ class AdminController extends AppController
     }
 
     public function sports(){
-        
+		if($this->getParameter('formAction')=='deleteSport'){
+			$this->salfadeco->deleteSport($this->getParameter('sport_id'));
+		}
+		
+		$this->set([
+			'sports'=>$this->salfadeco->getSports()
+		]);
+		
     }
     
     public function sport($sport_id){
-        
+        if($this->getParameter('formAction')=='updateSport'){
+			$image=$this->File->receiveImageFromBrowser('image');
+			$this->salfadeco->updateSport($sport_id, $this->getParameter('name'), $this->getParameter('description'), $image);
+		}
+		
+		$this->set([
+			'sport'=>$this->salfadeco->getSport($sport_id)
+		]);
     }
     
     public function members(){
@@ -54,7 +68,14 @@ class AdminController extends AppController
     }
     
     public function sportGalery($sport_id){
-	
+		if($this->getParameter('formAction')=='addImageToSport'){
+			$image=$this->File->receiveImageFromBrowser('image');
+			$this->salfadeco->addImageToSport($sport_id, $image);
+		}
+		
+		$this->set([
+			'sport'=>$this->salfadeco->getSport($sport_id)
+		]);
     }
     
     public function newSport(){
