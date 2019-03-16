@@ -24,6 +24,11 @@ function makeRichtTextAreas(){
 		plugins: [
 			'textcolor colorpicker'
 		],
+		setup: function (editor) {
+            editor.on('change', function () {
+                tinymce.triggerSave();
+            });
+        },
 		toolbar1: 'undo redo | styleselect | forecolor backcolor bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent'
 	});
 }
