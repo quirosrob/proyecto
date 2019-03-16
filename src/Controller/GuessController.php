@@ -80,11 +80,15 @@ class GuessController extends AppController
     }
     
     public function galleries(){
-	
+		$this->set([
+			'galleries'=>$this->salfadeco->getGalleries()
+		]);
     }
     
     public function gallery($gallery_id){
-	
+		$this->set([
+			'gallery'=>$this->salfadeco->getGallery($gallery_id)
+		]);
     }
     
     public function login(){

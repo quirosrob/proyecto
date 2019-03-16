@@ -5,24 +5,32 @@
 
 <div class='itemList'>
     <?php
-    for($i=0; $i<10; $i++){
+    foreach($galleries as $gallery){
 		?>
 		<div>
 			<div class='itemListDetails'>
 				<div class="info">
-					<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>"/img/galleries/trofeo.jpg"])?>");' onclick="openImageZoom('/img/galleries/trofeo.jpg')"></div>
+					<?php
+					if(!empty($gallery['image']['filename'])){
+						$path="/img/uploads/{$gallery['image']['filename']}";
+						?>
+						<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
+						<?php
+					}
+					else{
+						?>
+						<div class='main_image'></div>
+						<?php
+					}
+					?>
 					<div class='details'>
-						<div class="name">Trofeos 2018</div>
-						<div class="description">
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							</p>
-						</div>
+						<div class="name"><?=$gallery['name']?></div>
+						<div class="description"><?=$gallery['description']?></div>
 					</div>
 				</div>
 			</div>
 			<div class="text-right">
-				<a href="/Guess/Gallery/1">
+				<a href="/Guess/Gallery/<?=$gallery['id']?>">
 					<?=$this->element('buttonXs', ['label'=>"Detalles"])?>
 				</a>
 			</div>
