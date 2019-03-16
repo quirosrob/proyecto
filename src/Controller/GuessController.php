@@ -27,11 +27,15 @@ class GuessController extends AppController
     }
     
     public function sports(){
-        
+        $this->set([
+			'sports'=>$this->salfadeco->getSports()
+		]);
     }
     
     public function sport($sport_id){
-        
+        $this->set([
+			'sport'=>$this->salfadeco->getSport($sport_id)
+		]);
     }
     
     public function members(){
