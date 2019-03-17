@@ -2,7 +2,19 @@ function setFormsSubmitEvent(){
 	$("form.ajax").unbind('submit');
 	$("form.ajax").submit(function(e){
 		e.preventDefault();
-		submitForm($(this));
+		var form=$(this);
+		var question=form.attr("question");
+		
+		if(question!=null){
+			openAlertYesNo(question, function(response){
+				if(response){
+					submitForm(form);
+				}
+			});
+		}
+		else{
+			submitForm(form);
+		}
 	});
 }
 
@@ -11,7 +23,6 @@ function submitForm(form){
 	var target="#mainBodyPadding";
 	var formData = new FormData($(form)[0]);
 	openModal("#modal-ajax-block");
-	
 	queryServerFormData(url, formData, 'html', function(html){
 		$(target).html(html);
 		setFormsSubmitEvent();

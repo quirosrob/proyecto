@@ -60,6 +60,7 @@
 		<?=$this->element('imageZoom')?>
 		<?=$this->element('modalAjaxBlock')?>
 		<?=$this->element('modalDatePicker')?>
+		<?=$this->element('modalAlertYesNo')?>
 		<?=$this->element('customCss')?>
 		
 		<script>
