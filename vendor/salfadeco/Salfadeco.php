@@ -476,5 +476,47 @@ class Salfadeco {
 		$image_group_id=$this->getConfiguration('history_image_group_id');
 		return $this->getImageGroupImages($image_group_id);
 	}
+	
+	public function deleteImage($image_id){
+		$crud=new Crud();
+		$crud->setTable('directors_team');
+		$crud->setValue('image_id', null);
+		$crud->setClausule('image_id', '=', $image_id);
+		$crud->update();
+		
+		$crud=new Crud();
+		$crud->setTable('event');
+		$crud->setValue('image_id', null);
+		$crud->setClausule('image_id', '=', $image_id);
+		$crud->update();
+		
+		$crud=new Crud();
+		$crud->setTable('gallery');
+		$crud->setValue('image_id', null);
+		$crud->setClausule('image_id', '=', $image_id);
+		$crud->update();
+		
+		$crud=new Crud();
+		$crud->setTable('member');
+		$crud->setValue('image_id', null);
+		$crud->setClausule('image_id', '=', $image_id);
+		$crud->update();
+		
+		$crud=new Crud();
+		$crud->setTable('sport');
+		$crud->setValue('image_id', null);
+		$crud->setClausule('image_id', '=', $image_id);
+		$crud->update();
+		
+		$crud=new Crud();
+		$crud->setTable('image_group_item');
+		$crud->setClausule('image_id', '=', $image_id);
+		$crud->delete();
+		
+		$crud=new Crud();
+		$crud->setTable('image');
+		$crud->setClausule('id', '=', $image_id);
+		$crud->delete();
+	}
 }
 

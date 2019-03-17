@@ -303,4 +303,9 @@ class AdminController extends AppController
 	public function usersRights(){
 		
 	}
+	
+	public function removeImageFromGroup($image_id){
+		$this->salfadeco->deleteImage($image_id);
+		return $this->response->withType("application/json")->withStringBody(json_encode(['status'=>'ok']));
+	}
 }

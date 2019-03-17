@@ -11,7 +11,7 @@
 					if(@$deleteImage){
 						?>
 						<div class='deleteImageButtonWrap text-right'>
-							<button type="button" class="btn btn-xs btn-danger">
+							<button type="button" class="btn btn-xs btn-danger" onclick="stopPropagation(event);removeImageFromGroup(this, <?=$image['id']?>);">
 								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 							</button>
 						</div>

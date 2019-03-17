@@ -37,3 +37,24 @@ function openImageZoom(path){
 	$("#imageZoom .imageZoom").css('background-image', 'url("/phpThumb/phpThumb.php?src='+path+'&w=500&h=500")');
 	openModal("#imageZoom");
 }
+
+function stopPropagation(e){
+	e.cancelBubble=true;
+}
+
+function removeImageFromGroup(element, image_id){
+	openModal("#modal-ajax-block");
+	queryServerJson(
+		'/Admin/removeImageFromGroup/'+image_id, 
+		{}, 
+		function(data){
+			if(data['status']=='ok'){
+				$(element).parents('.item').first().remove();
+			}
+		}, 
+		function(){
+			closeModal("#modal-ajax-block");
+		}, 
+		null
+	);
+}
