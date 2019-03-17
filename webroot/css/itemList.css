@@ -26,7 +26,6 @@
 .itemListDetails .main_image{
     display: table-cell;
     width: 130px;
-    height: 100px;
 	cursor: pointer;
     
     background-position: top center;
