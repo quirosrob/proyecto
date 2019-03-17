@@ -1,7 +1,7 @@
 <?php ?>
 <h3 class='text-center'><?=$member['name']?></h3>
 <div class="sectionInfo">
-	<div class='year'><?=date("Y", strtotime($member['date_entry']))?></div>
+	<div class='year'><?=!empty($member['date_entry'])? date("Y", strtotime($member['date_entry'])) : ""?></div>
 	<div class='sports'>
 		<?php
 		foreach($member['sports'] as $sport){

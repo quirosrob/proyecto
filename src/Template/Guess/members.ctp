@@ -65,7 +65,7 @@
 							}
 							?>
 						</div>
-						<div class="year"><?=date("Y", strtotime($member['date_entry']))?></div>
+						<div class="year"><?=!empty($member['date_entry'])? date("Y", strtotime($member['date_entry'])) : ""?></div>
 						<div class="description"><?=$member['biography']?></div>
 					</div>
 				</div>

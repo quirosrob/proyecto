@@ -55,7 +55,7 @@ class Salfadeco {
 		$crud=new Crud();
 		$crud->setTable('event');
 		$crud->setValue('name', $name);
-		$crud->setValue('date', $date);
+		$crud->setValue('date', !empty($date)? $date : null);
 		$crud->setValue('description', $description);
 		if(!empty($image_id)){
 			$crud->setValue('image_id', $image_id);
@@ -69,7 +69,7 @@ class Salfadeco {
 		$crud=new Crud();
 		$crud->setTable('event');
 		$crud->setValue('name', $name);
-		$crud->setValue('date', $date);
+		$crud->setValue('date', !empty($date)? $date : null);
 		$crud->setValue('description', $description);
 		if(!empty($image_id)){
 			$crud->setValue('image_id', $image_id);
@@ -295,7 +295,7 @@ class Salfadeco {
 		$crud=new Crud();
 		$crud->setTable('member');
 		$crud->setValue('name', $name);
-		$crud->setValue('date_entry', $date_entry);
+		$crud->setValue('date_entry', !empty($date_entry)? $date_entry : null);
 		$crud->setValue('biography', $biography);
 		if(!empty($image_id)){
 			$crud->setValue('image_id', $image_id);
@@ -400,7 +400,7 @@ class Salfadeco {
 		$crud=new Crud();
 		$crud->setTable('member');
 		$crud->setValue('name', $name);
-		$crud->setValue('date_entry', $date_entry);
+		$crud->setValue('date_entry', !empty($date_entry)? $date_entry : null);
 		$crud->setValue('biography', $biography);
 		if(!empty($image_id)){
 			$crud->setValue('image_id', $image_id);
