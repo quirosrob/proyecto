@@ -235,7 +235,7 @@ class Salfadeco {
 		$crud->setTable('directors_team');
 		$crud->setClausule('id', '=', $directors_team_id);
 		$directors_team=$crud->loadFirst();
-		$directors_team['image']=$this->getImage($sport['image_id']);
+		$directors_team['image']=$this->getImage($directors_team['image_id']);
 		$directors_team['imageGroupItems']=$this->getImageGroupImages($directors_team['image_group_id']);
 		return $directors_team;
 	}
