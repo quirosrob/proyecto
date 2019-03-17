@@ -273,7 +273,9 @@ class AdminController extends AppController
 			$this->salfadeco->setConfiguration('site_title_short', $this->getParameter('site_title_short'));
 			$this->salfadeco->setText('site_footer', $this->getParameter('site_footer'));
 			$this->salfadeco->setConfiguration('site_color_header_1', $this->getParameter('site_color_header_1'));
+			$this->salfadeco->setConfiguration('site_color_header_div', $this->getParameter('site_color_header_div'));
 			$this->salfadeco->setConfiguration('site_color_header_2', $this->getParameter('site_color_header_2'));
+			$this->salfadeco->setConfiguration('site_color_header_border', $this->getParameter('site_color_header_border'));
 			$this->salfadeco->setConfiguration('site_color_text', $this->getParameter('site_color_text'));
 			$this->salfadeco->setConfiguration('site_color_body_background', $this->getParameter('site_color_body_background'));
 			$this->salfadeco->setConfiguration('site_color_body_border', $this->getParameter('site_color_body_border'));

@@ -41,9 +41,23 @@
 		</div>
 
 		<div>
+			<div>Header división</div>
+			<div>
+				<input type='text' class='colorPicker' name='site_color_header_div' value='<?=$site_color_header_div?>' />
+			</div>
+		</div>
+		
+		<div>
 			<div>Header 2</div>
 			<div>
 				<input type='text' class='colorPicker' name='site_color_header_2' value='<?=$site_color_header_2?>' />
+			</div>
+		</div>
+		
+		<div>
+			<div>Header Borde</div>
+			<div>
+				<input type='text' class='colorPicker' name='site_color_header_border' value='<?=$site_color_header_border?>' />
 			</div>
 		</div>
 

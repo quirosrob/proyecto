@@ -59,14 +59,25 @@
 		</script>
 		
 		<style>
-			<?php if(!empty($site_color_header_1)){
+			<?php 
+			if(!empty($site_color_header_1)){
 				?>
 				#mainHead{background-color: <?=$site_color_header_1?>;}
+				<?php
+			}
+			if(!empty($site_color_header_div)){
+				?>
+				#header .divisor{background-color: <?=$site_color_header_div?>;}
 				<?php
 			}
 			if(!empty($site_color_header_2)){
 				?>
 				#header .name{background-color: <?=$site_color_header_2?>;}
+				<?php
+			}
+			if(!empty($site_color_header_border)){
+				?>
+				#mainHead{border-color: <?=$site_color_header_border?>;}
 				<?php
 			}
 			if(!empty($site_color_text)){
