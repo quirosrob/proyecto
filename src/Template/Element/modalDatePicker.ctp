@@ -40,7 +40,7 @@
 		labelMinute: "Minuto",
 		dayAbbreviations: ["Do","Lu","Ma","Mi","Ju","Vi","Sa"],
 		monthAbbreviations: ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Set","Oct","Nov","Dic"],
-		labelTitle:"Fecha",
+		labelTitle:"Seleccione la Fecha",
 		format: "%Y-%m-%d"
 	});
 </script>
