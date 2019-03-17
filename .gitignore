@@ -39,6 +39,7 @@ nbproject/*
 # Sass preprocessor
 .sass-cache/
 
+webroot/phpThumb/cache/*
 webroot/img/uploads
 tmp/cache/*
 logs/debug.log

@@ -79,6 +79,11 @@ class Salfadeco {
 	}
 	
 	public function deleteEvent($id){
+		$event=$this->getEvent($id);
+		
+		$this->deleteImage($event['image_id']);
+		$this->deleteImageGroup($event['image_group_id']);
+		
 		$crud=new Crud();
 		$crud->setTable('event');
 		$crud->setClausule('id', '=', $id);
@@ -169,6 +174,16 @@ class Salfadeco {
 	}
 	
 	public function deleteSport($id){
+		$sport=$this->getSport($id);
+		
+		$this->deleteImage($sport['image_id']);
+		$this->deleteImageGroup($sport['image_group_id']);
+		
+		$crud=new Crud();
+		$crud->setTable('member_sport');
+		$crud->setClausule('sport_id', '=', $id);
+		$crud->delete();
+		
 		$crud=new Crud();
 		$crud->setTable('sport');
 		$crud->setClausule('id', '=', $id);
@@ -306,6 +321,11 @@ class Salfadeco {
 	}
 	
 	public function deleteMember($member_id){
+		$member=$this->getMember($member_id);
+		
+		$this->deleteImage($member['image_id']);
+		$this->deleteImageGroup($member['image_group_id']);
+		
 		$crud=new Crud();
 		$crud->setTable('member_sport');
 		$crud->setClausule('member_id', '=', $member_id);
@@ -396,6 +416,11 @@ class Salfadeco {
 	}
 	
 	public function deleteGallery($gallery_id){
+		$gallery=$this->getGallery($gallery_id);
+		
+		$this->deleteImage($gallery['image_id']);
+		$this->deleteImageGroup($gallery['image_group_id']);
+		
 		$crud=new Crud();
 		$crud->setTable('gallery');
 		$crud->setClausule('id', '=', $gallery_id);
@@ -478,6 +503,10 @@ class Salfadeco {
 	}
 	
 	public function deleteImage($image_id){
+		if(empty($image_id)){
+			return;
+		}
+		
 		$crud=new Crud();
 		$crud->setTable('directors_team');
 		$crud->setValue('image_id', null);
@@ -516,6 +545,22 @@ class Salfadeco {
 		$crud=new Crud();
 		$crud->setTable('image');
 		$crud->setClausule('id', '=', $image_id);
+		$crud->delete();
+	}
+	
+	private function deleteImageGroup($image_group_id){
+		if(empty($image_group_id)){
+			return;
+		}
+		
+		$images=$this->getImageGroupImages($image_group_id);
+		foreach($images as $image){
+			$this->deleteImage($image['id']);
+		}
+		
+		$crud=new Crud();
+		$crud->setTable('image_group');
+		$crud->setClausule('id', '=', $image_group_id);
 		$crud->delete();
 	}
 }
