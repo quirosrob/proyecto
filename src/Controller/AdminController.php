@@ -131,14 +131,35 @@ class AdminController extends AppController
     }
     
     public function directorsTeams(){
-	
+        if($this->getParameter('formAction')=='deleteDirectorsTeam'){
+			$this->salfadeco->deleteDirectorsTeam($this->getParameter('directors_team_id'));
+		}
+		
+		$this->set([
+			'directors_teams'=>$this->salfadeco->getDirectorsTeams()
+		]);
     }
     
     public function directorsTeam($directors_team_id){
-	
+        if($this->getParameter('formAction')=='updateDirectorsTeam'){
+			$image=$this->File->receiveImageFromBrowser('image');
+			$this->salfadeco->updateDirectorsTeam($directors_team_id, $this->getParameter('name'), $this->getParameter('description'), $image);
+		}
+		
+		$this->set([
+			'directors_team'=>$this->salfadeco->getDirectorsTeam($directors_team_id)
+		]);
     }
     
     public function directorsTeamGallery($directors_team_id){
+        if($this->getParameter('formAction')=='addImageToSport'){
+                    $image=$this->File->receiveImageFromBrowser('image');
+                    $this->salfadeco->addImageToDirectorsTeam($directors_team_id, $image);
+            }
+
+            $this->set([
+                    'directors_team'=>$this->salfadeco->getDirectorsTeam($directors_team_id)
+            ]);
 	
     }
     
