@@ -27,6 +27,9 @@
 		<link href="/spectrum/spectrum.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/css/imageZoom.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/css/richTextArea.css?<?=$version?>" rel="stylesheet" type="text/css"/>
+		<link href="/css/inputDate.css?<?=$version?>" rel="stylesheet" type="text/css"/>
+		<link href="/anytime/anytime.5.1.2.css?<?=$version?>" rel="stylesheet" >
+		<link href="/anytime/anytimeFix.css?<?=$version?>" rel="stylesheet" >
 
 		<script src="/js/jquery-1.11.3.min.js?<?=$version?>" type="text/javascript"></script>
 		<script src="/tinymce/js/tinymce/tinymce.min.js?<?=$version?>" type="text/javascript"></script>
@@ -35,6 +38,8 @@
 		<script src="/spectrum/spectrum.js?<?=$version?>" type="text/javascript"></script>
 		<script src="/js/ajax.js?<?=$version?>" type="text/javascript"></script>
 		<script src="/js/formHelper.js?<?=$version?>" type="text/javascript"></script>
+		<script src="/anytime/anytime.5.1.2.js?<?=$version?>" type="text/javascript"></script>
+		
 	</head>
 	<body>
 		<div id='mainHead'>
@@ -54,88 +59,11 @@
 		<?=$this->element('modalMenuXs')?>
 		<?=$this->element('imageZoom')?>
 		<?=$this->element('modalAjaxBlock')?>
+		<?=$this->element('modalDatePicker')?>
+		<?=$this->element('customCss')?>
+		
 		<script>
 			setFormsSubmitEvent();
 		</script>
-		
-		<style>
-			<?php 
-			if(!empty($site_color_header_1)){
-				?>
-				#mainHead{background-color: <?=$site_color_header_1?>;}
-				<?php
-			}
-			if(!empty($site_color_header_div)){
-				?>
-				#header .divisor{background-color: <?=$site_color_header_div?>;}
-				<?php
-			}
-			if(!empty($site_color_header_2)){
-				?>
-				#header .name{background-color: <?=$site_color_header_2?>;}
-				<?php
-			}
-			if(!empty($site_color_header_border)){
-				?>
-				#mainHead{border-color: <?=$site_color_header_border?>;}
-				<?php
-			}
-			if(!empty($site_color_text)){
-				?>
-				body{color: <?=$site_color_text?>;}
-				<?php
-			}
-			if(!empty($site_color_body_background)){
-				?>
-				#mainBody{background: <?=$site_color_body_background?>;}
-				<?php
-			}
-			if(!empty($site_color_body_border)){
-				?>
-				#mainBody{border-color: <?=$site_color_body_border?>;}
-				<?php
-			}
-			if(!empty($site_color_footer_background)){
-				?>
-				#mainFooter{background: <?=$site_color_footer_background?>;}
-				<?php
-			}
-			if(!empty($site_color_footer_border)){
-				?>
-				#mainFooter{border-color: <?=$site_color_footer_border?>;}
-				<?php
-			}
-			if(!empty($site_color_bottom_background)){
-				?>
-				.btn-custom{background-color: <?=$site_color_bottom_background?>;}
-				<?php
-			}
-			if(!empty($site_color_bottom_border)){
-				?>
-				.btn-custom{border-color: <?=$site_color_bottom_border?>;}
-				<?php
-			}
-			if(!empty($site_color_bottom_text)){
-				?>
-				.btn-custom{color: <?=$site_color_bottom_text?>;}
-				<?php
-			}
-			if(!empty($site_color_bottom_background_active)){
-				?>
-				.btn-custom:hover, .btn-custom.active{background-color: <?=$site_color_bottom_background_active?>;}
-				<?php
-			}
-			if(!empty($site_color_bottom_border_active)){
-				?>
-				.btn-custom:hover, .btn-custom.active{border-color: <?=$site_color_bottom_border_active?>;}
-				<?php
-			}
-			if(!empty($site_color_bottom_text_active)){
-				?>
-				.btn-custom:hover, .btn-custom.active{color: <?=$site_color_bottom_text_active?>;}
-				<?php
-			}
-			?>
-		</style>
 	</body>
 </html>

@@ -9,7 +9,9 @@
 		</div>
 		<div>
 			<div>Fecha ingreso</div>
-			<div><input class='form-control' type='text' name='date_entry' value='2019-01-01'/></div>
+			<div>
+				<?=$this->element('inputDate', ['name'=>'date_entry', 'value'=>date("Y-m-d")])?>
+			</div>
 		</div>
 		<div>
 			<div>Imagen</div>

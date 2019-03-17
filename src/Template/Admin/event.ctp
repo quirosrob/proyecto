@@ -23,7 +23,9 @@
 			</div>
 			<div>
 				<div>Fecha</div>
-				<div><input class='form-control' type='text' name='date' value='<?=$event['date']?>'/></div>
+				<div>
+					<?=$this->element('inputDate', ['name'=>'date', 'value'=>$event['date']])?>
+				</div>
 			</div>
 			<div>
 				<div>Imagen</div>

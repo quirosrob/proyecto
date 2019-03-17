@@ -21,8 +21,10 @@
 				<div><input class='form-control' type='text' name='name' value='<?=$member['name']?>'/></div>
 			</div>
 			<div>
-				<div>Año ingreso</div>
-				<div><input class='form-control' type='text' name='date_entry' value='<?=$member['date_entry']?>'/></div>
+				<div>Fecha ingreso</div>
+				<div>
+					<?=$this->element('inputDate', ['name'=>'date_entry', 'value'=>$member['date_entry']])?>
+				</div>
 			</div>
 			<div>
 				<div>Imagen</div>
