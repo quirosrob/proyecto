@@ -43,4 +43,6 @@
 		labelTitle:"Seleccione la Fecha",
 		format: "%Y-%m-%d"
 	});
+	
+	$("#modal-date-picker .AnyTime-dom-body .AnyTime-dom-btn").dblclick(datePickerRetrive);
 </script>
