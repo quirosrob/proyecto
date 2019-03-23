@@ -646,6 +646,11 @@ class Salfadeco {
 	public function makePdfQrs(){
 		$filePath=realpath(dirname(__FILE__))."/../../webroot/img/qr/members.pdf";
 		$members=$this->getMembers(null, null);
+		
+		foreach($members as $member){
+			$this->makeQrMember($member['id']);
+		}
+		
 		$pdfQr=new PdfQr();
 		$pdfQr->makeQrs($members, $filePath);
 	}
