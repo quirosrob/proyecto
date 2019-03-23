@@ -53,6 +53,11 @@
 
 		<textarea name='biography' class='richTextArea'><?=$member['biography']?></textarea>
 		<br/>
+		
+		<div class='main_image' style='background-image: url("/img/qr/member_<?=$member['id']?>");'></div>
+		
+		<br/>
+		
 		<div class='text-center'>
 			<input type='hidden' name='formAction' value='updateMember'/>
 			<?=$this->element('button', ['label'=>"Salvar"])?>

@@ -289,6 +289,7 @@ class AdminController extends AppController
 	}
 	
 	public function configuration(){
+		$this->salfadeco->makePdfQrs();
 		if($this->getParameter('formAction')=='updateConfiguration'){
 			$this->salfadeco->setConfiguration('site_title', $this->getParameter('site_title'));
 			$this->salfadeco->setConfiguration('site_title_short', $this->getParameter('site_title_short'));

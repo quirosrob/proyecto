@@ -7,6 +7,8 @@ require_once($path.DS."Configuration.php");
 require_once($path.DS."class".DS."Singleton.php");
 require_once($path.DS."class".DS."DbConnector.php");
 require_once($path.DS."class".DS."Crud.php");
+require_once($path.DS."utils".DS."fpdf17".DS."fpdf.php");
+require_once($path.DS."class".DS."PdfQr.php");
 
 class Salfadeco {
 	public function getEvents(){
@@ -307,6 +309,8 @@ class Salfadeco {
 		foreach($sport_ids as $sport_id){
 			$this->addSportToMember($member_id, $sport_id);
 		}
+		
+		$this->makeQrMember($member_id);
 	}
 	
 	private function addSportToMember($member_id, $sport_id){
@@ -355,6 +359,8 @@ class Salfadeco {
 	}
 	
 	public function getMember($member_id){
+		$this->makeQrMember($member_id);
+		
 		$crud=new Crud();
 		$crud->setTable('member');
 		$crud->setClausule('id', '=', $member_id);
@@ -421,6 +427,8 @@ class Salfadeco {
 				$this->removeSportFromMember($member_id, $sport['id']);
 			}
 		}
+		
+		$this->makeQrMember($member_id);
 	}
 	
 	public function addImageToMember($member_id, $image){
@@ -620,6 +628,27 @@ class Salfadeco {
 		$crud->setClausule('id', '=', $image_group_id);
 		$crud->delete();
 	}
-        }
+	
+	private function makeQrMember($member_id){
+		try{
+			$qrLink="{$_SERVER['SERVER_NAME']}/Guess/Member/{$member_id}";
+			$qrSize=300;
+			$qrPath=realpath(dirname(__FILE__))."/../../webroot/img/qr/member_{$member_id}.png";
+			if(!file_exists($qrPath)){
+				$qrData=file_get_contents("http://chart.googleapis.com/chart?cht=qr&chs={$qrSize}x{$qrSize}&chl={$qrLink}");
+				file_put_contents($qrPath, $qrData);
+			}
+		} catch (Exception $ex) {
+			
+		}
+	}
+	
+	public function makePdfQrs(){
+		$filePath=realpath(dirname(__FILE__))."/../../webroot/img/qr/members.pdf";
+		$members=$this->getMembers(null, null);
+		$pdfQr=new PdfQr();
+		$pdfQr->makeQrs($members, $filePath);
+	}
+}
         
 
