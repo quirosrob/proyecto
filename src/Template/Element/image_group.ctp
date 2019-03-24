@@ -7,6 +7,10 @@
 		<div class='currentImage'></div>
 		<div class='previews'>
 			<?php
+<<<<<<< HEAD
+=======
+			for($i=0; $i<29; $i++)
+>>>>>>> 1dde1e4758faf028a40c37870808b193a3bd2cac
 			foreach($images as $image){
 				$path="/img/uploads/{$image['filename']}";
 				?>	
