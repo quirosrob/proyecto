@@ -54,11 +54,15 @@ class GuessController extends AppController
     }
     
     public function directorsTeams(){
-	
+		$this->set([
+			'directors_teams'=>$this->salfadeco->getDirectorsTeams()
+		]);
     }
     
     public function directorsTeam($directors_team_id){
-	
+		$this->set([
+			'directors_team'=>$this->salfadeco->getDirectorsTeam($directors_team_id)
+		]);
     }
     
     public function events(){

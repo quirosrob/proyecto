@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <textarea name='detail' class='richTextArea'></textarea>
+    <textarea name='description' class='richTextArea'></textarea>
 
     <br/>
     <div class='text-center'>

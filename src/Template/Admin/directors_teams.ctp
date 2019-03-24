@@ -9,32 +9,37 @@
 
 <div class='itemList'>
     <?php
-    for($i=0; $i<10; $i++){
+    foreach($directors_teams as $directors_team){
 		?>
 		<div>
 			<div class='itemListDetails'>
 				<div class="info">
-					<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>"/img/directors/junta-08-09.jpg"])?>");' onclick="openImageZoom('/img/directors/junta-08-09.jpg')"></div>
+					<?php
+					if(!empty($directors_team['image']['filename'])){
+						$path="/img/uploads/{$directors_team['image']['filename']}";
+						?>
+						<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
+						<?php
+					}
+					else{
+						?>
+						<div class='main_image'></div>
+						<?php
+					}
+					?>
 					<div class='details'>
-						<div class="name">Junta Directiva 2008-2009</div>
-						<div class="members">
-							<div>PRESIDENTE: CARLOS CORTES PACHECO</div>		
-							<div>VICEPRESIDENTE: WALTER ELIZONDO GOMEZ</div>
-							<div>SECRETARIA: MARGARITA SEGREDA VIQUEZ</div>
-							<div>FISCAL: HUGO CHAMBERLAIN TREJOS</div>
-							<div>TESORERO: RENATO SOTO PACHECO</div>
-							<div>VOCAL I: EDGAR MARIN LEVI</div>
-							<div>VOCAL II: JUAN SOTO PARIS</div>
-							<div>VOCAL III: RODRIGO CALVO CHACON</div>
-						</div>
+						<div class="name"><?=$directors_team['name']?></div>
+						<div class="description"><?=$directors_team['description']?></div>
 					</div>
 				</div>
 			</div>
 			<div class="text-right">
-				<a href="?delete_id=<?=$i?>">
-					<button type="button" class="btn btn-xs btn-danger">Eliminar</button>
-				</a>
-				<a href="/Admin/DirectorsTeam/1">
+				<form class='ajax' question="¿Eliminar Evento?" style="display: inline-block">
+					<input type="hidden" name='directors_team_id' value="<?=$directors_team['id']?>"/>
+					<input type="hidden" name='formAction' value="deleteDirectorsTeam"/>
+					<button type="submit" class="btn btn-xs btn-danger">Eliminar</button>
+				</form>
+				<a href="/Admin/DirectorsTeam/<?=$directors_team['id']?>">
 					<?=$this->element('buttonXs', ['label'=>"Editar"])?>
 				</a>
 			</div>

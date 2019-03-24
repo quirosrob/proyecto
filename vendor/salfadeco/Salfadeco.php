@@ -220,7 +220,7 @@ class Salfadeco {
 		$this->addImageToImageGroup($image_group_id, $image);
 	}
         
-        public function getDirectorsTeams(){
+	public function getDirectorsTeams(){
 		$crud=new Crud();
 		$crud->setTable('directors_team');
 		$crud->setOrder('name');
@@ -232,7 +232,7 @@ class Salfadeco {
 		return $directors_teams;
 	}
         
-        public function getDirectorsTeam($directors_team_id){
+	public function getDirectorsTeam($directors_team_id){
 		$crud=new Crud();
 		$crud->setTable('directors_team');
 		$crud->setClausule('id', '=', $directors_team_id);
@@ -241,7 +241,7 @@ class Salfadeco {
 		$directors_team['imageGroupItems']=$this->getImageGroupImages($directors_team['image_group_id']);
 		return $directors_team;
 	}
-        
+	
 	public function addDirectorsTeam($name, $description, $image){
 		$image_id=!empty($image)? $this->addImage($image, '') : "";
 		
@@ -256,14 +256,14 @@ class Salfadeco {
 		$crud->insert();
 	}
         
-         public function deleteDirectorsTeam($id){
+	public function deleteDirectorsTeam($id){
 		$crud=new Crud();
 		$crud->setTable('directors_team');
 		$crud->setClausule('id', '=', $id);
 		$crud->delete();
 	}
         
-        public function updateDirectorsTeam($id, $name, $description, $image){
+	public function updateDirectorsTeam($id, $name, $description, $image){
 		$image_id=!empty($image)? $this->addImage($image, '') : "";
 		
 		$crud=new Crud();
@@ -277,7 +277,7 @@ class Salfadeco {
 		$crud->update();
 	}
         
-        public function addImageToDirectorsTeam($directors_team_id, $image){
+	public function addImageToDirectorsTeam($directors_team_id, $image){
 		$DirectorsTeam=$this->getDirectorsTeam($directors_team_id);
 		$image_group_id=$DirectorsTeam['image_group_id'];
 		if(empty($image_group_id)){
