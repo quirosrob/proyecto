@@ -54,7 +54,7 @@
 		<textarea name='biography' class='richTextArea'><?=$member['biography']?></textarea>
 		<br/>
 		
-		<div class='main_image' style='background-image: url("/img/qr/member_<?=$member['id']?>");'></div>
+		<div class='main_image' style='background-image: url("/img/qr/member_<?=$member['id']?>.png");'></div>
 		
 		<br/>
 		
