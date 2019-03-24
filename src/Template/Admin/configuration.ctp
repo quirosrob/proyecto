@@ -1,4 +1,13 @@
 <?php ?>
+<h2 class='text-center'>Archivo QRs</h2>
+
+<div class='text-center'>
+	<a href='/img/qr/members.pdf' target="_blank">
+		<?=$this->element('button', ['label'=>"Descargar"])?>
+	</a>
+</div>
+
+
 <h2 class='text-center'>Textos</h2>
 <form class="ajax">
 	<div class="formResponsive">

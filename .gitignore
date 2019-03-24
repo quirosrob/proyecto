@@ -44,3 +44,4 @@ webroot/img/uploads
 tmp/cache/*
 logs/debug.log
 logs/error.log
+webroot/img/qr/*
