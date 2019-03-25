@@ -57,7 +57,7 @@ class AdminController extends AppController
 		}
 		
         $this->set([
-			'members'=>$this->salfadeco->getMembers($this->getParameter('filter'), $this->getParameter('sport_id')),
+			'members'=>$this->salfadeco->getMembers($this->getParameter('filter'), $this->getParameter('sport_id'), null, null),
 			'sports'=>$this->salfadeco->getSports(),
 			'filter'=>$this->getParameter('filter'),
 			'sport_id'=>$this->getParameter('sport_id')
@@ -288,7 +288,6 @@ class AdminController extends AppController
 	}
 	
 	public function configuration(){
-		$this->salfadeco->makePdfQrs();
 		if($this->getParameter('formAction')=='updateConfiguration'){
 			$this->salfadeco->setConfiguration('site_title', $this->getParameter('site_title'));
 			$this->salfadeco->setConfiguration('site_title_short', $this->getParameter('site_title_short'));
@@ -328,5 +327,24 @@ class AdminController extends AppController
 	public function removeImageFromGroup($image_id){
 		$this->salfadeco->deleteImage($image_id);
 		return $this->response->withType("application/json")->withStringBody(json_encode(['status'=>'ok']));
+	}
+	
+	public function downloadPdfQrs(){
+		$formAction=$this->getParameter('formAction');
+		$creationDateStart=$this->getParameter('creationDateStart');
+		$creationDateEnd=$this->getParameter('creationDateEnd');
+		$sport_id=$this->getParameter('sport_id');
+		
+		if($formAction=='makePdfQrs'){
+			$this->salfadeco->makePdfQrs($sport_id, $creationDateStart, $creationDateEnd);
+		}
+		
+		$this->set([
+			'sports'=>$this->salfadeco->getSports(),
+			'creationDateStart'=>$creationDateStart, 
+			'creationDateEnd'=>$creationDateEnd,
+			'sport_id'=>$sport_id,
+			'formAction'=>$formAction
+		]);
 	}
 }

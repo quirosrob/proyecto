@@ -40,7 +40,7 @@ class GuessController extends AppController
     
     public function members(){
 		$this->set([
-			'members'=>$this->salfadeco->getMembers($this->getParameter('filter'), $this->getParameter('sport_id')),
+			'members'=>$this->salfadeco->getMembers($this->getParameter('filter'), $this->getParameter('sport_id'), null, null),
 			'sports'=>$this->salfadeco->getSports(),
 			'filter'=>$this->getParameter('filter'),
 			'sport_id'=>$this->getParameter('sport_id')

@@ -311,7 +311,6 @@ class Salfadeco {
 		}
 		
 		$this->makeQrMember($member_id);
-		$this->makePdfQrs();
 	}
 	
 	private function addSportToMember($member_id, $sport_id){
@@ -330,7 +329,7 @@ class Salfadeco {
 		$crud->delete();
 	}
 	
-	public function getMembers($filter, $sport_id){
+	public function getMembers($filter, $sport_id, $creationDateStart, $creationDateEnd){
 		$crud=new Crud();
 		$crud->setTable('member', 'm');
 		
@@ -347,6 +346,14 @@ class Salfadeco {
 			$crud->setTable('member_sport', "ms");
 			$crud->setClausule('ms.sport_id', '=', $sport_id);
 			$crud->setJoin("m.id", '=',"ms.member_id");
+		}
+		
+		if(!empty($creationDateStart)){
+			$crud->setClausule('m.creation_date', '>=', $creationDateStart);
+		}
+		
+		if(!empty($creationDateEnd)){
+			$crud->setClausule('m.creation_date', '<=', $creationDateEnd);
 		}
 		
 		$crud->setOrder('name');
@@ -637,16 +644,20 @@ class Salfadeco {
 			if(!file_exists($qrPath)){
 				$qrData=file_get_contents("http://chart.googleapis.com/chart?cht=qr&chs={$qrSize}x{$qrSize}&chl={$qrLink}");
 				file_put_contents($qrPath, $qrData);
-				$this->makePdfQrs();
 			}
 		} catch (Exception $ex) {
 			
 		}
 	}
 	
-	public function makePdfQrs(){
+	public function makePdfQrs($sport_id, $creationDateStart, $creationDateEnd){
 		$filePath=realpath(dirname(__FILE__))."/../../webroot/img/qr/members.pdf";
-		$members=$this->getMembers(null, null);
+		$members=$this->getMembers(null, $sport_id, $creationDateStart, $creationDateEnd);
+		
+		foreach($members as $member){
+			$this->makeQrMember($member['id']);
+		}
+		
 		$pdfQr=new PdfQr();
 		$pdfQr->makeQrs($members, $filePath);
 	}

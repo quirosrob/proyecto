@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 16, 2019 at 09:15 PM
+-- Generation Time: Mar 25, 2019 at 02:46 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -146,6 +146,7 @@ CREATE TABLE IF NOT EXISTS `image_group_item` (
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE IF NOT EXISTS `member` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `creation_date` datetime DEFAULT NULL,
   `name` varchar(128) DEFAULT NULL,
   `date_entry` date DEFAULT NULL,
   `biography` longtext,
