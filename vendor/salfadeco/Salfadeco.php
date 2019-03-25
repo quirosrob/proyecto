@@ -361,7 +361,6 @@ class Salfadeco {
 	
 	public function getMember($member_id){
 		$this->makeQrMember($member_id);
-		
 		$crud=new Crud();
 		$crud->setTable('member');
 		$crud->setClausule('id', '=', $member_id);
@@ -638,6 +637,7 @@ class Salfadeco {
 			if(!file_exists($qrPath)){
 				$qrData=file_get_contents("http://chart.googleapis.com/chart?cht=qr&chs={$qrSize}x{$qrSize}&chl={$qrLink}");
 				file_put_contents($qrPath, $qrData);
+				$this->makePdfQrs();
 			}
 		} catch (Exception $ex) {
 			
@@ -647,11 +647,6 @@ class Salfadeco {
 	public function makePdfQrs(){
 		$filePath=realpath(dirname(__FILE__))."/../../webroot/img/qr/members.pdf";
 		$members=$this->getMembers(null, null);
-		
-		foreach($members as $member){
-			$this->makeQrMember($member['id']);
-		}
-		
 		$pdfQr=new PdfQr();
 		$pdfQr->makeQrs($members, $filePath);
 	}
