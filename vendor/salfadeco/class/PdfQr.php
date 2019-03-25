@@ -38,8 +38,12 @@ class PdfQr extends FPDF
 			if($c==0){
 				$this->Ln();
 			}
-			
 		}
+		if($c==1){
+			$this->Cell(95,10, "", "RLB", '', 'C');
+		}
+		
+		
 		$this->Output($filePath, 'F');
 	}
 }
