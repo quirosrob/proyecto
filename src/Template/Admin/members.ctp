@@ -1,5 +1,8 @@
 <?php ?>
 <div class='text-right'>
+	<a href='/img/qr/members.pdf' target="_blank">
+		<?=$this->element('buttonSm', ['label'=>"PDF QRs"])?>
+	</a>
     <a href='/Admin/NewMember/'>
 		<?=$this->element('buttonSm', ['label'=>"Nuevo Miembro"])?>
     </a>

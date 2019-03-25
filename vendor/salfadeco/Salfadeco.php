@@ -311,6 +311,7 @@ class Salfadeco {
 		}
 		
 		$this->makeQrMember($member_id);
+		$this->makePdfQrs();
 	}
 	
 	private function addSportToMember($member_id, $sport_id){
