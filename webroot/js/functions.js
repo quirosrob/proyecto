@@ -43,20 +43,25 @@ function stopPropagation(e){
 }
 
 function removeImageFromGroup(element, image_id){
-	openModal("#modal-ajax-block");
-	queryServerJson(
-		'/Admin/removeImageFromGroup/'+image_id, 
-		{}, 
-		function(data){
-			if(data['status']=='ok'){
-				$(element).parents('.item').first().remove();
-			}
-		}, 
-		function(){
-			closeModal("#modal-ajax-block");
-		}, 
-		null
-	);
+	
+	openAlertYesNo("¿Eliminar Imagen?", function(result){
+		if(result){
+			openModal("#modal-ajax-block");
+			queryServerJson(
+				'/Admin/removeImageFromGroup/'+image_id, 
+				{}, 
+				function(data){
+					if(data['status']=='ok'){
+						$(element).parents('.preview').first().remove();
+					}
+				}, 
+				function(){
+					closeModal("#modal-ajax-block");
+				}, 
+				null
+			);
+		}
+	});
 }
 
 

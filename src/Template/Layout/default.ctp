@@ -9,7 +9,7 @@
 		</title>
 
 		<?php
-		$version=6;
+		$version=7;
 		?>
 
 		<link href="/bootstrap-3.3.5-dist/css/bootstrap.css?<?=$version?>" rel="stylesheet" type="text/css">
