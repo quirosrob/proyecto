@@ -26,3 +26,13 @@
 	text-align: center;
 	font-style: italic;
 }
+
+.sportIcon{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+}

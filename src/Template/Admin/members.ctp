@@ -61,6 +61,12 @@
 						<div class="sports">
 							<?php
 							foreach($member['sports'] as $sport){
+								if(!empty($sport['image']['filename'])){
+									$path="/img/uploads/{$sport['image']['filename']}";
+									?>
+									<div class='sportIcon' style='background-image: url("<?=$this->element('imageSrc', ['path'=>$path, 'w'=>30, 'h'=>30])?>");'></div>
+									<?php
+								}
 								?>
 								<?=$sport['name']?>
 								<?php
