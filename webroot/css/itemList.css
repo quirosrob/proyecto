@@ -4,9 +4,9 @@
 
 .itemList > div{
     padding: 10px;
-    border-left: 1px solid #9F9D4F;
-    border-right: 1px solid #9F9D4F;
-    border-top: 1px solid #9F9D4F;
+    border-left: 1px solid #00416A;
+    border-right: 1px solid #00416A;
+    border-top: 1px solid #00416A;
 }
 
 .itemList > div:first-child{
@@ -15,7 +15,7 @@
 }
 
 .itemList > div:last-child{
-    border-bottom: 1px solid #9F9D4F;
+    border-bottom: 1px solid #00416A;
 	border-bottom-right-radius: 4px;
 	border-bottom-left-radius: 4px;
 }

@@ -1,6 +1,18 @@
 #header{
     display: table;
     width: 100%;
+	
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f8f8f8+0,e5e5e5+100 */
+	background: #f8f8f8; /* Old browsers */
+	background: -moz-linear-gradient(top, #f8f8f8 0%, #e5e5e5 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #f8f8f8 0%,#e5e5e5 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #f8f8f8 0%,#e5e5e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f8f8', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+	
+	box-shadow: 1px 12px 15px -15px #000000;
+	
+	border-radius: 8px 8px 0 0;
+	border: 1px solid #C1C0BF;
 }
 
 #header .logo{
@@ -23,12 +35,12 @@
     font-weight: bold;
     height: 60px;
     padding: 10px;
-    background-color: #A9A768;
+    /*background-color: #A9A768;*/
     border-radius: 0 8px 0 0;
 }
 
 #header .divisor{
-    background-color: #555413;
+    background-color: #006AAD;
     height: 4px;
 }
 
