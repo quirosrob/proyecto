@@ -4,8 +4,9 @@ body{
     margin: 0;
     padding: 2px;
     color: #00314F;
-	
-	
+}
+
+#fullWrap{
 	background: #e9e8e7; /* Old browsers */
 	background: -moz-linear-gradient(top, #e9e8e7 0%, #fffffc 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(top, #e9e8e7 0%,#fffffc 100%); /* Chrome10-25,Safari5.1-6 */

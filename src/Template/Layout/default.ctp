@@ -42,17 +42,19 @@
 		
 	</head>
 	<body>
-		<div id='mainHead'>
-			<?=$this->element('header')?>
-		</div>
-		<div id='mainBody'>
-			<div id="mainBodyPadding">
-				<?= $this->fetch('content')?>
+		<div id="fullWrap">
+			<div id='mainHead'>
+				<?=$this->element('header')?>
 			</div>
-		</div>
-		<div id='mainFooter'>
-			<div id="mainFooterPadding">
-				<?=nl2br($site_footer)?>
+			<div id='mainBody'>
+				<div id="mainBodyPadding">
+					<?= $this->fetch('content')?>
+				</div>
+			</div>
+			<div id='mainFooter'>
+				<div id="mainFooterPadding">
+					<?=nl2br($site_footer)?>
+				</div>
 			</div>
 		</div>
 
