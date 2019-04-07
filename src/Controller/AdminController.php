@@ -57,7 +57,7 @@ class AdminController extends AppController
 		}
 		
 		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
-		$paginationItemsPerPage=5;
+		$paginationItemsPerPage=10;
 		
 		$result=$this->salfadeco->getMembers($this->getParameter('filter'), $this->getParameter('sport_id'), null, null, $paginationCurrentPage*$paginationItemsPerPage, $paginationItemsPerPage);
 		
@@ -144,7 +144,7 @@ class AdminController extends AppController
 		}
 		
 		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
-		$paginationItemsPerPage=1;
+		$paginationItemsPerPage=10;
 		
 		$result=$this->salfadeco->getDirectorsTeams($paginationCurrentPage*$paginationItemsPerPage, $paginationItemsPerPage);
 		
@@ -193,7 +193,7 @@ class AdminController extends AppController
 		
 		
 		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
-		$paginationItemsPerPage=1;
+		$paginationItemsPerPage=10;
 		
 		$result=$this->salfadeco->getEvents($paginationCurrentPage*$paginationItemsPerPage, $paginationItemsPerPage);
 		
@@ -244,7 +244,7 @@ class AdminController extends AppController
 		}
 		
 		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
-		$paginationItemsPerPage=1;
+		$paginationItemsPerPage=10;
 		
 		$result=$this->salfadeco->getGalleries($paginationCurrentPage*$paginationItemsPerPage, $paginationItemsPerPage);
 		
