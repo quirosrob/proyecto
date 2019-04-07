@@ -28,6 +28,7 @@
 		<link href="/css/imageZoom.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/css/richTextArea.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/css/inputDate.css?<?=$version?>" rel="stylesheet" type="text/css"/>
+		<link href="/css/pagination.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/anytime/anytime.5.1.2.css?<?=$version?>" rel="stylesheet" >
 		<link href="/anytime/anytimeFix.css?<?=$version?>" rel="stylesheet" >
 

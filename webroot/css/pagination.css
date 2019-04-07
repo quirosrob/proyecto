@@ -1,0 +1,9 @@
+.paginationWrap .pagination li,
+.paginationWrap .pagination > .active > span{
+	cursor: pointer;
+}
+
+.paginationWrap .pagination li.disabled{
+	cursor: wait;
+}
+
