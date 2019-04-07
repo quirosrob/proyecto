@@ -60,14 +60,14 @@ class AppController extends Controller
 		]);
 	}
 	
-	public function getParameter($name){
+	public function getParameter($name, $default=""){
 		if(isset($_POST[$name])){
 			return $_POST[$name];
 		}
 		if(isset($_GET[$name])){
 			return $_GET[$name];
 		}
-		return "";
+		return $default;
 	}
 	
 

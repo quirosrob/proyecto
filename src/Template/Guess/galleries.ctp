@@ -3,6 +3,8 @@
     Galerías
 </h3>
 
+<?=$this->element('pagination')?>
+
 <div class='itemList'>
     <?php
     foreach($galleries as $gallery){

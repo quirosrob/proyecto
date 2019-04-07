@@ -39,8 +39,16 @@ class GuessController extends AppController
     }
     
     public function members(){
+		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
+		$paginationItemsPerPage=5;
+		
+		$result=$this->salfadeco->getMembers($this->getParameter('filter'), $this->getParameter('sport_id'), null, null, $paginationCurrentPage*$paginationItemsPerPage, $paginationItemsPerPage);
+		
 		$this->set([
-			'members'=>$this->salfadeco->getMembers($this->getParameter('filter'), $this->getParameter('sport_id'), null, null),
+			'paginationCurrentPage'=>$paginationCurrentPage,
+			'paginationItemsPerPage'=>$paginationItemsPerPage,
+			'paginationTotalItems'=>$result['total'],
+			'members'=>$result['items'],
 			'sports'=>$this->salfadeco->getSports(),
 			'filter'=>$this->getParameter('filter'),
 			'sport_id'=>$this->getParameter('sport_id')
@@ -54,8 +62,16 @@ class GuessController extends AppController
     }
     
     public function directorsTeams(){
+		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
+		$paginationItemsPerPage=1;
+		
+		$result=$this->salfadeco->getDirectorsTeams($paginationCurrentPage*$paginationItemsPerPage, $paginationItemsPerPage);
+		
 		$this->set([
-			'directors_teams'=>$this->salfadeco->getDirectorsTeams()
+			'paginationCurrentPage'=>$paginationCurrentPage,
+			'paginationItemsPerPage'=>$paginationItemsPerPage,
+			'paginationTotalItems'=>$result['total'],
+			'directors_teams'=>$result['items']
 		]);
     }
     
@@ -66,8 +82,16 @@ class GuessController extends AppController
     }
     
     public function events(){
+		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
+		$paginationItemsPerPage=1;
+		
+		$result=$this->salfadeco->getEvents($paginationCurrentPage*$paginationItemsPerPage, $paginationItemsPerPage);
+		
 		$this->set([
-			'events'=>$this->salfadeco->getEvents(),
+			'paginationCurrentPage'=>$paginationCurrentPage,
+			'paginationItemsPerPage'=>$paginationItemsPerPage,
+			'paginationTotalItems'=>$result['total'],
+			'events'=>$result['items'],
 		]);
     }
     
@@ -78,8 +102,16 @@ class GuessController extends AppController
     }
     
     public function galleries(){
+		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
+		$paginationItemsPerPage=1;
+		
+		$result=$this->salfadeco->getGalleries($paginationCurrentPage*$paginationItemsPerPage, $paginationItemsPerPage);
+		
 		$this->set([
-			'galleries'=>$this->salfadeco->getGalleries()
+			'paginationCurrentPage'=>$paginationCurrentPage,
+			'paginationItemsPerPage'=>$paginationItemsPerPage,
+			'paginationTotalItems'=>$result['total'],
+			'galleries'=>$result['items'],
 		]);
     }
     

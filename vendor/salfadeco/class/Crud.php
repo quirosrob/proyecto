@@ -249,6 +249,10 @@ class Crud{
 			}
 		}
 		
+		return "select $slqColums \n from {$this->makeSqlTablesSql()} \n {$this->getWhereSql()} \n {$this->getOrderSql()} \n {$this->getLimitsSql()}";
+	}
+	
+	private function makeSqlTablesSql(){
 		$tablesSql="";
 		foreach($this->tables as $tableInfo){
 			if(!empty($tablesSql)){
@@ -262,7 +266,11 @@ class Crud{
 			}
 		}
 		
-		return "select $slqColums \n from $tablesSql \n {$this->getWhereSql()} \n {$this->getOrderSql()} \n {$this->getLimitsSql()}";
+		return $tablesSql;
+	}
+	
+	public function makeSqlCountQuery(){
+		return "select count(*) as total \n from {$this->makeSqlTablesSql()} \n {$this->getWhereSql()}";
 	}
 	
 	public function load($columns=[]){
@@ -271,15 +279,7 @@ class Crud{
 	}
 	
 	public function count(){
-		$start=$this->start;
-		$quantity=$this->quantity;
-		
-		$this->setLimits(0, 1);
 		$row=$this->execQueryFirst($this->makeSqlCountQuery());
-		
-		$this->start=$start;
-		$this->quantity=$quantity;
-		
 		return empty($row)? 0 : $row['total'];
 	}
 	

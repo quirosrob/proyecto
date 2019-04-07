@@ -1,6 +1,8 @@
 <?php ?>
 <h3 class='text-center'>Juntas Directivas</h3>
 
+<?=$this->element('pagination')?>
+
 <div class='itemList'>
     <?php
     foreach($directors_teams as $directors_team){

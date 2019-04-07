@@ -2,6 +2,9 @@
 <h3 class='text-center'>
     Noticias
 </h3>
+
+<?=$this->element('pagination')?>
+
 <div class='itemList'>
 	<?php
 	foreach($events as $event){

@@ -11,16 +11,21 @@ require_once($path.DS."utils".DS."fpdf17".DS."fpdf.php");
 require_once($path.DS."class".DS."PdfQr.php");
 
 class Salfadeco {
-	public function getEvents(){
+	public function getEvents($start, $quantity){
 		$crud=new Crud();
 		$crud->setTable('event');
 		$crud->setOrder('date');
+		$crud->setLimits($start, $quantity);
 		$events=$crud->load();
 		foreach($events as &$event){
 			$event['image']=$this->getImage($event['image_id']);
 			$event['imageGroupItems']=$this->getImageGroupImages($event['image_group_id']);
 		}
-		return $events;
+		
+		return [
+			'items'=>$events,
+			'total'=>$crud->count()
+		];
 	}
 	
 	public function getEvent($event_id){
@@ -220,16 +225,20 @@ class Salfadeco {
 		$this->addImageToImageGroup($image_group_id, $image);
 	}
         
-	public function getDirectorsTeams(){
+	public function getDirectorsTeams($start, $quantity){
 		$crud=new Crud();
 		$crud->setTable('directors_team');
 		$crud->setOrder('name');
+		$crud->setLimits($start, $quantity);
 		$directors_teams=$crud->load();
 		foreach($directors_teams as &$directors_team){
 			$directors_team['image']=$this->getImage($directors_team['image_id']);
 			$directors_team['imageGroupItems']=$this->getImageGroupImages($directors_team['image_group_id']);
 		}
-		return $directors_teams;
+		return [
+			'items'=>$directors_teams,
+			'total'=>$crud->count()
+		];
 	}
         
 	public function getDirectorsTeam($directors_team_id){
@@ -329,7 +338,7 @@ class Salfadeco {
 		$crud->delete();
 	}
 	
-	public function getMembers($filter, $sport_id, $creationDateStart, $creationDateEnd){
+	public function getMembers($filter, $sport_id, $creationDateStart, $creationDateEnd, $start, $quantity){
 		$crud=new Crud();
 		$crud->setTable('member', 'm');
 		
@@ -356,6 +365,7 @@ class Salfadeco {
 			$crud->setClausule('m.creation_date', '<=', $creationDateEnd);
 		}
 		
+		$crud->setLimits($start, $quantity);
 		$crud->setOrder('name');
 		$members=$crud->load(['m.*']);
 		foreach($members as &$member){
@@ -363,7 +373,10 @@ class Salfadeco {
 			$member['imageGroupItems']=$this->getImageGroupImages($member['image_group_id']);
 			$member['sports']=$this->getSportsMember($member['id']);
 		}
-		return $members;
+		return [
+			'items'=>$members,
+			'total'=>$crud->count()
+		];
 	}
 	
 	public function getMember($member_id){
@@ -465,16 +478,20 @@ class Salfadeco {
 		$crud->insert();
 	}
 	
-	public function getGalleries(){
+	public function getGalleries($start, $quantity){
 		$crud=new Crud();
 		$crud->setTable('gallery');
 		$crud->setOrder('name');
+		$crud->setLimits($start, $quantity);
 		$galleries=$crud->load();
 		foreach($galleries as &$gallery){
 			$gallery['image']=$this->getImage($gallery['image_id']);
 			$gallery['imageGroupItems']=$this->getImageGroupImages($gallery['image_group_id']);
 		}
-		return $galleries;
+		return [
+			'items'=>$galleries,
+			'total'=>$crud->count()
+		];
 	}
 	
 	public function getGallery($gallery_id){
@@ -652,7 +669,7 @@ class Salfadeco {
 	
 	public function makePdfQrs($sport_id, $creationDateStart, $creationDateEnd){
 		$filePath=realpath(dirname(__FILE__))."/../../webroot/img/qr/members.pdf";
-		$members=$this->getMembers(null, $sport_id, $creationDateStart, $creationDateEnd);
+		$members=$this->getMembers(null, $sport_id, $creationDateStart, $creationDateEnd, null, null);
 		
 		foreach($members as $member){
 			$this->makeQrMember($member['id']);
@@ -660,6 +677,102 @@ class Salfadeco {
 		
 		$pdfQr=new PdfQr();
 		$pdfQr->makeQrs($members, $filePath);
+	}
+	
+	public function addUser($name, $username, $job, $password){
+		$crud=new Crud();
+		$crud->setTable('user');
+		$crud->setValue('name', $name);
+		$crud->setValue('username', $username);
+		$crud->setValue('job', $job);
+		$crud->setValue('password', md5($password));
+		$crud->insert();
+	}
+	
+	public function getUsers(){
+		$crud=new Crud();
+		$crud->setTable('user');
+		return $crud->load();
+	}
+	
+	public function getUser($user_id){
+		$crud=new Crud();
+		$crud->setTable('user');
+		$crud->setClausule('id', '=', $user_id);
+		return $crud->loadFirst();
+	}
+	
+	public function updateUser($user_id, $name, $username, $job, $password, $permition_ids){
+		$crud=new Crud();
+		$crud->setTable('user');
+		$crud->setValue('name', $name);
+		$crud->setValue('username', $username);
+		$crud->setValue('job', $job);
+		if(!empty($password)){
+			$crud->setValue('password', md5($password));
+		}
+		$crud->setClausule('id', '=', $user_id);
+		$crud->update();
+		
+		$this->clearPermitionsUser($user_id);
+		foreach($permition_ids as $permition_id){
+			$this->addPermitionUser($user_id, $permition_id);
+		}
+	}
+	
+	public function getPermitions(){
+		$crud=new Crud();
+		$crud->setTable('permition');
+		return $crud->load();
+	}
+	
+	private function clearPermitionsUser($user_id){
+		$crud=new Crud();
+		$crud->setTable('user_permition)');
+		$crud->setClausule('user_id', '=', $user_id);
+		return $crud->delete();
+	}
+	
+	private function addPermitionUser($user_id, $permition_id){
+		$crud=new Crud();
+		$crud->setTable('user_permition');
+		$crud->setValue('user_id', $user_id);
+		$crud->setValue('permition_id', $permition_id);
+		$crud->insert();
+	}
+	
+	private function getPermition($permition_id){
+		$crud=new Crud();
+		$crud->setTable('permition');
+		$crud->setClausule('id', '=', $permition_id);
+		return $crud->loadFirst();
+	}
+	
+	public function getPermitionsUser($user_id){
+		$permitions=[];
+		$crud=new Crud();
+		$crud->setTable('user_permition');
+		$crud->setClausule('user_id', '=', $user_id);
+		$items=$crud->load();
+		foreach($items as $item){
+			$permitions[$item['permition_id']]=$this->getPermition($item['permition_id']);
+		}
+		return $permitions;
+	}
+	
+	public function deleteUser($user_id){
+		$user=$this->getUser($user_id);
+		if($user['role']!='ADMIN'){
+			$crud=new Crud();
+			$crud->setTable('user_permition');
+			$crud->setClausule('user_id', '=', $user_id);
+			$crud->delete();
+			
+			$crud=new Crud();
+			$crud->setTable('user');
+			$crud->setClausule('id', '=', $user_id);
+			$crud->delete();
+		}
 	}
 }
         

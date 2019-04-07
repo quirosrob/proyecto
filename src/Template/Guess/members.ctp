@@ -33,6 +33,7 @@
 	</div>
 </form>
 
+<?=$this->element('pagination')?>
 
 <div class='itemList'>
     <?php

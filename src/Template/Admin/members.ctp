@@ -39,6 +39,8 @@
 	</div>
 </form>
 
+<?=$this->element('pagination')?>
+
 <div class='itemList'>
     <?php
     foreach($members as $member){

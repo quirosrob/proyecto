@@ -56,8 +56,16 @@ class AdminController extends AppController
 			$this->salfadeco->deleteMember($this->getParameter('member_id'));
 		}
 		
-        $this->set([
-			'members'=>$this->salfadeco->getMembers($this->getParameter('filter'), $this->getParameter('sport_id'), null, null),
+		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
+		$paginationItemsPerPage=5;
+		
+		$result=$this->salfadeco->getMembers($this->getParameter('filter'), $this->getParameter('sport_id'), null, null, $paginationCurrentPage*$paginationItemsPerPage, $paginationItemsPerPage);
+		
+		$this->set([
+			'paginationCurrentPage'=>$paginationCurrentPage,
+			'paginationItemsPerPage'=>$paginationItemsPerPage,
+			'paginationTotalItems'=>$result['total'],
+			'members'=>$result['items'],
 			'sports'=>$this->salfadeco->getSports(),
 			'filter'=>$this->getParameter('filter'),
 			'sport_id'=>$this->getParameter('sport_id')
@@ -135,8 +143,16 @@ class AdminController extends AppController
 			$this->salfadeco->deleteDirectorsTeam($this->getParameter('directors_team_id'));
 		}
 		
+		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
+		$paginationItemsPerPage=1;
+		
+		$result=$this->salfadeco->getDirectorsTeams($paginationCurrentPage*$paginationItemsPerPage, $paginationItemsPerPage);
+		
 		$this->set([
-			'directors_teams'=>$this->salfadeco->getDirectorsTeams()
+			'paginationCurrentPage'=>$paginationCurrentPage,
+			'paginationItemsPerPage'=>$paginationItemsPerPage,
+			'paginationTotalItems'=>$result['total'],
+			'directors_teams'=>$result['items']
 		]);
     }
     
@@ -175,8 +191,17 @@ class AdminController extends AppController
 			$this->salfadeco->deleteEvent($this->getParameter('event_id'));
 		}
 		
+		
+		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
+		$paginationItemsPerPage=1;
+		
+		$result=$this->salfadeco->getEvents($paginationCurrentPage*$paginationItemsPerPage, $paginationItemsPerPage);
+		
 		$this->set([
-			'events'=>$this->salfadeco->getEvents()
+			'paginationCurrentPage'=>$paginationCurrentPage,
+			'paginationItemsPerPage'=>$paginationItemsPerPage,
+			'paginationTotalItems'=>$result['total'],
+			'events'=>$result['items'],
 		]);
     }
     
@@ -218,8 +243,16 @@ class AdminController extends AppController
 			$this->salfadeco->deleteGallery($this->getParameter('gallery_id'));
 		}
 		
+		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
+		$paginationItemsPerPage=1;
+		
+		$result=$this->salfadeco->getGalleries($paginationCurrentPage*$paginationItemsPerPage, $paginationItemsPerPage);
+		
 		$this->set([
-			'galleries'=>$this->salfadeco->getGalleries()
+			'paginationCurrentPage'=>$paginationCurrentPage,
+			'paginationItemsPerPage'=>$paginationItemsPerPage,
+			'paginationTotalItems'=>$result['total'],
+			'galleries'=>$result['items'],
 		]);
     }
     
@@ -317,11 +350,44 @@ class AdminController extends AppController
 	}
 	
 	public function access(){
+		if($this->getParameter('formAction')=='addUser'){
+			$this->salfadeco->addUser($this->getParameter('name'), $this->getParameter('username'), $this->getParameter('job'), $this->getParameter('password'));
+		}
 		
+		if($this->getParameter('formAction')=='deleteUser'){
+			$this->salfadeco->deleteUser($this->getParameter('user_id'));
+		}
+		
+		
+		$this->set([
+			'users'=>$this->salfadeco->getUsers()
+		]);
 	}
 	
-	public function usersRights(){
+	public function userEdit($user_id){
+		if($this->getParameter('formAction')=='updateUser'){
+			$permition_ids=[];
+			$permitions=$this->salfadeco->getPermitions($user_id);
+			foreach($permitions as $permition){
+				if($this->getParameter("permition_{$permition['id']}")=='Y'){
+					$permition_ids[]=$permition['id'];
+				}
+			}
+			
+			$this->salfadeco->updateUser($user_id, 
+					$this->getParameter('name'), 
+					$this->getParameter('username'), 
+					$this->getParameter('job'), 
+					$this->getParameter('password'),
+					$permition_ids);
+		}
 		
+		
+		$this->set([
+			'user'=>$this->salfadeco->getUser($user_id),
+			'permitions'=>$this->salfadeco->getPermitions($user_id),
+			'userPermitions'=>$this->salfadeco->getPermitionsUser($user_id)
+		]);
 	}
 	
 	public function removeImageFromGroup($image_id){
