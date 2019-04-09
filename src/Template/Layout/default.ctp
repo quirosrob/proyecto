@@ -9,7 +9,7 @@
 		</title>
 
 		<?php
-		$version=7;
+		$version=8;
 		?>
 
 		<link href="/bootstrap-3.3.5-dist/css/bootstrap.css?<?=$version?>" rel="stylesheet" type="text/css">
@@ -42,7 +42,7 @@
 		<script src="/anytime/anytime.5.1.2.js?<?=$version?>" type="text/javascript"></script>
 		
 	</head>
-	<body>
+	<body class="<?=@$adminMode? "adminMode" : ""?>">
 		<div id="fullWrap">
 			<div id='mainHead'>
 				<?=$this->element('header')?>
