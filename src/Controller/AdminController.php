@@ -25,7 +25,8 @@ class AdminController extends AppController
 		$this->selectCurrentMenuItem($menuItems);
 
 		$this->set([
-			'menuItems'=>$menuItems
+			'menuItems'=>$menuItems,
+			'adminMode'=>true
 		]);
     }
 
