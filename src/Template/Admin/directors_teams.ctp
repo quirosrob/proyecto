@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div class="text-right">
-				<form class='ajax' question="¿Eliminar Evento?" style="display: inline-block">
+				<form class='ajax' question="¿Eliminar Junta Directiva?" style="display: inline-block">
 					<input type="hidden" name='directors_team_id' value="<?=$directors_team['id']?>"/>
 					<input type="hidden" name='formAction' value="deleteDirectorsTeam"/>
 					<button type="submit" class="btn btn-xs btn-danger">Eliminar</button>

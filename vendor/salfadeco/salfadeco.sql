@@ -152,6 +152,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   `biography` longtext,
   `image_id` int(11) DEFAULT NULL,
   `image_group_id` int(11) DEFAULT NULL,
+  `qr` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `image` (`image_id`),
   KEY `image_group` (`image_group_id`)
@@ -172,6 +173,25 @@ CREATE TABLE IF NOT EXISTS `member_sport` (
   KEY `member` (`member_id`),
   KEY `sport` (`sport_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permition`
+--
+
+
+
+DROP TABLE IF EXISTS `permition`;
+CREATE TABLE IF NOT EXISTS `permition` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key` varchar(45) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `descripcion` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+
 
 -- --------------------------------------------------------
 
@@ -207,6 +227,36 @@ CREATE TABLE IF NOT EXISTS `text` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) DEFAULT NULL,
+  `username` varchar(128) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `job` varchar(128) DEFAULT NULL,
+  `role` enum('ADMIN','EMPLOYEE') DEFAULT 'EMPLOYEE',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_permition`
+--
+
+DROP TABLE IF EXISTS `user_permition`;
+CREATE TABLE IF NOT EXISTS `user_permition` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `permition_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user_id`),
+  KEY `permition` (`permition_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
 -- Constraints for dumped tables
 --
 
@@ -258,6 +308,13 @@ ALTER TABLE `member_sport`
 ALTER TABLE `sport`
   ADD CONSTRAINT `sport_ibfk_1` FOREIGN KEY (`image_group_id`) REFERENCES `image_group` (`id`),
   ADD CONSTRAINT `sport_ibfk_2` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`);
+
+--
+-- Constraints for table `user_permition`
+--
+ALTER TABLE `user_permition`
+  ADD CONSTRAINT `user_permition_ibfk_1` FOREIGN KEY (`permition_id`) REFERENCES `permition` (`id`),
+  ADD CONSTRAINT `user_permition_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
