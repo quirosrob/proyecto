@@ -671,12 +671,12 @@ class Salfadeco {
 		$filePath=realpath(dirname(__FILE__))."/../../webroot/img/qr/members.pdf";
 		$members=$this->getMembers(null, $sport_id, $creationDateStart, $creationDateEnd, null, null);
 		
-		foreach($members as $member){
+		foreach($members['items'] as $member){
 			$this->makeQrMember($member['id']);
 		}
 		
 		$pdfQr=new PdfQr();
-		$pdfQr->makeQrs($members, $filePath);
+		$pdfQr->makeQrs($members['items'], $filePath);
 	}
 	
 	public function addUser($name, $username, $job, $password){

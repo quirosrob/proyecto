@@ -32,7 +32,9 @@ class PdfQr extends FPDF
 			}
 			
 			$qrPath=realpath(dirname(__FILE__))."/../../../webroot/img/qr/member_{$member['id']}.png";
-			$this->Image($qrPath,$x,$y,50,50);
+			if(file_exists($qrPath) && is_file($qrPath)){
+				$this->Image($qrPath,$x,$y,50,50);
+			}
 			$this->SetFont('Arial','',8);
 			$this->Cell(95,10, utf8_decode($member['name']), "RLB", '', 'C');
 			if($c==0){
