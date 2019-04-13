@@ -22,7 +22,7 @@
 			$path="/img/uploads/{$member['image']['filename']}";
 			?>
 			<div class='main-image-floating'>
-				<img  src='<?=$this->element('imageSrcItemList', ['path'=>$path])?>' alt=''/>
+				<img  src='<?=$this->element('imageSrcItemList', ['path'=>$path])?>' alt='' onclick="openImageZoom('<?=$path?>')"/>
 			</div>
 			<?php
 		}
