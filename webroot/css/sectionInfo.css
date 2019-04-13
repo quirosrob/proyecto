@@ -30,6 +30,7 @@
 
 .sectionInfo .details{
 	text-align: justify;
+	min-height: 200px;
 }
 
 .sectionInfo .year{
