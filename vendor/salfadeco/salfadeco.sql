@@ -153,6 +153,9 @@ CREATE TABLE IF NOT EXISTS `member` (
   `image_id` int(11) DEFAULT NULL,
   `image_group_id` int(11) DEFAULT NULL,
   `qr` varchar(45) DEFAULT NULL,
+  `year_birth` int(11) DEFAULT NULL,
+  `year_death` int(11) DEFAULT NULL,
+  `number` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `image` (`image_id`),
   KEY `image_group` (`image_group_id`)
