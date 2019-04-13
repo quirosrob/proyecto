@@ -4,16 +4,20 @@
 		<?=$this->element('buttonXs', ['label'=>'Miembros'])?>
     </a>
 </div>
-<h3 class='text-center'><?=$sport['name']?></h3>
 <div class="sectionInfo">
-    <?php
-	if(!empty($sport['image']['filename'])){
-		$path="/img/uploads/{$sport['image']['filename']}";
-		?>
-		<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
+	<div class='title'><?=$sport['name']?></div>
+	<div class='details'>
 		<?php
-	}
-	?>
-	<div class='details'><?=$sport['description']?></div>
+		if(!empty($sport['image']['filename'])){
+			$path="/img/uploads/{$sport['image']['filename']}";
+			?>
+			<div class='main-image-floating'>
+				<img  src='<?=$this->element('imageSrcItemList', ['path'=>$path])?>' alt=''/>
+			</div>
+			<?php
+		}
+		?>
+		<?=$sport['description']?>
+	</div>
 	<?=$this->element('image_group', ['images'=>$sport['imageGroupItems']])?>
 </div>

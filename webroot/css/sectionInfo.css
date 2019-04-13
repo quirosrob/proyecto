@@ -4,6 +4,17 @@
     font-weight: bold;
 }
 
+.sectionInfo .title{
+	font-size: 30pt;
+}
+
+.sectionInfo .main-image-floating{
+	display: inline-block;
+	float: right; 
+	margin: 4px;
+	text-align: center;
+}
+
 .sectionInfo .main_image{
     background-position: center;
     background-repeat: no-repeat;
@@ -18,13 +29,16 @@
 }
 
 .sectionInfo .year{
-	text-align: center;
+	text-align: left;
+	font-size: 80pt;
 	font-weight: bold;
+	font-style: italic;
 }
 
 .sectionInfo .sports{
-	text-align: center;
+	text-align: left;
 	font-style: italic;
+	font-size: 20pt;
 }
 
 .sportIcon{
@@ -33,6 +47,15 @@
 	background-size: contain;
 	
 	display: inline-block;
-	width: 15px;
-	height: 15px;
+	width: 22px;
+	height: 22px;
+}
+
+
+@media (max-width: 992px) {
+    .sectionInfo .main-image-floating{
+		display: inline;
+		width: 100%;
+		
+	}
 }

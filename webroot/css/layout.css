@@ -44,6 +44,12 @@ body.adminMode #fullWrap{
 	
 	box-shadow: 1px 12px 15px -15px #000000;
 	border: 1px solid #C1C0BF;
+
+	background: #5D9AE1; /* Old browsers */
+	background: -moz-linear-gradient(-80deg, #5D9AE1 0%, #5D9AE1 49%, #c9c9c9 55%, #c9c9c9 55%, #e3e4e5 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-80deg, #5D9AE1 0%,#5D9AE1 49%,#c9c9c9 55%,#c9c9c9 55%,#e3e4e5 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(-80deg, #5D9AE1 0%,#5D9AE1 30%,#c9c9c9 30.1%,#c9c9c9 30.1%,#e3e4e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#e3e4e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 	
 }
 

@@ -1,18 +1,17 @@
 <?php ?>
-<h3 class='text-center'>
-    <?=$directors_team['name']?>
-</h3>
 <div class="sectionInfo">
-	<?php
-	if(!empty($directors_team['image']['filename'])){
-		$path="/img/uploads/{$directors_team['image']['filename']}";
-		?>
-		<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
-		<?php
-	}
-	?>
-	
+	<div class='title'><?=$directors_team['name']?></div>
     <div class='details'>
+		<?php
+		if(!empty($directors_team['image']['filename'])){
+			$path="/img/uploads/{$directors_team['image']['filename']}";
+			?>
+			<div class='main-image-floating'>
+				<img  src='<?=$this->element('imageSrcItemList', ['path'=>$path])?>' alt=''/>
+			</div>
+			<?php
+		}
+		?>
 		<?=$directors_team['description']?>
     </div>
 		
