@@ -16,6 +16,13 @@
 		}
 		?>
 	</div>
+	<?php
+	if(!empty($member['year_birth']) || !empty($member['year_death'])){
+		?>
+		<div class='years_live'>(<?=$member['year_birth']?>-<?=$member['year_death']?>)</div>
+		<?php
+	}
+	?>
 	<div class='details'>
 		<?php
 		if(!empty($member['image']['filename'])){
@@ -31,6 +38,14 @@
 	</div>
 	
 	<div class='year'><?=!empty($member['date_entry'])? date("Y", strtotime($member['date_entry'])) : ""?></div>
+	
+	<?php
+	if(!empty($member['year_birth']) || !empty($member['year_death'])){
+		?>
+		<div class='number'>No. <?=$member['number']?></div>
+		<?php
+	}
+	?>
 	
 	<?=$this->element('image_group', ['images'=>$member['imageGroupItems']])?>
 </div>

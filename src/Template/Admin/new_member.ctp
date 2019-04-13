@@ -14,6 +14,24 @@
 			</div>
 		</div>
 		<div>
+			<div>Año de nacimiento</div>
+			<div>
+				<input class='form-control' type='text' name='year_birth' value=''/>
+			</div>
+		</div>
+		<div>
+			<div>Año de defunción</div>
+			<div>
+				<input class='form-control' type='text' name='year_death' value=''/>
+			</div>
+		</div>
+		<div>
+			<div>Número</div>
+			<div>
+				<input class='form-control' type='text' name='number' value=''/>
+			</div>
+		</div>
+		<div>
 			<div>Imagen</div>
 			<div>
 				<input type='file' name='image' value=''/>

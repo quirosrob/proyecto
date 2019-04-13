@@ -27,6 +27,25 @@
 				</div>
 			</div>
 			<div>
+				<div>Año de nacimiento</div>
+				<div>
+					<input class='form-control' type='text' name='year_birth' value='<?=$member['year_birth']?>'/>
+				</div>
+			</div>
+			<div>
+				<div>Año de defunción</div>
+				<div>
+					<input class='form-control' type='text' name='year_death' value='<?=$member['year_death']?>'/>
+				</div>
+			</div>
+			<div>
+				<div>Número</div>
+				<div>
+					<input class='form-control' type='text' name='number' value='<?=$member['number']?>'/>
+				</div>
+			</div>
+			
+			<div>
 				<div>Imagen</div>
 				<div>
 					<input type='file' name='image' value=''/>

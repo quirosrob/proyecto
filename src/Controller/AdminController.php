@@ -83,7 +83,7 @@ class AdminController extends AppController
 				}
 			}
 			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->updateMember($member_id, $this->getParameter('name'), $this->getParameter('date_entry'), $this->getParameter('biography'), $sport_ids, $image);
+			$this->salfadeco->updateMember($member_id, $this->getParameter('name'), $this->getParameter('date_entry'), $this->getParameter('biography'), $sport_ids, $image, $this->getParameter('year_birth'), $this->getParameter('year_death'), $this->getParameter('number'));
 		}
 		
         $this->set([
@@ -113,7 +113,7 @@ class AdminController extends AppController
 				}
 			}
 			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->addMember($this->getParameter('name'), $this->getParameter('date_entry'), $this->getParameter('biography'), $sport_ids, $image);
+			$this->salfadeco->addMember($this->getParameter('name'), $this->getParameter('date_entry'), $this->getParameter('biography'), $sport_ids, $image, $this->getParameter('year_birth'), $this->getParameter('year_death'), $this->getParameter('number'));
 		}
 		
         $this->set([

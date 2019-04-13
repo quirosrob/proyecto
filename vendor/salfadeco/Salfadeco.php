@@ -300,7 +300,7 @@ class Salfadeco {
 		$this->addImageToImageGroup($image_group_id, $image);
 	}
 	
-	public function addMember($name, $date_entry, $biography, $sport_ids, $image){
+	public function addMember($name, $date_entry, $biography, $sport_ids, $image, $year_birth, $year_death, $number){
 		$image_id=!empty($image)? $this->addImage($image, '') : "";
 		
 		$crud=new Crud();
@@ -308,6 +308,9 @@ class Salfadeco {
 		$crud->setValue('name', $name);
 		$crud->setValue('date_entry', !empty($date_entry)? $date_entry : null);
 		$crud->setValue('biography', $biography);
+		$crud->setValue('year_birth', $year_birth);
+		$crud->setValue('year_death', $year_death);
+		$crud->setValue('number', $number);
 		if(!empty($image_id)){
 			$crud->setValue('image_id', $image_id);
 		}
@@ -420,7 +423,7 @@ class Salfadeco {
 		$crud->delete();
 	}
 	
-	public function updateMember($member_id, $name, $date_entry, $biography, $sport_ids, $image){
+	public function updateMember($member_id, $name, $date_entry, $biography, $sport_ids, $image, $year_birth, $year_death, $number){
 		$image_id=!empty($image)? $this->addImage($image, '') : "";
 		
 		$crud=new Crud();
@@ -428,6 +431,9 @@ class Salfadeco {
 		$crud->setValue('name', $name);
 		$crud->setValue('date_entry', !empty($date_entry)? $date_entry : null);
 		$crud->setValue('biography', $biography);
+		$crud->setValue('year_birth', $year_birth);
+		$crud->setValue('year_death', $year_death);
+		$crud->setValue('number', $number);
 		if(!empty($image_id)){
 			$crud->setValue('image_id', $image_id);
 		}

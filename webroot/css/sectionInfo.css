@@ -8,6 +8,17 @@
 	font-size: 30pt;
 }
 
+.sectionInfo .years_live{
+	text-align: left;
+	font-style: italic;
+	font-size: 20pt;
+}
+
+.sectionInfo .number{
+	text-align: center;
+	font-size: 20pt;
+}
+
 .sectionInfo .main-image-floating{
 	display: inline-block;
 	float: right; 
