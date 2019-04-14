@@ -16,13 +16,25 @@
 		}
 		?>
 	</div>
-	<?php
-	if(!empty($member['year_birth']) || !empty($member['year_death'])){
-		?>
-		<div class='years_live'>(<?=$member['year_birth']?>-<?=$member['year_death']?>)</div>
+	<div class='years_live'>
 		<?php
-	}
-	?>
+		if(!empty($member['year_birth']) && !empty($member['year_death'])){
+			?>
+			(<?=$member['year_birth']?>-<?=$member['year_death']?>)
+			<?php
+		}
+		else if(!empty($member['year_birth'])){
+			?>
+			(nació en <?=$member['year_birth']?>)
+			<?php
+		}
+		else if(!empty($member['year_death'])){
+			?>
+			(murió en <?=$member['year_death']?>)
+			<?php
+		}
+		?>
+	</div>
 	<div class='details'>
 		<?php
 		if(!empty($member['image']['filename'])){
