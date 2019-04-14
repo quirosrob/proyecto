@@ -22,4 +22,4 @@
 	<?=$this->element('image_group', ['images'=>$sport['imageGroupItems']])?>
 </div>
 
-<?=$this->element('styleSportColor', ['sport'=>$sport])?>
+<?=$this->element('styleSportColor', ['sport'=>$sport['color']])?>

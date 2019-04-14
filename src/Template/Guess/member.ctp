@@ -53,7 +53,7 @@
 <?php
 foreach($member['sports'] as $sport){
 	?>
-	<?=$this->element('styleSportColor', ['sport'=>$sport])?>
+	<?=$this->element('styleSportColor', ['sport'=>$sport['color']])?>
 	<?php
 	break;
 }
