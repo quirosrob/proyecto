@@ -58,4 +58,4 @@
 	});
 </script>
 
-<?=$this->element('styleSportColor', ['sport'=>$sport['color']])?>
+<?=$this->element('styleSportColor', ['color'=>$sport['color']])?>
