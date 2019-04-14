@@ -209,6 +209,7 @@ CREATE TABLE IF NOT EXISTS `sport` (
   `description` longtext,
   `image_id` int(11) DEFAULT NULL,
   `image_group_id` int(11) DEFAULT NULL,
+  `color` varchar(8) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `image` (`image_id`),
   KEY `image_group` (`image_group_id`)

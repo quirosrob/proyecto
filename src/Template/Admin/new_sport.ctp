@@ -8,6 +8,10 @@
 			<div><input class='form-control' type='text' name='name' value=''/></div>
 		</div>
 		<div>
+			<div>Color</div>
+			<div><input type='text' class='colorPicker' name='color' value='' /></div>
+		</div>
+		<div>
 			<div>Imagen</div>
 			<div>
 				<input type='file' name='image' value=''/>
@@ -25,4 +29,14 @@
 </form>
 <script>
 	makeRichtTextAreas();
+	
+	$('.colorPicker').spectrum({
+		preferredFormat: "hex",
+		flat: false,
+		showInput: false,
+		allowEmpty:true,
+		showSelectionPalette: true,
+		cancelText: "Cancelar",
+		chooseText: "Ok"
+	});
 </script>

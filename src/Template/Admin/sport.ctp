@@ -26,6 +26,13 @@
 					<input type='file' name='image' value=''/>
 				</div>
 			</div>
+			<div>
+				<div>Color</div>
+				<div>
+					<input type='text' class='colorPicker' name='color' value='<?=$sport['color']?>' />
+				</div>
+			</div>
+			
 		</div>
 
 		<h3 class='text-center'>Descripción</h3>
@@ -39,4 +46,16 @@
 </form>
 <script>
 	makeRichtTextAreas();
+	
+	$('.colorPicker').spectrum({
+		preferredFormat: "hex",
+		flat: false,
+		showInput: false,
+		allowEmpty:true,
+		showSelectionPalette: true,
+		cancelText: "Cancelar",
+		chooseText: "Ok"
+	});
 </script>
+
+<?=$this->element('styleSportColor', ['sport'=>$sport])?>

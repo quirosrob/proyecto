@@ -49,3 +49,12 @@
 	
 	<?=$this->element('image_group', ['images'=>$member['imageGroupItems']])?>
 </div>
+
+<?php
+foreach($member['sports'] as $sport){
+	?>
+	<?=$this->element('styleSportColor', ['sport'=>$sport])?>
+	<?php
+	break;
+}
+?>

@@ -43,7 +43,7 @@ class AdminController extends AppController
     public function sport($sport_id){
         if($this->getParameter('formAction')=='updateSport'){
 			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->updateSport($sport_id, $this->getParameter('name'), $this->getParameter('description'), $image);
+			$this->salfadeco->updateSport($sport_id, $this->getParameter('name'), $this->getParameter('description'), $image, $this->getParameter('color'));
 		}
 		
 		$this->set([
@@ -135,7 +135,7 @@ class AdminController extends AppController
     public function newSport(){
 		if($this->getParameter('formAction')=='addSport'){
 			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->addSport($this->getParameter('name'), $this->getParameter('description'), $image);
+			$this->salfadeco->addSport($this->getParameter('name'), $this->getParameter('description'), $image, $this->getParameter('color'));
 		}
     }
     

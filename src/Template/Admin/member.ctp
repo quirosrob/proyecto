@@ -87,3 +87,12 @@
 <script>
 	makeRichtTextAreas();
 </script>
+
+<?php
+foreach($member['sports'] as $sport){
+	?>
+	<?=$this->element('styleSportColor', ['sport'=>$sport])?>
+	<?php
+	break;
+}
+?>

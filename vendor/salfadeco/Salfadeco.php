@@ -144,13 +144,14 @@ class Salfadeco {
 		return $images;
 	}
 	
-	public function addSport($name, $description, $image){
+	public function addSport($name, $description, $image, $color){
 		$image_id=!empty($image)? $this->addImage($image, '') : "";
 		
 		$crud=new Crud();
 		$crud->setTable('sport');
 		$crud->setValue('name', $name);
 		$crud->setValue('description', $description);
+		$crud->setValue('color', $color);
 		if(!empty($image_id)){
 			$crud->setValue('image_id', $image_id);
 		}
@@ -197,13 +198,14 @@ class Salfadeco {
 		$crud->delete();
 	}
 	
-	public function updateSport($id, $name, $description, $image){
+	public function updateSport($id, $name, $description, $image, $color){
 		$image_id=!empty($image)? $this->addImage($image, '') : "";
 		
 		$crud=new Crud();
 		$crud->setTable('sport');
 		$crud->setValue('name', $name);
 		$crud->setValue('description', $description);
+		$crud->setValue('color', $color);
 		if(!empty($image_id)){
 			$crud->setValue('image_id', $image_id);
 		}
