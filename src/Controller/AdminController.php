@@ -347,6 +347,12 @@ class AdminController extends AppController
 				$site_logo_image_id=$this->salfadeco->addImage($logo, '');
 				$this->salfadeco->setConfiguration('site_logo_image_id', $site_logo_image_id);
 			}
+			
+			$logo2=$this->File->receiveImageFromBrowser('logo2');
+			if(!empty($logo2)){
+				$site_logo2_image_id=$this->salfadeco->addImage($logo2, '');
+				$this->salfadeco->setConfiguration('site_logo2_image_id', $site_logo2_image_id);
+			}
 		}
 	}
 	

@@ -55,6 +55,9 @@
 			<div id='mainFooter'>
 				<div id="mainFooterPadding">
 					<?=nl2br($site_footer)?>
+					<div class="text-center">
+						<div class='logo_image' style='background-image: url(<?=$this->element('imageSrc', ['path'=>"/img/uploads/{$site_logo2_image['filename']}", 'w'=>100, 'h'=>100])?>);'></div>
+					</div>
 				</div>
 			</div>
 		</div>

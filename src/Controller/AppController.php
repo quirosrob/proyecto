@@ -57,6 +57,9 @@ class AppController extends Controller
 			'site_color_bottom_text_active'=>$this->salfadeco->getConfiguration('site_color_bottom_text_active'),
 			'site_logo_image_id'=>$this->salfadeco->getConfiguration('site_logo_image_id'),
 			'site_logo_image'=>$this->salfadeco->getImage($this->salfadeco->getConfiguration('site_logo_image_id')),
+			'site_logo2_image_id'=>$this->salfadeco->getConfiguration('site_logo2_image_id'),
+			'site_logo2_image'=>$this->salfadeco->getImage($this->salfadeco->getConfiguration('site_logo2_image_id')),
+			
 		]);
 	}
 	
