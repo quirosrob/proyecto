@@ -422,8 +422,7 @@ class Crud{
 					$valueList.="null";
 				}
 				else{
-					$val= utf8_decode($this->fixValue($val));
-					$valueList.="'{$val}'";
+					$valueList.="'{$this->fixValue($val)}'";
 				}
 			}
 			if(!empty($values)){
