@@ -792,6 +792,9 @@ class Salfadeco {
 		file_put_contents($dumpFilePath, $sql);
 		
 		$this->zipFiles($zipFilePath, [$dumpFilePath, $uploadsDiretory]);
+		
+		unlink($dumpFilePath);
+		
 		return $zipFilePath;
 	}
 	

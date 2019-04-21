@@ -46,13 +46,25 @@
 
 
 <br/>
-<form class="ajax">
-	<div class='text-center'>
-		<input type='hidden' name='formAction' value='createBackup'/>
-		<?=$this->element('button', ['label'=>"Gnerar Respaldo"])?>
-	</div>
-</form>
-
+<div class='text-center'>
+	<?php
+	if(empty($backupFilePath)){
+		?>
+		<form class="ajax">
+			<input type='hidden' name='formAction' value='createBackup'/>
+			<?=$this->element('button', ['label'=>"Generar Respaldo"])?>
+		</form>
+		<?php
+	}
+	if(!empty($backupFilePath)){
+		?>
+		<a href='/backups/backup.zip'>
+			<?=$this->element('button', ['label'=>"Descargar"])?>
+		</a>
+		<?php
+	}
+	?>
+</div>
 <script>
 	$('.colorPicker').spectrum({
 		preferredFormat: "hex",
