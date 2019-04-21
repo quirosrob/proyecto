@@ -796,12 +796,18 @@ class Salfadeco {
 	}
 	
 	function zipFiles($zipFilePath, $files){
-		$command="zip -jrm {$zipFilePath} ";
-		foreach($files as $file){
-			$command.=" {$file} ";
+		if(file_exists($zipFilePath)){
+			unlink($zipFilePath);
 		}
-		echo "<br/>$command<br/>";
-		exec($command);
+		
+		foreach($files as $file){
+			$command="zip -r {$zipFilePath} ";
+			foreach($files as $file){
+				$command.=" {$file} ";
+			}
+			echo "<br/>$command<br/>";
+			exec($command);
+		}
 	}
 	
 	function unzipFile($zipFilePath, $destinyDiretory){
