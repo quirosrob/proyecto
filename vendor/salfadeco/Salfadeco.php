@@ -828,11 +828,15 @@ class Salfadeco {
 		$unzipDiretory=dirname($zipFilePath)."/restore";
 		$this->unzipFile($zipFilePath, $unzipDiretory);
 		
+		echo $unzipDiretory."/dump.sql";
+		
 		$sql=file_get_contents($unzipDiretory."/dump.sql");
+		
+		echo $sql;
 		$crud=new Crud();
 		$crud->execQuery($sql);
 		
-		unlink($uploadsDiretory);
-		rename($unzipDiretory.'/uploads', $uploadsDiretory);
+//		unlink($uploadsDiretory);
+//		rename($unzipDiretory.'/uploads', $uploadsDiretory);
 	}
 }
