@@ -378,7 +378,7 @@ class Crud{
 		$sql="SHOW CREATE TABLE {$table}";
 		$rows=$this->execQuery($sql);
 		foreach($rows as $row){
-			return "\n\n{$row['Create Table']}\n\n";
+			return "{$row['Create Table']};";
 		}
 		return '';
 	}
@@ -404,7 +404,7 @@ class Crud{
 		foreach($rows as $row){
 			foreach($row as $key => $val){
 				if(!empty($columnsList)){
-					$columnsList.=",";
+					$columnsList.=",\n";
 				}
 				$columnsList.="`{$key}`";
 			}
@@ -416,26 +416,42 @@ class Crud{
 			$valueList="";
 			foreach($row as $key => $val){
 				if(!empty($valueList)){
-					$valueList.=",";
+					$valueList.=",\n";
 				}
-				$valueList.="'{$this->fixValue($val)}'";
+				if($val===null){
+					$valueList.="null";
+				}
+				else{
+					$val= utf8_decode($this->fixValue($val));
+					$valueList.="'{$val}'";
+				}
 			}
 			if(!empty($values)){
 				$values.=",\n";
 			}
-			$values.="({$valueList})";
+			$values.="(\n{$valueList}\n)";
 		}
 		
-		return "\n\ninsert into {$table} \n({$columnsList}) \nvalues \n{$values} \n\n";
+		return "insert into {$table} \n(\n{$columnsList}\n) \nvalues \n{$values};";
+	}
+	
+	
+	private function getTableDropStatement($table){
+		return "drop table if exists $table;";
 	}
 	
 	public function getSqlBackup(){
 		$sql='';
 		$crud=new Crud();
 		$tables=$crud->getTablesNamesSortedByDependencies();
+		
+		foreach(array_reverse($tables) as $table){
+			$sql.=$crud->getTableDropStatement($table)."\n";
+		}
+		$sql.="\n";
 		foreach($tables as $table){
-			$sql.=$crud->getTableCreateStatement($table);
-			$sql.=$crud->getTableSqlDump($table);
+			$sql.=$crud->getTableCreateStatement($table)."\n\n";
+			$sql.=$crud->getTableSqlDump($table)."\n\n";
 		}
 		return $sql;
 	}

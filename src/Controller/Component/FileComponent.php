@@ -34,4 +34,25 @@ class FileComponent extends Component
 		}
 		return null;
 	}
+	
+	public function receiveBackupFromBrowser($fileId){
+		if(isset($_FILES[$fileId])){
+			$fileName = $_FILES[$fileId]['name'];
+			$fileNameTmp = $_FILES[$fileId]['tmp_name'];
+			
+			if(empty($fileName) || empty($fileNameTmp)){
+				return null;
+			}
+			
+			$finalDirectory=realpath(dirname(__FILE__)).DS."..".DS."..".DS."..".DS."webroot/backups/";
+			if(!file_exists($finalDirectory)){
+				mkdir($finalDirectory, 0777);
+			}
+
+			$storedFileName=microtime(true).".".$this->getFileExtension($fileName);
+			move_uploaded_file($fileNameTmp, $finalDirectory.DS.$storedFileName);
+			return $storedFileName;
+		}
+		return null;
+	}
 }

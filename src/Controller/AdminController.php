@@ -345,6 +345,12 @@ class AdminController extends AppController
 			$backupFilePath=$this->salfadeco->createBackup(WWW_ROOT.DS."backups", WWW_ROOT.DS.'img'.DS.'uploads');
 		}
 		
+		if($this->getParameter('formAction')=='restoreBackup'){
+			$backupFilePath=$this->File->receiveBackupFromBrowser('backup');
+			$this->salfadeco->restoreBackup($backupFilePath, WWW_ROOT.DS.'img'.DS.'uploads');
+		}
+		
+		
 		$this->set([
 			'backupFilePath'=>$backupFilePath,
 		]);

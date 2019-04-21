@@ -793,12 +793,12 @@ class Salfadeco {
 		
 		$this->zipFiles($zipFilePath, [$dumpFilePath, $uploadsDiretory]);
 		
-		unlink($dumpFilePath);
+//		unlink($dumpFilePath);
 		
 		return $zipFilePath;
 	}
 	
-	function zipFiles($zipFilePath, $files){
+	private function zipFiles($zipFilePath, $files){
 		if(file_exists($zipFilePath)){
 			unlink($zipFilePath);
 		}
@@ -811,11 +811,18 @@ class Salfadeco {
 		}
 	}
 	
-	function unzipFile($zipFilePath, $destinyDiretory){
-		if(!file_exists($destinyDiretory)){
-			mkdir($destinyDiretory);
+	private function unzipFile($zipFilePath, $destinyDiretory){
+		if(file_exists($destinyDiretory)){
+			unlink($destinyDiretory);
 		}
-		$command="unzip -r {$zipFilePath} -d {$destinyDiretory}";
+		mkdir($destinyDiretory);
+		
+		$command="unzip {$zipFilePath} -d {$destinyDiretory}";
 		exec($command);
+	}
+	
+	public function restoreBackup($zipFilePath){
+		$destinyDiretory=dirname($zipFilePath)."/restore";
+		$this->unzipFile($zipFilePath, $destinyDiretory);
 	}
 }
