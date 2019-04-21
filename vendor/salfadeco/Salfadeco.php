@@ -812,6 +812,9 @@ class Salfadeco {
 	}
 	
 	private function unzipFile($zipFilePath, $destinyDiretory){
+		echo "unzipFile($zipFilePath, $destinyDiretory)";
+		
+		
 		if(file_exists($destinyDiretory)){
 			unlink($destinyDiretory);
 		}
