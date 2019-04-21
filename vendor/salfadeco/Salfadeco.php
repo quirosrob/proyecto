@@ -812,6 +812,10 @@ class Salfadeco {
 	}
 	
 	private function deletePath($path){
+		if(!file_exists($path)){
+			return;
+		}
+		
 		if(!is_dir($path)){
 			unlink($path);
 			return;
@@ -825,9 +829,7 @@ class Salfadeco {
 	}
 	
 	private function unzipFile($zipFilePath, $destinyDiretory){
-		if(file_exists($destinyDiretory)){
-			rmdir($destinyDiretory);
-		}
+		$this->deletePath($destinyDiretory);
 		mkdir($destinyDiretory);
 		
 		$command="unzip {$zipFilePath} -d {$destinyDiretory}";

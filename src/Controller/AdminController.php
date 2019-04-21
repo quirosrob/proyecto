@@ -350,11 +350,6 @@ class AdminController extends AppController
 			$this->salfadeco->restoreBackup($backupUploadFilePath, WWW_ROOT.DS.'img'.DS.'uploads');
 		}
 		
-		$files=glob(WWW_ROOT.DS.'img'.DS.'uploads/*', GLOB_MARK);
-		echo "<pre>";
-		print_r($files);
-		echo "</pre>";
-		
 		$this->set([
 			'backupFilePath'=>$backupFilePath,
 		]);
