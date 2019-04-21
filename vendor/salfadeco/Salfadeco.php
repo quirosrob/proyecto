@@ -785,15 +785,16 @@ class Salfadeco {
 	
 	public function createBackup($backup_directory, $uploadsDiretory){
 		$dumpFilePath="{$backup_directory}/dump.sql";
+		$dumpOriginalFilePath="{$backup_directory}/dump_original.sql";
 		$zipFilePath="{$backup_directory}/backup.zip";
 		
 		$crud=new Crud();
 		$sql=$crud->getSqlBackup();
 		file_put_contents($dumpFilePath, base64_encode($sql));
+		file_put_contents($dumpOriginalFilePath, $sql);
 		
-		$this->zipFiles($zipFilePath, [$dumpFilePath, $uploadsDiretory]);
+		$this->zipFiles($zipFilePath, [$dumpFilePath, $dumpOriginalFilePath, $uploadsDiretory]);
 		
-//		unlink($dumpFilePath);
 		
 		return $zipFilePath;
 	}
@@ -840,23 +841,15 @@ class Salfadeco {
 		$unzipDiretory=dirname($zipFilePath)."/restore";
 		$this->unzipFile($zipFilePath, $unzipDiretory);
 		$fullSql= base64_decode(file_get_contents($unzipDiretory."/dump.sql"));
-		
-		echo "<pre>";
-		echo $fullSql;
-		echo "</pre>";
-		
-		$sqls=explode('***********', $fullSql);
-		
+		$sqls=explode('/***********/', $fullSql);
 		foreach($sqls as $sql){
-			echo "<pre>";
-			echo $sql;
-			echo "</pre>";
-			
-			$crud=new Crud();
-			$crud->execStatement($sql);
+			if(!empty($sql)){
+				$crud=new Crud();
+				$crud->execStatement($sql);
+			}
 		}
 		
-//		unlink($uploadsDiretory);
-//		rename($unzipDiretory.'/uploads', $uploadsDiretory);
+		unlink($uploadsDiretory);
+		rename($unzipDiretory.'/uploads', $uploadsDiretory);
 	}
 }

@@ -446,14 +446,14 @@ class Crud{
 		
 		foreach(array_reverse($tables) as $table){
 			$sql.=$crud->getTableDropStatement($table)."\n";
-			$sql.="\n***********\n";
+			$sql.="\n/***********/\n";
 		}
 		$sql.="\n";
 		foreach($tables as $table){
 			$sql.=$crud->getTableCreateStatement($table)."\n\n";
-			$sql.="\n***********\n";
+			$sql.="\n/***********/\n";
 			$sql.=$crud->getTableSqlDump($table)."\n\n";
-			$sql.="\n***********\n";
+			$sql.="\n/***********/\n";
 		}
 		return $sql;
 	}
