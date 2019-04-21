@@ -811,6 +811,19 @@ class Salfadeco {
 		}
 	}
 	
+	private function deletePath($path){
+		if(!is_dir($path)){
+			unlink($path);
+			return;
+		}
+		
+		$files=glob("{$path}/*", GLOB_MARK);
+		foreach($files as $file){
+			$this->deletePath($file);
+		}
+		rmdir($path);
+	}
+	
 	private function unzipFile($zipFilePath, $destinyDiretory){
 		if(file_exists($destinyDiretory)){
 			rmdir($destinyDiretory);
