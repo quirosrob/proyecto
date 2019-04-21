@@ -841,11 +841,17 @@ class Salfadeco {
 		$this->unzipFile($zipFilePath, $unzipDiretory);
 		$fullSql= base64_decode(file_get_contents($unzipDiretory."/dump.sql"));
 		
+		echo "<pre>";
 		echo $fullSql;
+		echo "</pre>";
 		
 		$sqls=explode('***********', $fullSql);
 		
 		foreach($sqls as $sql){
+			echo "<pre>";
+			echo $sql;
+			echo "</pre>";
+			
 			$crud=new Crud();
 			$crud->execQuery($sql);
 		}
