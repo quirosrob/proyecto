@@ -812,11 +812,8 @@ class Salfadeco {
 	}
 	
 	private function unzipFile($zipFilePath, $destinyDiretory){
-		echo "unzipFile($zipFilePath, $destinyDiretory)";
-		
-		
 		if(file_exists($destinyDiretory)){
-			unlink($destinyDiretory);
+			rmdir($destinyDiretory);
 		}
 		mkdir($destinyDiretory);
 		
@@ -827,9 +824,6 @@ class Salfadeco {
 	public function restoreBackup($zipFilePath, $uploadsDiretory){
 		$unzipDiretory=dirname($zipFilePath)."/restore";
 		$this->unzipFile($zipFilePath, $unzipDiretory);
-		
-		echo $unzipDiretory."/dump.sql";
-		
 		$sql=file_get_contents($unzipDiretory."/dump.sql");
 		
 		echo $sql;
