@@ -796,10 +796,11 @@ class Salfadeco {
 	}
 	
 	function zipFiles($zipFilePath, $files){
-		$command="zip -jr {$zipFilePath} ";
+		$command="zip -jrm {$zipFilePath} ";
 		foreach($files as $file){
 			$command.=" {$file} ";
 		}
+		echo "<br/>$command<br/>";
 		exec($command);
 	}
 	
