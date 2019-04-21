@@ -849,7 +849,7 @@ class Salfadeco {
 			}
 		}
 		
-		unlink($uploadsDiretory);
+		$this->deletePath($uploadsDiretory);
 		rename($unzipDiretory.'/uploads', $uploadsDiretory);
 	}
 }
