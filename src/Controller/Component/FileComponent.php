@@ -51,7 +51,7 @@ class FileComponent extends Component
 
 			$storedFileName=microtime(true).".".$this->getFileExtension($fileName);
 			move_uploaded_file($fileNameTmp, $finalDirectory.DS.$storedFileName);
-			return $storedFileName;
+			return $finalDirectory.DS.$storedFileName;
 		}
 		return null;
 	}
