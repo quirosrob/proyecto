@@ -341,12 +341,9 @@ class AdminController extends AppController
 		}
 		
 		if($this->getParameter('formAction')=='createBackup'){
-			$filePath=$this->salfadeco->createBackup(WWW_ROOT.DS."backups");
-			
+			$filePath=$this->salfadeco->createBackup(WWW_ROOT.DS."backups", WWW_ROOT.DS.'img'.DS.'uploads');
 			echo $filePath;
 		}
-		
-		
 	}
 	
 	public function access(){

@@ -783,7 +783,7 @@ class Salfadeco {
 		}
 	}
 	
-	public function createBackup($backup_directory){
+	public function createBackup($backup_directory, $uploadsDiretory){
 		$dumpFilePath="{$backup_directory}/dump.sql";
 		$zipFilePath="{$backup_directory}/backup.zip";
 		
@@ -791,7 +791,7 @@ class Salfadeco {
 		$sql=$crud->getSqlBackup();
 		file_put_contents($dumpFilePath, $sql);
 		
-		$this->zipFiles($zipFilePath, [$dumpFilePath]);
+		$this->zipFiles($zipFilePath, [$dumpFilePath, $uploadsDiretory]);
 		return $zipFilePath;
 	}
 	
