@@ -853,7 +853,7 @@ class Salfadeco {
 			echo "</pre>";
 			
 			$crud=new Crud();
-			$crud->execQuery($sql);
+			$crud->execStatement($sql);
 		}
 		
 //		unlink($uploadsDiretory);
