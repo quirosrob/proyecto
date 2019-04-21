@@ -44,6 +44,15 @@
 
 </form>
 
+
+<br/>
+<form class="ajax">
+	<div class='text-center'>
+		<input type='hidden' name='formAction' value='createBackup'/>
+		<?=$this->element('button', ['label'=>"Gnerar Respaldo"])?>
+	</div>
+</form>
+
 <script>
 	$('.colorPicker').spectrum({
 		preferredFormat: "hex",

@@ -339,6 +339,14 @@ class AdminController extends AppController
 				$this->salfadeco->setConfiguration('site_logo2_image_id', $site_logo2_image_id);
 			}
 		}
+		
+		if($this->getParameter('formAction')=='createBackup'){
+			$filePath=$this->salfadeco->createBackup(WWW_ROOT.DS."backups");
+			
+			echo $filePath;
+		}
+		
+		
 	}
 	
 	public function access(){

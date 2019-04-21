@@ -326,4 +326,117 @@ class Crud{
 		}
 		return $names;
 	}
+	
+	public function getTablesNames(){
+		$tables=[];
+		$sql="show tables";
+		$rows=$this->execQuery($sql);
+		foreach($rows as $row){
+			foreach($row as $item){
+				$tables[]=$item;
+			}
+		}
+		return $tables;
+	}
+	
+	public function getTablesDependencies(){
+		$tables=$this->getTablesNames();
+		$dependencies=[];
+		foreach($tables as $table){
+			$dependencies[$table]=$this->getTableDependencies($table);
+		}
+		return $dependencies;
+	}
+	
+	public function getTablesNamesSortedByDependencies(){
+		$sortedTables=[];
+		$tables=$this->getTablesNames();
+		$tablesDependencies=$this->getTablesDependencies();
+		
+		while(!empty($tables)){
+			foreach($tables as $key => $table){
+				$hasPendingDependencies=false;
+				if(isset($tablesDependencies[$table])){
+					foreach($tablesDependencies[$table] as $dependency){
+						if(!isset($sortedTables[$dependency])){
+							$hasPendingDependencies=true;
+						}
+					}
+				}
+				
+				if(!$hasPendingDependencies){
+					$sortedTables[$table]=$table;
+					unset($tables[$key]);
+					break;
+				}
+			}
+		}
+		return $sortedTables;
+	}
+	
+	public function getTableCreateStatement($table){
+		$sql="SHOW CREATE TABLE {$table}";
+		$rows=$this->execQuery($sql);
+		foreach($rows as $row){
+			return "\n\n{$row['Create Table']}\n\n";
+		}
+		return '';
+	}
+	
+	public function getTableDependencies($table){
+		$tables=[];
+		$createStatement=$this->getTableCreateStatement($table);
+		$lines= explode("\n", $createStatement);
+		foreach($lines as $line){
+			if(preg_match("/references\s+`(.+?)`.*/", strtolower($line), $match)){
+				$tables[$match[1]]=$match[1];
+			}
+		}
+		return $tables;
+	}
+	
+	public function getTableSqlDump($table){
+		$this->tables=[];
+		$this->setTable($table);
+		$rows=$this->load();
+		
+		$columnsList="";
+		foreach($rows as $row){
+			foreach($row as $key => $val){
+				if(!empty($columnsList)){
+					$columnsList.=",";
+				}
+				$columnsList.="`{$key}`";
+			}
+			break;
+		}
+		
+		$values="";
+		foreach($rows as $row){
+			$valueList="";
+			foreach($row as $key => $val){
+				if(!empty($valueList)){
+					$valueList.=",";
+				}
+				$valueList.="'{$this->fixValue($val)}'";
+			}
+			if(!empty($values)){
+				$values.=",\n";
+			}
+			$values.="({$valueList})";
+		}
+		
+		return "\n\ninsert into {$table} \n({$columnsList}) \nvalues \n{$values} \n\n";
+	}
+	
+	public function getSqlBackup(){
+		$sql='';
+		$crud=new Crud();
+		$tables=$crud->getTablesNamesSortedByDependencies();
+		foreach($tables as $table){
+			$sql.=$crud->getTableCreateStatement($table);
+			$sql.=$crud->getTableSqlDump($table);
+		}
+		return $sql;
+	}
 }

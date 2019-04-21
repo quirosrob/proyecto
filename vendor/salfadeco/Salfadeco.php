@@ -782,6 +782,32 @@ class Salfadeco {
 			$crud->delete();
 		}
 	}
+	
+	public function createBackup($backup_directory){
+		$dumpFilePath="{$backup_directory}/dump.sql";
+		$zipFilePath="{$backup_directory}/backup.zip";
+		
+		$crud=new Crud();
+		$sql=$crud->getSqlBackup();
+		file_put_contents($dumpFilePath, $sql);
+		
+		$this->zipFiles($zipFilePath, [$dumpFilePath]);
+		return $zipFilePath;
+	}
+	
+	function zipFiles($zipFilePath, $files){
+		$command="zip -r {$zipFilePath} ";
+		foreach($files as $file){
+			$command.=" {$file} ";
+		}
+		exec($command);
+	}
+	
+	function unzipFile($zipFilePath, $destinyDiretory){
+		if(!file_exists($destinyDiretory)){
+			mkdir($destinyDiretory);
+		}
+		$command="unzip -r {$zipFilePath} -d {$destinyDiretory}";
+		exec($command);
+	}
 }
-        
-
