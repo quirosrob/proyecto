@@ -801,11 +801,9 @@ class Salfadeco {
 		}
 		
 		foreach($files as $file){
-			$command="zip -r {$zipFilePath} ";
-			foreach($files as $file){
-				$command.=" {$file} ";
-			}
-			echo "<br/>$command<br/>";
+			$fileDirectory=dirname($file);
+			$fileName=basename($file);
+			$command="cd $fileDirectory && zip -r {$zipFilePath} $fileName";
 			exec($command);
 		}
 	}
