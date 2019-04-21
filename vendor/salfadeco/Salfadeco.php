@@ -789,7 +789,7 @@ class Salfadeco {
 		
 		$crud=new Crud();
 		$sql=$crud->getSqlBackup();
-		file_put_contents($dumpFilePath, $sql);
+		file_put_contents($dumpFilePath, base64_encode($sql));
 		
 		$this->zipFiles($zipFilePath, [$dumpFilePath, $uploadsDiretory]);
 		
@@ -839,7 +839,7 @@ class Salfadeco {
 	public function restoreBackup($zipFilePath, $uploadsDiretory){
 		$unzipDiretory=dirname($zipFilePath)."/restore";
 		$this->unzipFile($zipFilePath, $unzipDiretory);
-		$sql=file_get_contents($unzipDiretory."/dump.sql");
+		$sql= base64_decode(file_get_contents($unzipDiretory."/dump.sql"));
 		
 		echo $sql;
 		$crud=new Crud();

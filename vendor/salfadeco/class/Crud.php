@@ -437,7 +437,7 @@ class Crud{
 	
 	
 	private function getTableDropStatement($table){
-		return "drop table if exists $table;";
+		return "drop table if exists `$table`;";
 	}
 	
 	public function getSqlBackup(){
