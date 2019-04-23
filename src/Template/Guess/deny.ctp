@@ -1,2 +1,4 @@
 <?php ?>
-denegado
+<h2 class='text-center'>
+	Acceso denegado
+</h2>

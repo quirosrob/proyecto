@@ -22,8 +22,13 @@ if(empty($authUser)){
 }
 else{
 	?>
+	<div class='text-center'>
+		<img src="/img/loading.gif" alt=""/>
+	</div>
+	
 	<script>
-		location.href='/Admin/'
+		location.href='<?=$homeLink?>'
 	</script>
 	<?php
 }
+?>

@@ -400,6 +400,10 @@ class Crud{
 		$this->setTable($table);
 		$rows=$this->load();
 		
+		if(empty($rows)){
+			return '';
+		}
+		
 		$columnsList="";
 		foreach($rows as $row){
 			foreach($row as $key => $val){

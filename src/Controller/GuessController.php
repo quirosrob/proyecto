@@ -8,22 +8,6 @@ class GuessController extends AppController
 {
     public function beforeFilter(Event $event){
 		parent::beforeFilter($event);
-		$menuItems=[
-			['desc'=>"Inicio", "link"=>"/Guess/Events"],
-			['desc'=>"Miembros", "link"=>"/Guess/Members"],
-			['desc'=>"Deportes", "link"=>"/Guess/Sports"],
-			['desc'=>"Juntas Directivas", "link"=>"/Guess/DirectorsTeams"],
-			['desc'=>"Contáctenos", "link"=>"/Guess/ContacUs"],
-			['desc'=>"Galerías", "link"=>"/Guess/Galleries"],
-			['desc'=>"Historia", "link"=>"/Guess/History"],
-			['desc'=>"Ingresar", "link"=>"/Guess/Login"],
-		];
-
-		$this->selectCurrentMenuItem($menuItems);
-
-		$this->set([
-			'menuItems'=>$menuItems
-		]);
     }
     
     public function sports(){
@@ -132,9 +116,18 @@ class GuessController extends AppController
 			}
 		}
 		
+		$authUser=$this->getUserSession();
+		$homeLink='/guess/deny';
+		$permitions=$this->salfadeco->getUserPermitions($authUser['id']);
+		foreach($permitions as $permition){
+			$homeLink=$permition['menu_link'];
+			break;
+		}
+		
 		$this->set([
+			'homeLink'=>$homeLink,
 			'username'=>$this->getParameter('username'),
-			'authUser'=>$this->getUserSession()
+			'authUser'=>$authUser
 		]);
     }
 	

@@ -32,6 +32,33 @@ class AppController extends Controller
 	public function beforeFilter(Event $event){
 		parent::beforeFilter($event);
 		$this->salfadeco=new Salfadeco();
+		
+		$menuItems=[];
+		$user=$this->getUserSession();
+		if(!empty($user)){
+			$permitions=$this->salfadeco->getUserPermitions($user['id']);
+			$menuItems=[];
+			foreach($permitions as $permition){
+				$menuItems[]=['desc'=>$permition['descripcion'], 'link'=>$permition['menu_link'],];
+			}
+			$menuItems[]=['desc'=>"Salir", 'link'=>"/Admin/Logout",];
+		}
+		else{
+			$menuItems=[
+				['desc'=>"Inicio", "link"=>"/Guess/Events"],
+				['desc'=>"Miembros", "link"=>"/Guess/Members"],
+				['desc'=>"Deportes", "link"=>"/Guess/Sports"],
+				['desc'=>"Juntas Directivas", "link"=>"/Guess/DirectorsTeams"],
+				['desc'=>"Contáctenos", "link"=>"/Guess/ContacUs"],
+				['desc'=>"Galerías", "link"=>"/Guess/Galleries"],
+				['desc'=>"Historia", "link"=>"/Guess/History"],
+				['desc'=>"Ingresar", "link"=>"/Guess/Login"],
+			];
+		}
+		$this->selectCurrentMenuItem($menuItems);
+		$this->set([
+			'menuItems'=>$menuItems
+		]);
 	}
 	
 	public function beforeRender(Event $event) {

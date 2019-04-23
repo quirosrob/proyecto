@@ -13,19 +13,6 @@ class AdminController extends AppController
 		$controller=strtolower($this->request->getParam('controller'));
 		$user=$this->getUserSession();
 		
-		$menuItems=[];
-		$permitions=$this->salfadeco->getUserPermitions($user['id']);
-		foreach($permitions as $permition){
-			$menuItems[]=['desc'=>$permition['descripcion'], 'link'=>$permition['menu_link'],];
-		}
-		$menuItems[]=['desc'=>"Salir", 'link'=>"/Admin/Logout",];
-		$this->selectCurrentMenuItem($menuItems);
-		
-		$this->set([
-			'menuItems'=>$menuItems,
-			'adminMode'=>true
-		]);
-		
 		$allowed=false;
 		$actionsUser=$this->salfadeco->getActionsUser($user['id']);
 		$actionsUser[]=['controller'=>'Admin', 'action'=>'logout'];
@@ -39,6 +26,10 @@ class AdminController extends AppController
 				['controller' => 'Guess', 'action' => 'Deny']
 			);
 		}
+		
+		$this->set([
+			'adminMode'=>true
+		]);
     }
 
     public function sports(){
