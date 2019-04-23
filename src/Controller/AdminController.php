@@ -9,25 +9,36 @@ class AdminController extends AppController
 		
 		$this->loadComponent('File');
 		
-		$menuItems=[
-			['desc'=>"Noticias", "link"=>"/Admin/Events"],
-			['desc'=>"Miembros", "link"=>"/Admin/Members"],
-			['desc'=>"Deportes", "link"=>"/Admin/Sports"],
-			['desc'=>"Juntas Directivas", "link"=>"/Admin/DirectorsTeams"],
-			['desc'=>"Contáctenos", "link"=>"/Admin/ContacUs"],
-			['desc'=>"Galerías", "link"=>"/Admin/Galleries"],
-			['desc'=>"Historia", "link"=>"/Admin/History"],
-			['desc'=>"Configuración", "link"=>"/Admin/Configuration"],
-			['desc'=>"Accesos", "link"=>"/Admin/Access"],
-			['desc'=>"Salir", "link"=>"/Admin/Logout"],
-		];
-
+		$action= strtolower($this->request->getParam('action'));
+		$controller=strtolower($this->request->getParam('controller'));
+		$user=$this->getUserSession();
+		
+		$menuItems=[];
+		$permitions=$this->salfadeco->getUserPermitions($user['id']);
+		foreach($permitions as $permition){
+			$menuItems[]=['desc'=>$permition['descripcion'], 'link'=>$permition['menu_link'],];
+		}
+		$menuItems[]=['desc'=>"Salir", 'link'=>"/Admin/Logout",];
 		$this->selectCurrentMenuItem($menuItems);
-
+		
 		$this->set([
 			'menuItems'=>$menuItems,
 			'adminMode'=>true
 		]);
+		
+		$allowed=false;
+		$actionsUser=$this->salfadeco->getActionsUser($user['id']);
+		$actionsUser[]=['controller'=>'Admin', 'action'=>'logout'];
+		foreach($actionsUser as $actionUser){
+			if(strtolower($actionUser['controller'])==$controller && strtolower($actionUser['action'])==$action){
+				$allowed=true;
+			}
+		}
+		if(!$allowed){
+			return $this->redirect(
+				['controller' => 'Guess', 'action' => 'Deny']
+			);
+		}
     }
 
     public function sports(){
@@ -236,6 +247,7 @@ class AdminController extends AppController
     }
     
     public function logout(){
+		$this->deleteUserSession();
 		return $this->redirect("/");
     }
     

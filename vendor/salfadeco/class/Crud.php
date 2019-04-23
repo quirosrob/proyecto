@@ -186,7 +186,7 @@ class Crud{
 			if(!empty($orderCols)){
 				$orderCols.=", ";
 			}
-			$orderCols.="`{$this->fixValue($order[0])}` {$this->fixValue($order[1])}";
+			$orderCols.="{$this->fixColumn($order[0])} {$this->fixValue($order[1])}";
 		}
 		return !empty($orderCols)? "order by $orderCols" : "";
 	}

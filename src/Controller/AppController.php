@@ -110,4 +110,16 @@ class AppController extends Controller
 			}
 		}
     }
+	
+	public function makeUserSession($user){
+		$this->getRequest()->getSession()->write('Auth.user', $user);
+	}
+	
+	public function deleteUserSession(){
+		$this->getRequest()->getSession()->destroy();
+	}
+	
+	public function getUserSession(){
+		return $this->getRequest()->getSession()->read('Auth.user');
+	}
 }

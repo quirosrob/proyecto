@@ -736,7 +736,7 @@ class Salfadeco {
 	
 	private function clearPermitionsUser($user_id){
 		$crud=new Crud();
-		$crud->setTable('user_permition)');
+		$crud->setTable('user_permition');
 		$crud->setClausule('user_id', '=', $user_id);
 		return $crud->delete();
 	}
@@ -851,5 +851,47 @@ class Salfadeco {
 		
 		$this->deletePath($uploadsDiretory);
 		rename($unzipDiretory.'/uploads', $uploadsDiretory);
+	}
+	
+	public function checkLogin($username, $password){
+		$crud=new Crud();
+		$crud->setTable('user');
+		$crud->setClausule('username', '=', $username);
+		$crud->setClausule('password', '=', md5($password));
+		return $crud->loadFirst();
+	}
+	
+	public function getActionsUser($user_id){
+		$permition_ids=[];
+		$permitions=$this->getUserPermitions($user_id);
+		foreach($permitions as $permition){
+			$permition_ids[]=$permition['id'];
+		}
+		
+		$crud=new Crud();
+		$crud->setTable('permition_action');
+		$crud->setClausule('permition_id', 'in', $permition_ids);
+		return $crud->load();
+	}
+	
+	public function getUserPermitions($user_id){
+		$user=$this->getUser($user_id);
+		
+		if($user['role']=='ADMIN'){
+			$crud=new Crud();
+			$crud->setTable('permition', 'p');
+			$crud->setOrder('p.order');
+			return $crud->load(['p.*']);
+		}
+		else{
+			$crud=new Crud();
+			$crud->setTable('user_permition', 'us');
+			$crud->setTable('permition', 'p');
+			$crud->setClausule('us.user_id', '=', $user_id);
+			$crud->setJoin('us.permition_id', '=', 'p.id');
+			$crud->setOrder('p.order');
+			return $crud->load(['p.*']);
+		}
+		return [];
 	}
 }

@@ -46,7 +46,7 @@
 			</div>
 			<div class="text-right">
 				<?php
-				if($user['id']){
+				if($user['role']!='ADMIN'){
 					?>
 					<form class='ajax' question="¿Eliminar Usuario?" style="display: inline-block">
 						<input type="hidden" name='user_id' value="<?=$user['id']?>"/>

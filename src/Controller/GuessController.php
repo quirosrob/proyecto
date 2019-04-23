@@ -122,7 +122,20 @@ class GuessController extends AppController
     }
     
     public function login(){
-	
+		if($this->getParameter('formAction')=='login'){
+			$user=$this->salfadeco->checkLogin($this->getParameter('username'), $this->getParameter('password'));
+			if(!empty($user)){
+				$this->makeUserSession($user);
+			}
+			else{
+				$this->deleteUserSession();
+			}
+		}
+		
+		$this->set([
+			'username'=>$this->getParameter('username'),
+			'authUser'=>$this->getUserSession()
+		]);
     }
 	
 	public function history(){
@@ -138,5 +151,9 @@ class GuessController extends AppController
 			'contact_us_phone'=>$this->salfadeco->getConfiguration('contact_us_phone'),
 			'contact_us_address'=>$this->salfadeco->getText('contact_us_address'),
 		]);
+	}
+	
+	public function Deny(){
+		
 	}
 }
