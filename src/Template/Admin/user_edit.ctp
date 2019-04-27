@@ -24,7 +24,7 @@
 		<div>
 			<div>Contraseña</div>
 			<div>
-				<input type='text' name='password' value='' class='form-control'/>
+				<input type='password' name='password' value='' autocomplete="off" class='form-control' id='password_user'/>
 			</div>
 		</div>
 		<div>
@@ -51,3 +51,9 @@
 		<?=$this->element('button', ['label'=>"Salvar"])?>
 	</div>
 </form>
+
+<script>
+	setTimeout(function(){
+		$("#password_user").val("");
+	}, 500);
+</script>
