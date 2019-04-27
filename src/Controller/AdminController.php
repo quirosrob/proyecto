@@ -329,6 +329,7 @@ class AdminController extends AppController
 			$this->salfadeco->setConfiguration('site_title', $this->getParameter('site_title'));
 			$this->salfadeco->setConfiguration('site_title_short', $this->getParameter('site_title_short'));
 			$this->salfadeco->setText('site_footer', $this->getParameter('site_footer'));
+			$this->salfadeco->setConfiguration('facebook_appId', $this->getParameter('facebook_appId'));
 			
 			$logo=$this->File->receiveImageFromBrowser('logo');
 			if(!empty($logo)){

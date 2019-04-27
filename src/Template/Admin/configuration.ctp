@@ -18,6 +18,14 @@
 		</div>
 	</div>
 
+	<h2 class='text-center'>Facebook</h2>
+	<div class="formResponsive">
+		<div>
+			<div>App Id</div>
+			<div><input class='form-control' type='text' name='facebook_appId' value='<?=$facebook_appId?>'/></div>
+		</div>
+	</div>
+	
 	<h2 class='text-center'>Imagenes</h2>
 
 	<div class="formResponsive">
