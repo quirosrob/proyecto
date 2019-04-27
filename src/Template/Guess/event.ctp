@@ -16,3 +16,5 @@
     </div>
 	<?=$this->element('image_group', ['images'=>$event['imageGroupItems']])?>
 </div>
+
+<?=$this->element('facebookComments')?>

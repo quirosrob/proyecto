@@ -12,7 +12,7 @@ if (array_key_exists("HTTP_X_FORWARDED_SSL", $_SERVER) && 'on' === $_SERVER["HTT
 if (array_key_exists("HTTP_X_FORWARDED_PROTO", $_SERVER) && 'https' === $_SERVER["HTTP_X_FORWARDED_PROTO"]) {
 	$isHttps=true;
 }
-$facebookReference=($isHttps? "https://" : "http://").$_SERVER['HTTP_HOST'].$link;
+$facebookReference=($isHttps? "https://" : "http://").$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 ?>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v3.2&appId=<?=$facebook_appId?>&autoLogAppEvents=1"></script>

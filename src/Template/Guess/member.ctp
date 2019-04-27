@@ -70,6 +70,4 @@ foreach($member['sports'] as $sport){
 	break;
 }
 ?>
-
-
-<?=$this->element('facebookComments', ['link'=>"/Guess/Member/{$member['id']}"])?>
+<?=$this->element('facebookComments')?>
