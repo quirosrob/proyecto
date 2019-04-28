@@ -31,6 +31,8 @@
 		<link href="/css/pagination.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/anytime/anytime.5.1.2.css?<?=$version?>" rel="stylesheet" >
 		<link href="/anytime/anytimeFix.css?<?=$version?>" rel="stylesheet" >
+		<link href="/css/facebookComments.css" rel="stylesheet" type="text/css"/>
+		
 
 		<script src="/js/jquery-1.11.3.min.js?<?=$version?>" type="text/javascript"></script>
 		<script src="/tinymce/js/tinymce/tinymce.min.js?<?=$version?>" type="text/javascript"></script>
