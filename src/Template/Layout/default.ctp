@@ -23,6 +23,7 @@
 		<link href="/css/formResponsive.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/css/btn-custom.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/css/image_group.css?<?=$version?>" rel="stylesheet" type="text/css"/>
+		<link href="/css/image_group_admin.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/css/modalMenuXs.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/spectrum/spectrum.css?<?=$version?>" rel="stylesheet" type="text/css"/>
 		<link href="/css/imageZoom.css?<?=$version?>" rel="stylesheet" type="text/css"/>
