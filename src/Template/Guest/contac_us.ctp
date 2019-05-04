@@ -44,3 +44,5 @@
 		<div><?=$contact_us_address?></div>
     </div>
 </div>
+
+<?=$this->element('ubicationMap')?>
