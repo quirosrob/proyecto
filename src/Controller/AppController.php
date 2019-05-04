@@ -45,14 +45,15 @@ class AppController extends Controller
 		}
 		else{
 			$menuItems=[
-				['desc'=>"Inicio", "link"=>"/Guess/Events"],
-				['desc'=>"Miembros", "link"=>"/Guess/Members"],
-				['desc'=>"Deportes", "link"=>"/Guess/Sports"],
-				['desc'=>"Juntas Directivas", "link"=>"/Guess/DirectorsTeams"],
-				['desc'=>"Contáctenos", "link"=>"/Guess/ContacUs"],
-				['desc'=>"Galerías", "link"=>"/Guess/Galleries"],
-				['desc'=>"Historia", "link"=>"/Guess/History"],
-				['desc'=>"Ingresar", "link"=>"/Guess/Login"],
+				['desc'=>"Inicio", "link"=>"/Guest/Home"],
+				['desc'=>"Eventos", "link"=>"/Guest/Events"],
+				['desc'=>"Miembros", "link"=>"/Guest/Members"],
+				['desc'=>"Deportes", "link"=>"/Guest/Sports"],
+				['desc'=>"Juntas Directivas", "link"=>"/Guest/DirectorsTeams"],
+				['desc'=>"Contáctenos", "link"=>"/Guest/ContacUs"],
+				['desc'=>"Galerías", "link"=>"/Guest/Galleries"],
+				['desc'=>"Historia", "link"=>"/Guest/History"],
+				['desc'=>"Ingresar", "link"=>"/Guest/Login"],
 			];
 		}
 		$this->selectCurrentMenuItem($menuItems);

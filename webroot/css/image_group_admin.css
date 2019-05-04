@@ -1,0 +1,14 @@
+.image_group_admin{
+	text-align: center;
+}
+
+.image_group_admin .preview{
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+	border: 2px solid lightgray;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	border-radius: 3px;
+}

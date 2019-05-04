@@ -78,7 +78,7 @@
 				</div>
 			</div>
 			<div class="text-right">
-				<a href="/Guess/Member/<?=$member['id']?>">
+				<a href="/Guest/Member/<?=$member['id']?>">
 				<?=$this->element('buttonXs', ['label'=>"Detalles"])?>
 				</a>
 			</div>

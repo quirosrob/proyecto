@@ -1,20 +1,18 @@
 <?php ?>
-<h3 class='text-center'>
-    Noticias
-</h3>
+<h3 class='text-center'>Juntas Directivas</h3>
 
 <?=$this->element('pagination')?>
 
 <div class='itemList'>
-	<?php
-	foreach($events as $event){
+    <?php
+    foreach($directors_teams as $directors_team){
 		?>
 		<div>
 			<div class='itemListDetails'>
 				<div class="info">
 					<?php
-					if(!empty($event['image']['filename'])){
-						$path="/img/uploads/{$event['image']['filename']}";
+					if(!empty($directors_team['image']['filename'])){
+						$path="/img/uploads/{$directors_team['image']['filename']}";
 						?>
 						<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
 						<?php
@@ -26,14 +24,13 @@
 					}
 					?>
 					<div class='details'>
-						<div class="name"><?=$event['name']?></div>
-						<div class="date"><?=$event['date']?></div>
-						<div class="description"><?=$event['description']?></div>
+						<div class="name"><?=$directors_team['name']?></div>
+						<div class="description"><?=$directors_team['description']?></div>
 					</div>
 				</div>
 			</div>
 			<div class="text-right">
-				<a href="/Guess/Event/<?=$event['id']?>">
+				<a href="/Guest/DirectorsTeam/<?=$directors_team['id']?>">
 					<?=$this->element('buttonXs', ['label'=>"Detalles"])?>
 				</a>
 			</div>

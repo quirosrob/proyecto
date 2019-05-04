@@ -4,11 +4,17 @@ use Cake\Event\Event;
 
 use salfadeco\Crud;
 
-class GuessController extends AppController
+class GuestController extends AppController
 {
     public function beforeFilter(Event $event){
 		parent::beforeFilter($event);
     }
+	
+	public function home(){
+		$this->set([
+			'site_welcome'=>$this->salfadeco->getText('site_welcome')
+		]);
+	}
     
     public function sports(){
         $this->set([
@@ -117,7 +123,7 @@ class GuessController extends AppController
 		}
 		
 		$authUser=$this->getUserSession();
-		$homeLink='/guess/deny';
+		$homeLink='/guest/deny';
 		$permitions=$this->salfadeco->getUserPermitions($authUser['id']);
 		foreach($permitions as $permition){
 			$homeLink=$permition['menu_link'];

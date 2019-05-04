@@ -16,6 +16,12 @@
 				<textarea class="form-control" style="height: 150px;" name='site_footer'><?=$site_footer?></textarea>
 			</div>
 		</div>
+		<div>
+			<div>Bienvenida</div>
+			<div>
+				<textarea class="form-control" style="height: 150px;" name='site_welcome'><?=$site_welcome?></textarea>
+			</div>
+		</div>
 	</div>
 
 	<h2 class='text-center'>Facebook</h2>

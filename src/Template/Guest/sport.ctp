@@ -1,6 +1,6 @@
 <?php ?>
 <div class="text-right">
-    <a href='/Guess/Members/?sport_id=<?=$sport['id']?>'>
+    <a href='/Guest/Members/?sport_id=<?=$sport['id']?>'>
 		<?=$this->element('buttonXs', ['label'=>'Miembros'])?>
     </a>
 </div>

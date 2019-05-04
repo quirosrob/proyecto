@@ -32,7 +32,7 @@
 				</div>
 			</div>
 			<div class="text-right">
-				<a href="/Guess/Gallery/<?=$gallery['id']?>">
+				<a href="/Guest/Gallery/<?=$gallery['id']?>">
 					<?=$this->element('buttonXs', ['label'=>"Detalles"])?>
 				</a>
 			</div>

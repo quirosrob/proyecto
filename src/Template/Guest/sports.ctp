@@ -30,10 +30,10 @@
 				</div>
 			</div>
 			<div class="text-right">
-				<a href="/Guess/Members/?sport_id=<?=$sport['id']?>">
+				<a href="/Guest/Members/?sport_id=<?=$sport['id']?>">
 					<?=$this->element('buttonXs', ['label'=>"Miembros"])?>
 				</a>
-				<a href="/Guess/Sport/<?=$sport['id']?>">
+				<a href="/Guest/Sport/<?=$sport['id']?>">
 					<?=$this->element('buttonXs', ['label'=>"Detalles"])?>
 				</a>
 			</div>

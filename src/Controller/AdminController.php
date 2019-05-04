@@ -23,7 +23,7 @@ class AdminController extends AppController
 		}
 		if(!$allowed){
 			return $this->redirect(
-				['controller' => 'Guess', 'action' => 'Deny']
+				['controller' => 'Guest', 'action' => 'Deny']
 			);
 		}
 		
@@ -329,6 +329,7 @@ class AdminController extends AppController
 			$this->salfadeco->setConfiguration('site_title', $this->getParameter('site_title'));
 			$this->salfadeco->setConfiguration('site_title_short', $this->getParameter('site_title_short'));
 			$this->salfadeco->setText('site_footer', $this->getParameter('site_footer'));
+			$this->salfadeco->setText('site_welcome', $this->getParameter('site_welcome'));
 			$this->salfadeco->setConfiguration('facebook_appId', $this->getParameter('facebook_appId'));
 			
 			$logo=$this->File->receiveImageFromBrowser('logo');
@@ -356,6 +357,7 @@ class AdminController extends AppController
 		
 		$this->set([
 			'backupFilePath'=>$backupFilePath,
+			'site_welcome'=>$this->salfadeco->getText('site_welcome')
 		]);
 	}
 	
