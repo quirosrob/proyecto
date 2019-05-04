@@ -343,6 +343,12 @@ class AdminController extends AppController
 				$site_logo2_image_id=$this->salfadeco->addImage($logo2, '');
 				$this->salfadeco->setConfiguration('site_logo2_image_id', $site_logo2_image_id);
 			}
+			
+			$site_rules_file_result=$this->File->receiveFileFromBrowser('site_rules_file');
+			if(!empty($site_rules_file_result)){
+				$this->salfadeco->setConfiguration('site_rules_file', $site_rules_file_result['storedFileName']);
+				$this->salfadeco->setConfiguration('site_rules_file_org_name', $site_rules_file_result['fileName']);
+			}
 		}
 		
 		$backupFilePath=null;
@@ -357,7 +363,8 @@ class AdminController extends AppController
 		
 		$this->set([
 			'backupFilePath'=>$backupFilePath,
-			'site_welcome'=>$this->salfadeco->getText('site_welcome')
+			'site_welcome'=>$this->salfadeco->getText('site_welcome'),
+			'site_rules_file'=>$this->salfadeco->getConfiguration('site_rules_file')
 		]);
 	}
 	

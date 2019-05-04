@@ -32,6 +32,17 @@
 		</div>
 	</div>
 	
+	<h2 class='text-center'>Reglamento</h2>
+	
+	<div class="formResponsive">
+		<div>
+			<div>Archivo</div>
+			<div>
+				<input type='file' name='site_rules_file' />
+			</div>
+		</div>
+	</div>
+	
 	<h2 class='text-center'>Imagenes</h2>
 
 	<div class="formResponsive">
