@@ -22,6 +22,25 @@
 			</div>
 		</div>
 	</div>
+	
+	<?php
+	if($addUserResult!==null && !$addUserResult['status']){
+		?>
+		<div class="alert alert-danger text-center">
+			<div><strong>¡Error!</strong></div>
+			<?php
+			if($addUserResult['error']=='duplicated username'){
+				?>
+				Usuario duplicado
+				<?php
+			}
+			?>
+		</div>
+		<?php
+	}
+	?>
+	
+	
 	<div class='text-center'>
 		<input type='hidden' name='formAction' value='addUser'/>
 		<?=$this->element('button', ['label'=>"Salvar"])?>

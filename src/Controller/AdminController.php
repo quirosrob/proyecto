@@ -370,7 +370,7 @@ class AdminController extends AppController
 	
 	public function access(){
 		if($this->getParameter('formAction')=='addUser'){
-			$this->salfadeco->addUser($this->getParameter('name'), $this->getParameter('username'), $this->getParameter('job'), $this->getParameter('password'));
+			$addUserResult=$this->salfadeco->addUser($this->getParameter('name'), $this->getParameter('username'), $this->getParameter('job'), $this->getParameter('password'));
 		}
 		
 		if($this->getParameter('formAction')=='deleteUser'){
@@ -379,11 +379,14 @@ class AdminController extends AppController
 		
 		
 		$this->set([
-			'users'=>$this->salfadeco->getUsers()
+			'users'=>$this->salfadeco->getUsers(),
+			'addUserResult'=>$addUserResult
 		]);
 	}
 	
 	public function userEdit($user_id){
+		$editUserResult=null;
+		
 		if($this->getParameter('formAction')=='updateUser'){
 			$permition_ids=[];
 			$permitions=$this->salfadeco->getPermitions($user_id);
@@ -393,19 +396,20 @@ class AdminController extends AppController
 				}
 			}
 			
-			$this->salfadeco->updateUser($user_id, 
-					$this->getParameter('name'), 
-					$this->getParameter('username'), 
-					$this->getParameter('job'), 
-					$this->getParameter('password'),
-					$permition_ids);
+			$editUserResult=$this->salfadeco->updateUser(	$user_id, 
+															$this->getParameter('name'), 
+															$this->getParameter('username'), 
+															$this->getParameter('job'), 
+															$this->getParameter('password'),
+															$permition_ids);
 		}
 		
 		
 		$this->set([
 			'user'=>$this->salfadeco->getUser($user_id),
 			'permitions'=>$this->salfadeco->getPermitions($user_id),
-			'userPermitions'=>$this->salfadeco->getPermitionsUser($user_id)
+			'userPermitions'=>$this->salfadeco->getPermitionsUser($user_id),
+			'editUserResult'=>$editUserResult
 		]);
 	}
 	

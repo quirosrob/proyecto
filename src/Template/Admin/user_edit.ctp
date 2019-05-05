@@ -46,6 +46,23 @@
 		</div>
 	</div>
 
+	<?php
+	if($editUserResult!==null && !$editUserResult['status']){
+		?>
+		<div class="alert alert-danger text-center">
+			<div><strong>¡Error!</strong></div>
+			<?php
+			if($editUserResult['error']=='duplicated username'){
+				?>
+				Usuario duplicado
+				<?php
+			}
+			?>
+		</div>
+		<?php
+	}
+	?>
+	
 	<div class='text-center'>
 		<input type='hidden' name='formAction' value='updateUser'/>
 		<?=$this->element('button', ['label'=>"Salvar"])?>

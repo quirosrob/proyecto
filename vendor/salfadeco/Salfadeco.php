@@ -687,7 +687,33 @@ class Salfadeco {
 		$pdfQr->makeQrs($members['items'], $filePath);
 	}
 	
+	private function checkDuplicatedUsername($username, $user_id){
+		$crud=new Crud();
+		$crud->setTable('user');
+		$crud->setClausule('username', '=', $username);
+		$rows=$crud->load();
+		
+		if(empty($user_id)){
+			return !empty($rows);
+		}
+		
+		foreach($rows as $row){
+			if($row['id']!=$user_id){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public function addUser($name, $username, $job, $password){
+		if($this->checkDuplicatedUsername($username, null)){
+			return [
+				'status'=>false,
+				'error'=>'duplicated username'
+			];
+		}
+		
+		
 		$crud=new Crud();
 		$crud->setTable('user');
 		$crud->setValue('name', $name);
@@ -695,6 +721,11 @@ class Salfadeco {
 		$crud->setValue('job', $job);
 		$crud->setValue('password', md5($password));
 		$crud->insert();
+		
+		return [
+			'status'=>true,
+			'error'=>''
+		];
 	}
 	
 	public function getUsers(){
@@ -711,6 +742,14 @@ class Salfadeco {
 	}
 	
 	public function updateUser($user_id, $name, $username, $job, $password, $permition_ids){
+		
+		if($this->checkDuplicatedUsername($username, $user_id)){
+			return [
+				'status'=>false,
+				'error'=>'duplicated username'
+			];
+		}
+		
 		$crud=new Crud();
 		$crud->setTable('user');
 		$crud->setValue('name', $name);
@@ -726,6 +765,11 @@ class Salfadeco {
 		foreach($permition_ids as $permition_id){
 			$this->addPermitionUser($user_id, $permition_id);
 		}
+		
+		return [
+			'status'=>true,
+			'error'=>''
+		];
 	}
 	
 	public function getPermitions(){
