@@ -705,7 +705,7 @@ class Salfadeco {
 		return false;
 	}
 	
-	public function addUser($name, $username, $job, $password){
+	public function addUser($name, $username, $job, $password, $email){
 		if($this->checkDuplicatedUsername($username, null)){
 			return [
 				'status'=>false,
@@ -720,6 +720,7 @@ class Salfadeco {
 		$crud->setValue('username', $username);
 		$crud->setValue('job', $job);
 		$crud->setValue('password', md5($password));
+		$crud->setValue('email', $email);
 		$crud->insert();
 		
 		return [
@@ -741,7 +742,7 @@ class Salfadeco {
 		return $crud->loadFirst();
 	}
 	
-	public function updateUser($user_id, $name, $username, $job, $password, $permition_ids){
+	public function updateUser($user_id, $name, $username, $job, $password, $email, $permition_ids){
 		
 		if($this->checkDuplicatedUsername($username, $user_id)){
 			return [
@@ -755,6 +756,7 @@ class Salfadeco {
 		$crud->setValue('name', $name);
 		$crud->setValue('username', $username);
 		$crud->setValue('job', $job);
+		$crud->setValue('email', $email);
 		if(!empty($password)){
 			$crud->setValue('password', md5($password));
 		}

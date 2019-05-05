@@ -21,6 +21,12 @@
 				<input class='form-control' type='password' name='password' value=''/>
 			</div>
 		</div>
+		<div>
+			<div>Email</div>
+			<div>
+				<input class='form-control' type='email' name='email' value=''/>
+			</div>
+		</div>
 	</div>
 	
 	<?php

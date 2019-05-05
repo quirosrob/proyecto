@@ -371,7 +371,7 @@ class AdminController extends AppController
 	public function access(){
 		$addUserResult=null;
 		if($this->getParameter('formAction')=='addUser'){
-			$addUserResult=$this->salfadeco->addUser($this->getParameter('name'), $this->getParameter('username'), $this->getParameter('job'), $this->getParameter('password'));
+			$addUserResult=$this->salfadeco->addUser($this->getParameter('name'), $this->getParameter('username'), $this->getParameter('job'), $this->getParameter('password'), $this->getParameter('email'));
 		}
 		
 		if($this->getParameter('formAction')=='deleteUser'){
@@ -402,6 +402,7 @@ class AdminController extends AppController
 															$this->getParameter('username'), 
 															$this->getParameter('job'), 
 															$this->getParameter('password'),
+															$this->getParameter('email'),
 															$permition_ids);
 		}
 		

@@ -28,6 +28,12 @@
 			</div>
 		</div>
 		<div>
+			<div>Email</div>
+			<div>
+				<input type='text' name='email' value='<?=$user['email']?>' class='form-control'/>
+			</div>
+		</div>
+		<div>
 			<div>Permisos</div>
 			<div>
 				<?php
