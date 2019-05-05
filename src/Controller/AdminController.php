@@ -369,6 +369,7 @@ class AdminController extends AppController
 	}
 	
 	public function access(){
+		$addUserResult=null;
 		if($this->getParameter('formAction')=='addUser'){
 			$addUserResult=$this->salfadeco->addUser($this->getParameter('name'), $this->getParameter('username'), $this->getParameter('job'), $this->getParameter('password'));
 		}
