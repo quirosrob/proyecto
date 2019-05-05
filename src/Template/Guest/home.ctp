@@ -11,7 +11,7 @@
 		?>
 		<br/>
 		<br/>
-		<div class='title text-center'>Reglamento</div>
+		<h3 class='text-center'>Reglamento</h3>
 
 		<div class='text-center'>
 			<a href='/img/uploads/<?=$site_rules_file?>' DOWNLOAD='<?=$site_rules_file_org_name?>'>
@@ -25,6 +25,6 @@
 	
 	<br/>
 	<br/>
-	<div class='title text-center'>Ubicación</div>
+	<h3 class='text-center'>Ubicación</h3>
 	<?=$this->element('ubicationMap')?>
 </div>
