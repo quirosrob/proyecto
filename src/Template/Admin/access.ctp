@@ -58,7 +58,8 @@
 				<div class="info">
 					<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>"/img/anonymous.png"])?>");' onclick="openImageZoom('/img/anonymous.png')"></div>
 					<div class='details'>
-						<div class="name"><?=$user['name']?></div>
+						<div class="name"><?=$user['username']?></div>
+						<div class="username"><?=$user['name']?></div>
 						<div class="job"><?=$user['job']?></div>
 					</div>
 				</div>
