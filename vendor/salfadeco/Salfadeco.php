@@ -980,10 +980,20 @@ class Salfadeco {
 			$this->saveUserToken($user['id'], $token);
 			
 			$link="{$_SERVER['SERVER_NAME']}/Guest/PasswordRestart/{$token}";
-			$body = "Nombre: {$user['name']}<br/>Username: {$user['username']}<br/>Link: {$link}";
+			$subject= "Reinicio de Contraseña";
+			$body = "
+					<h1>Reinicio de Contraseña</h1>
+					<div>Nombre: {$user['name']}</div>
+					<div>Username: {$user['username']}</div>
+					<div>
+						<a href='{$link}'>
+							<button type='button'>Reiniciar Contraseña</button>
+						</a>
+					</div>
+					";
 			
 			$emailHelper =new EmailHelper();
-			$emailHelper->sentEmail($user['email'], null, null, "Nuevo password", $body);
+			$emailHelper->sentEmail($user['email'], null, null, $subject, $body);
 		}
 	}
 	

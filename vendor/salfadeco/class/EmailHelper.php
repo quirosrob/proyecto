@@ -11,7 +11,7 @@ class EmailHelper{
 			$mail->IsSMTP();
 			$mail->charSet = "UTF-8";
 			$mail->SMTPAuth = true;
-			$mail->Subject = $subject;
+			$mail->Subject = "=?utf-8?B?".base64_encode($subject)."?=";;
 			$mail->Body = $body;
 			$mail->IsHTML(true);
 			
@@ -21,9 +21,7 @@ class EmailHelper{
 			$mail->Port = $conf['SMTP_Port'];
 			$mail->From = $conf['SMTP_From'];
 			$mail->FromName = $conf['SMTP_FromName'];
-			if(!empty($conf['SMTP_SMTPSecure'])){
-				$mail->SMTPSecure = $conf['SMTP_SMTPSecure'];
-			}
+			$mail->SMTPSecure = $conf['SMTP_SMTPSecure'];
 			
 			
 			if(!empty($to)){
