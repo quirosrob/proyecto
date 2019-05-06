@@ -8,7 +8,9 @@ require_once($path.DS."class".DS."Singleton.php");
 require_once($path.DS."class".DS."DbConnector.php");
 require_once($path.DS."class".DS."Crud.php");
 require_once($path.DS."utils".DS."fpdf17".DS."fpdf.php");
+require_once($path.DS."utils".DS."PHPMailer".DS."class.phpmailer.php");
 require_once($path.DS."class".DS."PdfQr.php");
+require_once($path.DS."class".DS."EmailHelper.php");
 
 class Salfadeco {
 	public function getEvents($start, $quantity){
@@ -939,5 +941,62 @@ class Salfadeco {
 			return $crud->load(['p.*']);
 		}
 		return [];
+	}
+	
+	private function getUsersByMail($email){
+		if(empty($email)){
+			return [];
+		}
+		
+		$crud=new Crud();
+		$crud->setTable('user');
+		$crud->setClausule('email', '=', $email);
+		return $crud->load();
+	}
+	
+	public function getUserByToken($token){
+		if(empty($token)){
+			return [];
+		}
+		
+		$crud=new Crud();
+		$crud->setTable('user');
+		$crud->setClausule('token', '=', $token);
+		return $crud->loadFirst();
+	}
+	
+	private function saveUserToken($user_id, $token){
+		$crud=new Crud();
+		$crud->setTable('user');
+		$crud->setValue('token', $token);
+		$crud->setClausule('id', '=', $user_id);
+		$crud->update();
+	}
+	
+	public function sentRestartPasswordLink($email){
+		$users=$this->getUsersByMail($email);
+		foreach($users as $user){
+			$token=md5($user['id'].microtime(true));
+			$this->saveUserToken($user['id'], $token);
+			
+			$link="{$_SERVER['SERVER_NAME']}/Guest/PasswordRestart/{$token}";
+			$body = "Nombre: {$user['name']}<br/>Username: {$user['username']}<br/>Link: {$link}";
+			
+			$emailHelper =new EmailHelper();
+			$emailHelper->sentEmail($user['email'], null, null, "Nuevo password", $body);
+		}
+	}
+	
+	public function passwordRestart($token, $password){
+		if(empty($token)){
+			return;
+		}
+		
+		$crud=new Crud();
+		$crud->setTable('user');
+		$crud->setValue('token', '');
+		$crud->setValue('password', md5($password));
+		$crud->setClausule('token', '=', $token);
+		$crud->update();
 	}
 }

@@ -1,6 +1,12 @@
 <?php
 if(empty($authUser)){
 	?>
+	<div class="text-right">
+		<a href='/Guest/ForgotPassword/'>
+			<?=$this->element('buttonXs', ['label'=>'Olvide mi Contraseña'])?>
+		</a>
+	</div>
+
 	<form class='ajax'>
 		<div class="formResponsive">
 			<div>

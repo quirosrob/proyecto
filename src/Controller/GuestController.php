@@ -157,4 +157,23 @@ class GuestController extends AppController
 	public function Deny(){
 		
 	}
+	
+	public function forgotPassword(){
+		if($this->getParameter('formAction')=='sentRestartPasswordLink'){
+			$this->salfadeco->sentRestartPasswordLink($this->getParameter('email'));
+		}
+	}
+	
+	public function passwordRestart($token){
+		$updateDone=false;
+		if($this->getParameter('formAction')=='passwordRestart'){
+			$this->salfadeco->passwordRestart($token, $this->getParameter('password'));
+			$updateDone=true;
+		}
+		
+		$this->set([
+			'user'=>$this->salfadeco->getUserByToken($token),
+			'updateDone'=>$updateDone
+		]);
+	}
 }
