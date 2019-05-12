@@ -21,6 +21,7 @@ function makeRichtTextAreas(){
 		//inline: true,
 		menubar: false,
 		statusbar: false,
+		forced_root_block : 'div',
 		plugins: [
 			'textcolor colorpicker'
 		],

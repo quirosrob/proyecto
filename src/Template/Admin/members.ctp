@@ -6,6 +6,10 @@
     <a href='/Admin/NewMember/'>
 		<?=$this->element('buttonSm', ['label'=>"Nuevo Miembro"])?>
     </a>
+	
+    <a href='/Admin/Obituary/'>
+		<?=$this->element('buttonSm', ['label'=>"Obituario"])?>
+    </a>
 </div>
 
 <h3 class='text-center'>Miembros</h3>
@@ -89,6 +93,13 @@
 					<input type="hidden" name='formAction' value="deleteMember"/>
 					<button type="submit" class="btn btn-xs btn-danger">Eliminar</button>
 				</form>
+				
+				<form class='ajax' question="¿Generar evento obituario?" style="display: inline-block">
+					<input type="hidden" name='member_id' value="<?=$member['id']?>"/>
+					<input type="hidden" name='formAction' value="makeObituaryMember"/>
+					<button type="submit" class="btn btn-xs btn-custom">Obituario</button>
+				</form>
+				
 				<a href="/Admin/Member/<?=$member['id']?>">
 				<?=$this->element('buttonXs', ['label'=>"Editar"])?>
 				</a>

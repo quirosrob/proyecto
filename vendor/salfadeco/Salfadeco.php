@@ -16,7 +16,8 @@ class Salfadeco {
 	public function getEvents($start, $quantity){
 		$crud=new Crud();
 		$crud->setTable('event');
-		$crud->setOrder('date');
+		$crud->setOrder('date', 'desc');
+		$crud->setOrder('id', 'desc');
 		$crud->setLimits($start, $quantity);
 		$events=$crud->load();
 		foreach($events as &$event){
@@ -1008,5 +1009,39 @@ class Salfadeco {
 		$crud->setValue('password', md5($password));
 		$crud->setClausule('token', '=', $token);
 		$crud->update();
+	}
+	
+	private function applyMemberToTemplate($member, $text){
+		$sportList="";
+		foreach($member['sports'] as $sport){
+			if(!empty($sportList)){
+				$sportList.=", ";
+			}
+			$sportList.=$sport['name'];
+		}
+		
+		$text= str_replace('{NOMBRE}', $member['name'], $text);
+		$text= str_replace(htmlentities ('{AÑO_NACIMIENTO}'), $member['year_birth'], $text);
+		$text= str_replace(htmlentities ('{AÑO_MUERTE}'), $member['year_death'], $text);
+		$text= str_replace('{DEPORTES}', $sportList, $text);
+		return $text;
+	}
+	
+	public function makeObituaryMember($member_id){
+		$member=$this->getMember($member_id);
+		$newImageFilename=null;
+		
+		$memberImage=$this->getImage($member['image_id']);
+		if(!empty($memberImage)){
+			$imageDirectory=WWW_ROOT.'/img/uploads';
+			$memberImagePath=$imageDirectory.'/'.$memberImage['filename'];
+			if(file_exists($memberImagePath) && is_file($memberImagePath)){
+				$newImageFilename=microtime(true).'.'.pathinfo($memberImage['filename'], PATHINFO_EXTENSION);
+				copy($memberImagePath, $imageDirectory.'/'.$newImageFilename);
+			}
+		}
+		$title=$this->applyMemberToTemplate($member, $this->getText('member_obituary_title'));
+		$description=$this->applyMemberToTemplate($member, $this->getText('member_obituary_description'));
+		$this->addEvent($title, date("Y-m-d"), $description, $newImageFilename);
 	}
 }

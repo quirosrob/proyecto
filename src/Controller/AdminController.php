@@ -59,6 +59,10 @@ class AdminController extends AppController
 			$this->salfadeco->deleteMember($this->getParameter('member_id'));
 		}
 		
+		if($this->getParameter('formAction')=='makeObituaryMember'){
+			$this->salfadeco->makeObituaryMember($this->getParameter('member_id'));
+		}
+		
 		$paginationCurrentPage=$this->getParameter('paginationCurrentPage', 0);
 		$paginationItemsPerPage=10;
 		
@@ -436,6 +440,18 @@ class AdminController extends AppController
 			'creationDateEnd'=>$creationDateEnd,
 			'sport_id'=>$sport_id,
 			'formAction'=>$formAction
+		]);
+	}
+	
+	public function Obituary(){
+		if($this->getParameter('formAction')=='updateObituary'){
+			$this->salfadeco->setText('member_obituary_title', $this->getParameter('member_obituary_title'));
+			$this->salfadeco->setText('member_obituary_description', $this->getParameter('member_obituary_description'));
+		}
+		
+		$this->set([
+			'member_obituary_title'=>$this->salfadeco->getText('member_obituary_title'),
+			'member_obituary_description'=>$this->salfadeco->getText('member_obituary_description')
 		]);
 	}
 }
