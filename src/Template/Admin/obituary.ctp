@@ -17,10 +17,10 @@
 	</div>
 	
 	<h4>Automáticos</h4>
-	<div><strong>{NOMBRE}</strong>: nombre</div>
-	<div><strong>{AÑO_NACIMIENTO}</strong>: año de nacimiento</div>
-	<div><strong>{AÑO_MUERTE}</strong>: año de muerte</div>
-	<div><strong>{DEPORTES}</strong>: deporte asignados</div>
+	<div>{NOMBRE}: nombre</div>
+	<div>{AÑO_NACIMIENTO}: año de nacimiento</div>
+	<div>{AÑO_MUERTE}: año de muerte</div>
+	<div>{DEPORTES}: deporte asignados</div>
 </form>
 
 <script>
