@@ -1021,9 +1021,11 @@ class Salfadeco {
 		}
 		
 		$text= str_replace('{NOMBRE}', $member['name'], $text);
+		$text= str_replace('{AÑO_NACIMIENTO}', $member['year_birth'], $text);
+		$text= str_replace('{AÑO_MUERTE}', $member['year_death'], $text);
+		$text= str_replace('{DEPORTES}', $sportList, $text);
 		$text= str_replace(htmlentities ('{AÑO_NACIMIENTO}'), $member['year_birth'], $text);
 		$text= str_replace(htmlentities ('{AÑO_MUERTE}'), $member['year_death'], $text);
-		$text= str_replace('{DEPORTES}', $sportList, $text);
 		return $text;
 	}
 	
