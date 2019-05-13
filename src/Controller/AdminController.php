@@ -455,15 +455,11 @@ class AdminController extends AppController
 		]);
 	}
 	
-	public function DownloadBackup($backupFileName){
-		$path=BACKUP_DIRECTORY.DS.$backupFileName;
-		if(file_exists($path) && is_file($path)){
-			$this->controller->viewClass = 'Media';
-			$this->controller->set([
-				'download'=>true,
-				'name'=>$backupFileName,
-				'path'=>$path
-			]);
+	public function DownloadBackup($fileName){
+		$filePath=BACKUP_DIRECTORY.DS.$fileName;
+		if(file_exists($filePath) && is_file($filePath)){
+			$response = $this->response->withFile($filePath, array('download'=> true, 'name'=> $fileName));
+			return $response;
 		}
 	}
 }
