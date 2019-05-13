@@ -458,9 +458,7 @@ class AdminController extends AppController
 	public function DownloadBackup($fileName){
 		
 		$filePath=BACKUP_DIRECTORY.DS.$fileName;
-		echo "buscando1 $filePath";
-		
-		$filePath=realpath($filePath);
+		$filePath=str_replace('//', '//', $filePath);
 		
 		echo "buscando1 $filePath";
 		
