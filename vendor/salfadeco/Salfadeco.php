@@ -1059,7 +1059,7 @@ class Salfadeco {
 	
 	
 	public function clearOldBackups(){
-		$days = 1/24/60;
+		$days = 1;  
 		if ($handle = opendir($this->backupDirectory)){
 			while (false !== ($file = readdir($handle))){
 				$filePath=$this->backupDirectory.'/'.$file;
