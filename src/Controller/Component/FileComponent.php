@@ -23,13 +23,12 @@ class FileComponent extends Component
 				return null;
 			}
 			
-			$finalDirectory=realpath(dirname(__FILE__)).DS."..".DS."..".DS."..".DS."webroot/img/uploads/";
-			if(!file_exists($finalDirectory)){
-				mkdir($finalDirectory, 0777);
+			if(!file_exists(UPLOADS_DIRECTORY)){
+				mkdir(UPLOADS_DIRECTORY, 0777);
 			}
 
 			$storedFileName=microtime(true).".".$this->getFileExtension($fileName);
-			move_uploaded_file($fileNameTmp, $finalDirectory.DS.$storedFileName);
+			move_uploaded_file($fileNameTmp, UPLOADS_DIRECTORY.DS.$storedFileName);
 			return $storedFileName;
 		}
 		return null;
@@ -44,13 +43,12 @@ class FileComponent extends Component
 				return null;
 			}
 			
-			$finalDirectory=realpath(dirname(__FILE__)).DS."..".DS."..".DS."..".DS."webroot/img/uploads/";
-			if(!file_exists($finalDirectory)){
-				mkdir($finalDirectory, 0777);
+			if(!file_exists(UPLOADS_DIRECTORY)){
+				mkdir(UPLOADS_DIRECTORY, 0777);
 			}
 			
 			$storedFileName=microtime(true).".".$this->getFileExtension($fileName);
-			move_uploaded_file($fileNameTmp, $finalDirectory.DS.$storedFileName);
+			move_uploaded_file($fileNameTmp, UPLOADS_DIRECTORY.DS.$storedFileName);
 			return ['storedFileName'=>$storedFileName, 'fileName'=>$fileName];
 		}
 		return null;
@@ -65,14 +63,13 @@ class FileComponent extends Component
 				return null;
 			}
 			
-			$finalDirectory=realpath(dirname(__FILE__)).DS."..".DS."..".DS."..".DS."webroot/backups/";
-			if(!file_exists($finalDirectory)){
-				mkdir($finalDirectory, 0777);
+			if(!file_exists(BACKUP_DIRECTORY)){
+				mkdir(BACKUP_DIRECTORY, 0777);
 			}
 
 			$storedFileName=microtime(true).".".$this->getFileExtension($fileName);
-			move_uploaded_file($fileNameTmp, $finalDirectory.DS.$storedFileName);
-			return $finalDirectory.DS.$storedFileName;
+			move_uploaded_file($fileNameTmp, BACKUP_DIRECTORY.DS.$storedFileName);
+			return ['storedFileName'=>$storedFileName, 'fileName'=>$fileName];
 		}
 		return null;
 	}

@@ -13,6 +13,14 @@ require_once($path.DS."class".DS."PdfQr.php");
 require_once($path.DS."class".DS."EmailHelper.php");
 
 class Salfadeco {
+	var $uploadsDirectory;
+	var $backupDirectory;
+	
+	function __construct($uploadsDirectory, $backupDirectory){
+		$this->uploadsDirectory=$uploadsDirectory;
+		$this->backupDirectory=$backupDirectory;
+	}
+	
 	public function getEvents($start, $quantity){
 		$crud=new Crud();
 		$crud->setTable('event');
@@ -832,18 +840,17 @@ class Salfadeco {
 		}
 	}
 	
-	public function createBackup($backup_directory, $uploadsDiretory){
-		$dumpFilePath="{$backup_directory}/dump.sql";
-		$dumpOriginalFilePath="{$backup_directory}/dump_original.sql";
-		$zipFilePath="{$backup_directory}/backup.zip";
+	public function createBackup(){
+		$dumpFilePath="{$this->backupDirectory}/dump.sql";
+		$dumpOriginalFilePath="{$this->backupDirectory}/dump_original.sql";
+		$zipFilePath="{$this->backupDirectory}/backup.zip";
 		
 		$crud=new Crud();
 		$sql=$crud->getSqlBackup();
 		file_put_contents($dumpFilePath, base64_encode($sql));
 		file_put_contents($dumpOriginalFilePath, $sql);
 		
-		$this->zipFiles($zipFilePath, [$dumpFilePath, $dumpOriginalFilePath, $uploadsDiretory]);
-		
+		$this->zipFiles($zipFilePath, [$dumpFilePath, $dumpOriginalFilePath, $this->uploadsDirectory]);
 		
 		return $zipFilePath;
 	}
@@ -886,8 +893,9 @@ class Salfadeco {
 		exec($command);
 	}
 	
-	public function restoreBackup($zipFilePath, $uploadsDiretory){
-		$unzipDiretory=dirname($zipFilePath)."/restore";
+	public function restoreBackup($zipFileName){
+		$zipFilePath=$this->backupDirectory.'/'.$zipFileName;
+		$unzipDiretory=$this->backupDirectory."/restore";
 		$this->unzipFile($zipFilePath, $unzipDiretory);
 		$fullSql= base64_decode(file_get_contents($unzipDiretory."/dump.sql"));
 		$sqls=explode('/***********/', $fullSql);
@@ -898,8 +906,8 @@ class Salfadeco {
 			}
 		}
 		
-		$this->deletePath($uploadsDiretory);
-		rename($unzipDiretory.'/uploads', $uploadsDiretory);
+		$this->deletePath($this->uploadsDirectory);
+		rename($unzipDiretory.'/uploads', $this->uploadsDirectory);
 	}
 	
 	public function checkLogin($username, $password){
@@ -1035,11 +1043,10 @@ class Salfadeco {
 		
 		$memberImage=$this->getImage($member['image_id']);
 		if(!empty($memberImage)){
-			$imageDirectory=WWW_ROOT.'/img/uploads';
-			$memberImagePath=$imageDirectory.'/'.$memberImage['filename'];
+			$memberImagePath=$this->uploadsDirectory.'/'.$memberImage['filename'];
 			if(file_exists($memberImagePath) && is_file($memberImagePath)){
 				$newImageFilename=microtime(true).'.'.pathinfo($memberImage['filename'], PATHINFO_EXTENSION);
-				copy($memberImagePath, $imageDirectory.'/'.$newImageFilename);
+				copy($memberImagePath, $this->uploadsDirectory.'/'.$newImageFilename);
 			}
 		}
 		$title=$this->applyMemberToTemplate($member, $this->getText('member_obituary_title'));

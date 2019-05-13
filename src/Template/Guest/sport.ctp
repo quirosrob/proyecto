@@ -9,7 +9,7 @@
 	<div class='details'>
 		<?php
 		if(!empty($sport['image']['filename'])){
-			$path="/img/uploads/{$sport['image']['filename']}";
+			$path=UPLOADS_DIRECTORY_WEB."/{$sport['image']['filename']}";
 			?>
 			<div class='main-image-floating'>
 				<img  src='<?=$this->element('imageSrcItemList', ['path'=>$path])?>' alt='' onclick="openImageZoom('<?=$path?>')"/>

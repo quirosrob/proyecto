@@ -8,7 +8,7 @@
 		<div class='previews'>
 			<?php
 			foreach($images as $image){
-				$path="/img/uploads/{$image['filename']}";
+				$path=UPLOADS_DIRECTORY_WEB."/{$image['filename']}";
 				?>	
 				<div class='preview' style='background-image: url("<?=$this->element('imageSrc', ['path'=>$path, 'w'=>60, 'h'=>60])?>");' onclick="setCurrentImageImageGroup(this, '<?=$path?>');">
 					<?php

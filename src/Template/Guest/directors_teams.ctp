@@ -12,7 +12,7 @@
 				<div class="info">
 					<?php
 					if(!empty($directors_team['image']['filename'])){
-						$path="/img/uploads/{$directors_team['image']['filename']}";
+						$path=UPLOADS_DIRECTORY_WEB."/{$directors_team['image']['filename']}";
 						?>
 						<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
 						<?php

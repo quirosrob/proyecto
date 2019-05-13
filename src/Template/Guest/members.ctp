@@ -44,7 +44,7 @@
 				<div class="info">
 					<?php
 					if(!empty($member['image']['filename'])){
-						$path="/img/uploads/{$member['image']['filename']}";
+						$path=UPLOADS_DIRECTORY_WEB."/{$member['image']['filename']}";
 						?>
 						<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
 						<?php
@@ -61,7 +61,7 @@
 							<?php
 							foreach($member['sports'] as $sport){
 								if(!empty($sport['image']['filename'])){
-									$path="/img/uploads/{$sport['image']['filename']}";
+									$path=UPLOADS_DIRECTORY_WEB."/{$sport['image']['filename']}";
 									?>
 									<div class='sportIcon' style='background-image: url("<?=$this->element('imageSrc', ['path'=>$path, 'w'=>30, 'h'=>30])?>");'></div>
 									<?php

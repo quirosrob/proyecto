@@ -9,7 +9,7 @@
 		
 		<?php
 		if(!empty($event['image']['filename'])){
-			$path="/img/uploads/{$event['image']['filename']}";
+			$path=UPLOADS_DIRECTORY_WEB."/{$event['image']['filename']}";
 			?>
 			<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
 			<?php

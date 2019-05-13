@@ -49,14 +49,14 @@
 		<div>
 			<div>Logo</div>
 			<div>
-				<div class='logo_image' style='background-image: url(<?=$this->element('imageSrc', ['path'=>"/img/uploads/{$site_logo_image['filename']}", 'w'=>100, 'h'=>100])?>);'></div>
+				<div class='logo_image' style='background-image: url(<?=$this->element('imageSrc', ['path'=>UPLOADS_DIRECTORY_WEB."/{$site_logo_image['filename']}", 'w'=>100, 'h'=>100])?>);'></div>
 				<input type='file' name='logo' />
 			</div>
 		</div>
 		<div>
 			<div>Logo 2</div>
 			<div>
-				<div class='logo_image' style='background-image: url(<?=$this->element('imageSrc', ['path'=>"/img/uploads/{$site_logo2_image['filename']}", 'w'=>100, 'h'=>100])?>);'></div>
+				<div class='logo_image' style='background-image: url(<?=$this->element('imageSrc', ['path'=>UPLOADS_DIRECTORY_WEB."/{$site_logo2_image['filename']}", 'w'=>100, 'h'=>100])?>);'></div>
 				<input type='file' name='logo2' />
 			</div>
 		</div>

@@ -31,7 +31,7 @@ class AppController extends Controller
 	
 	public function beforeFilter(Event $event){
 		parent::beforeFilter($event);
-		$this->salfadeco=new Salfadeco();
+		$this->salfadeco=new Salfadeco(UPLOADS_DIRECTORY, BACKUP_DIRECTORY);
 		
 		$menuItems=[];
 		$user=$this->getUserSession();

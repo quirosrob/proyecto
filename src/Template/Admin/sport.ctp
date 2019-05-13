@@ -8,7 +8,7 @@
 	<div class="sectionInfo">
 		<?php
 		if(!empty($sport['image']['filename'])){
-			$path="/img/uploads/{$sport['image']['filename']}";
+			$path=UPLOADS_DIRECTORY_WEB."/{$sport['image']['filename']}";
 			?>
 			<div class='main_image' style='background-image: url("<?=$this->element('imageSrcItemList', ['path'=>$path])?>");' onclick="openImageZoom('<?=$path?>')"></div>
 			<?php

@@ -1,6 +1,6 @@
 <?php ?>
 <div id='header'>
-	<div class='logo' style='background-image: url(<?=$this->element('imageSrc', ['path'=>"/img/uploads/{$site_logo_image['filename']}", 'w'=>100, 'h'=>100])?>);'></div>
+	<div class='logo' style='background-image: url(<?=$this->element('imageSrc', ['path'=>UPLOADS_DIRECTORY_WEB."/{$site_logo_image['filename']}", 'w'=>100, 'h'=>100])?>);'></div>
     <div class='headerRight'>
 	<div class='name'><?=$site_title?></div>
 	<div class='divisor'></div>

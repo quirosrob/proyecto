@@ -14,7 +14,7 @@
 		<h3 class='text-center'>Reglamento</h3>
 
 		<div class='text-center'>
-			<a href='/img/uploads/<?=$site_rules_file?>' DOWNLOAD='<?=$site_rules_file_org_name?>'>
+			<a href='<?=UPLOADS_DIRECTORY_WEB?>/<?=$site_rules_file?>' DOWNLOAD='<?=$site_rules_file_org_name?>'>
 				<?=$this->element('button', ['label'=>"Descargar"])?>
 			</a>
 		</div>

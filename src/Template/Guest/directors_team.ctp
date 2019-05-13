@@ -4,7 +4,7 @@
     <div class='details'>
 		<?php
 		if(!empty($directors_team['image']['filename'])){
-			$path="/img/uploads/{$directors_team['image']['filename']}";
+			$path=UPLOADS_DIRECTORY_WEB."/{$directors_team['image']['filename']}";
 			?>
 			<div class='main-image-floating'>
 				<img  src='<?=$this->element('imageSrcItemList', ['path'=>$path])?>' alt='' onclick="openImageZoom('<?=$path?>')"/>

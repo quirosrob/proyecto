@@ -4,7 +4,7 @@
 	<div class='details'>
 		<?php
 		if(!empty($gallery['image']['filename'])){
-			$path="/img/uploads/{$gallery['image']['filename']}";
+			$path=UPLOADS_DIRECTORY_WEB."/{$gallery['image']['filename']}";
 			?>
 			<div class='main-image-floating'>
 				<img  src='<?=$this->element('imageSrcItemList', ['path'=>$path])?>' alt='' onclick="openImageZoom('<?=$path?>')"/>
