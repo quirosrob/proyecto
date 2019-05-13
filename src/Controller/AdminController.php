@@ -461,6 +461,8 @@ class AdminController extends AppController
 		$filePath=str_replace('//', '/', $filePath);
 		$filePath=str_replace('\\\\', '\\', $filePath);
 		
+		echo $filePath;
+		
 		if(file_exists($filePath) && is_file($filePath)){
 			$response = $this->response->withFile($filePath, array('download'=> true, 'name'=> $fileName));
 			return $response;
