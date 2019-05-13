@@ -355,9 +355,9 @@ class AdminController extends AppController
 			}
 		}
 		
-		$backupFilePath=null;
+		$backupFileName=null;
 		if($this->getParameter('formAction')=='createBackup'){
-			$backupFilePath=$this->salfadeco->createBackup(WWW_ROOT.DS."backups");
+			$backupFileName=$this->salfadeco->createBackup(WWW_ROOT.DS."backups");
 		}
 		
 		if($this->getParameter('formAction')=='restoreBackup'){
@@ -366,7 +366,7 @@ class AdminController extends AppController
 		}
 		
 		$this->set([
-			'backupFilePath'=>$backupFilePath,
+			'backupFileName'=>$backupFileName,
 			'site_welcome'=>$this->salfadeco->getText('site_welcome'),
 			'site_rules_file'=>$this->salfadeco->getConfiguration('site_rules_file')
 		]);
@@ -453,5 +453,17 @@ class AdminController extends AppController
 			'member_obituary_title'=>$this->salfadeco->getText('member_obituary_title'),
 			'member_obituary_description'=>$this->salfadeco->getText('member_obituary_description')
 		]);
+	}
+	
+	public function DownloadBackup($backupFileName){
+		$path=BACKUP_DIRECTORY.DS.$backupFileName;
+		if(file_exists($path) && is_file($path)){
+			$this->controller->viewClass = 'Media';
+			$this->controller->set([
+				'download'=>true,
+				'name'=>$backupFileName,
+				'path'=>$path
+			]);
+		}
 	}
 }

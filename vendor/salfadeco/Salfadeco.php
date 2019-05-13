@@ -843,7 +843,8 @@ class Salfadeco {
 	public function createBackup(){
 		$dumpFilePath="{$this->backupDirectory}/dump.sql";
 		$dumpOriginalFilePath="{$this->backupDirectory}/dump_original.sql";
-		$zipFilePath="{$this->backupDirectory}/backup.zip";
+		$zipFileFilename="backup_".date("Y_m_d_H_i_s").".zip";
+		$zipFilePath="{$this->backupDirectory}/{$zipFileFilename}.zip";
 		
 		$crud=new Crud();
 		$sql=$crud->getSqlBackup();
@@ -852,7 +853,7 @@ class Salfadeco {
 		
 		$this->zipFiles($zipFilePath, [$dumpFilePath, $dumpOriginalFilePath, $this->uploadsDirectory]);
 		
-		return $zipFilePath;
+		return $zipFileFilename;
 	}
 	
 	private function zipFiles($zipFilePath, $files){

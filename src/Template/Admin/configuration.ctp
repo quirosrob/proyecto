@@ -74,7 +74,7 @@
 <h2 class='text-center'>Generar Backup</h2>
 <div class='text-center'>
 	<?php
-	if(empty($backupFilePath)){
+	if(empty($backupFileName)){
 		?>
 		<form class="ajax">
 			<input type='hidden' name='formAction' value='createBackup'/>
@@ -82,9 +82,9 @@
 		</form>
 		<?php
 	}
-	if(!empty($backupFilePath)){
+	if(!empty($backupFileName)){
 		?>
-		<a href='/backups/backup.zip'>
+		<a href='/Admin/DownloadBackup/<?=$backupFileName?>'>
 			<?=$this->element('button', ['label'=>"Descargar"])?>
 		</a>
 		<?php
