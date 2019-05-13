@@ -457,6 +457,9 @@ class AdminController extends AppController
 	
 	public function DownloadBackup($fileName){
 		$filePath=realpath(BACKUP_DIRECTORY.DS.$fileName);
+		
+		echo "buscando $filePath";
+		
 		if(file_exists($filePath) && is_file($filePath)){
 			$response = $this->response->withFile($filePath, array('download'=> true, 'name'=> $fileName));
 			return $response;
