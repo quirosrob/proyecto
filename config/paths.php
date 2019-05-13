@@ -89,5 +89,5 @@ define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
 
 define('UPLOADS_DIRECTORY', WWW_ROOT.DS.'img'.DS.'uploads');
-define('BACKUP_DIRECTORY', WWW_ROOT.DS.'backups');
+define('BACKUP_DIRECTORY', ROOT.DS.'backups');
 define('UPLOADS_DIRECTORY_WEB', "/img/uploads/");
