@@ -844,7 +844,7 @@ class Salfadeco {
 		$dumpFilePath="{$this->backupDirectory}/dump.sql";
 		$dumpOriginalFilePath="{$this->backupDirectory}/dump_original.sql";
 		$zipFileFilename="backup_".date("Y_m_d_H_i_s").".zip";
-		$zipFilePath="{$this->backupDirectory}/{$zipFileFilename}.zip";
+		$zipFilePath="{$this->backupDirectory}/{$zipFileFilename}";
 		
 		$crud=new Crud();
 		$sql=$crud->getSqlBackup();
