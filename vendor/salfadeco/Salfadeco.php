@@ -841,6 +841,7 @@ class Salfadeco {
 	}
 	
 	public function createBackup(){
+		$this->clearOldBackups();
 		$dumpFilePath="{$this->backupDirectory}/dump.sql";
 		$dumpOriginalFilePath="{$this->backupDirectory}/dump_original.sql";
 		$zipFileFilename="backup_".date("Y_m_d_H_i_s").".zip";
@@ -1053,5 +1054,21 @@ class Salfadeco {
 		$title=$this->applyMemberToTemplate($member, $this->getText('member_obituary_title'));
 		$description=$this->applyMemberToTemplate($member, $this->getText('member_obituary_description'));
 		$this->addEvent($title, date("Y-m-d"), $description, $newImageFilename);
+	}
+	
+	
+	
+	public function clearOldBackups(){
+		$days = 1/24/60;
+		if ($handle = opendir($this->backupDirectory)){
+			while (false !== ($file = readdir($handle))){
+				$filePath=$this->backupDirectory.'/'.$file;
+				if (is_file($filePath)){
+					if (filemtime($filePath) < ( time() - ( $days * 24 * 60 * 60 ) ) ){  
+						unlink($filePath);  
+					}
+				}
+			}
+		}
 	}
 }
