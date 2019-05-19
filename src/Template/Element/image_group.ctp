@@ -48,11 +48,11 @@ if(!empty($images)){
 			});
 			
 			$('.slider-nav').slick({
-				slidesToShow: 3,
+				slidesToShow: 4,
 				slidesToScroll: 1,
 				asNavFor: '.slider-for',
 				dots: true,
-				centerMode: true,
+//				centerMode: true,
 				focusOnSelect: true
 			});
 		});		
