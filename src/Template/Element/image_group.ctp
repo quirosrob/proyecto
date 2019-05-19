@@ -39,12 +39,12 @@ if(!empty($images)){
 		}
 		
 		.imageSlick .slick-next{
-			right: 10px;
+			right: 20px;
 			z-index: 5000;
 			font-size: 40px;
 		}
 		.imageSlick .slick-prev{
-			left: -10px;
+			left: 0px;
 			z-index: 5000;
 			font-size: 40px;
 		}
