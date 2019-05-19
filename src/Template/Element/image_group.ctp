@@ -53,6 +53,14 @@ if(!empty($images)){
 		.imageSlick .slick-next:before{
 			font-size: 40px;
 		}
+		
+		.imageSlick {
+			overflow: hidden;
+			overflow-x: hidden;
+			overflow-y: hidden;
+		}
+		
+		
 	</style>
 	<?php
 }
