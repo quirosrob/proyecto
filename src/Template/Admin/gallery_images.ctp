@@ -14,4 +14,4 @@
 </form>
 <br/>
 
-<?=$this->element('image_group', ['images'=>$gallery['imageGroupItems'],'deleteImage'=>true])?>
+<?=$this->element('image_group_admin', ['images'=>$gallery['imageGroupItems'],'deleteImage'=>true])?>
