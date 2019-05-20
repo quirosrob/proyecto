@@ -3,7 +3,7 @@ if(!empty($images)){
 	?>
 	<link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
 	<link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
-	<script type="text/javascript" src="/slick/slick.min.js"></script>
+	<script type="text/javascript" src="/slick/slick.js"></script>
 
 	<div class="slider-for">
 		<?php
@@ -44,7 +44,8 @@ if(!empty($images)){
 				arrows: false,
 				fade: true,
 				asNavFor: '.slider-nav',
-				adaptiveHeight: true
+				adaptiveHeight: true,
+				touchMove: false
 			});
 			
 			$('.slider-nav').slick({
