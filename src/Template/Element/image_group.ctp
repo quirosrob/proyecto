@@ -98,6 +98,23 @@ if(!empty($images)){
 		.slider-nav div {
 			outline:0;
 		}
+		
+		.slick-prev{
+			left: -40px;
+			width: 40px;
+			height: 40px;
+		}
+		
+		.slick-next{
+			right: -40px;
+			width: 40px;
+			height: 40px;
+		}
+		
+		.slick-prev:before, .slick-next:before{
+			font-size: 40px;
+		}
+		
 	</style>
 	<?php
 }
