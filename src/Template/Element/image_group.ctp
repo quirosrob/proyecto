@@ -89,6 +89,15 @@ if(!empty($images)){
 			overflow-x: hidden;
 			overflow-y: hidden;
 		}
+		
+		.slider-nav .slick-current{
+			background-color: #BDBDBD;
+		}
+		
+		.slider-for div,
+		.slider-nav div {
+			outline:0;
+		}
 	</style>
 	<?php
 }
