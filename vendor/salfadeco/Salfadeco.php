@@ -674,7 +674,7 @@ class Salfadeco {
 	
 	private function makeQrMember($member_id){
 		try{
-			$qrLink="{$_SERVER['SERVER_NAME']}/Guess/Member/{$member_id}";
+			$qrLink="{$_SERVER['SERVER_NAME']}/Guest/Member/{$member_id}";
 			$qrSize=300;
 			$qrPath=realpath(dirname(__FILE__))."/../../webroot/img/qr/member_{$member_id}.png";
 			if(!file_exists($qrPath)){
@@ -1069,6 +1069,16 @@ class Salfadeco {
 					}
 				}
 			}
+		}
+	}
+	
+	public function debug(){
+		$crud=new Crud();
+		$crud->setTable('member');
+		$members=$crud->load();
+		
+		foreach($members as $member){
+			echo "{$member['id']};;; {$member['name']}<br/>";
 		}
 	}
 }

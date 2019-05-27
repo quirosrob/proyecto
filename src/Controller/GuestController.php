@@ -176,4 +176,8 @@ class GuestController extends AppController
 			'updateDone'=>$updateDone
 		]);
 	}
+	
+	public function debug(){
+		$this->salfadeco->debug();
+	}
 }
