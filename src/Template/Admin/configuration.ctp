@@ -1,4 +1,13 @@
 <?php ?>
+<div class='text-right'>
+	<a href='/Admin/DownloadBackupMenu/'>
+		<?=$this->element('buttonSm', ['label'=>"Generar Backup"])?>
+	</a>
+    <a href='/Admin/UploadBackupMenu/'>
+		<?=$this->element('buttonSm', ['label'=>"Restaurar Backup"])?>
+    </a>
+</div>
+
 <h2 class='text-center'>Textos</h2>
 <form class="ajax">
 	<div class="formResponsive">
@@ -65,49 +74,6 @@
 	<div class='text-center'>
 		<input type='hidden' name='formAction' value='updateConfiguration'/>
 		<?=$this->element('button', ['label'=>"Salvar"])?>
-	</div>
-
-</form>
-
-
-<br/>
-<h2 class='text-center'>Generar Backup</h2>
-<div class='text-center'>
-	<?php
-	if(empty($backupFileName)){
-		?>
-		<form class="ajax">
-			<input type='hidden' name='formAction' value='createBackup'/>
-			<?=$this->element('button', ['label'=>"Generar Respaldo"])?>
-		</form>
-		<?php
-	}
-	if(!empty($backupFileName)){
-		?>
-		<a href='/Admin/DownloadBackup/<?=$backupFileName?>'>
-			<?=$this->element('button', ['label'=>"Descargar"])?>
-		</a>
-		<?php
-	}
-	?>
-</div>
-
-
-<br/>
-<h2 class='text-center'>Restaurar Backup</h2>
-<form class="ajax">
-	<div class="formResponsive">
-		<div>
-			<div>Archivo</div>
-			<div>
-				<input type='file' name='backup' />
-			</div>
-		</div>
-	</div>
-
-	<div class='text-center'>
-		<input type='hidden' name='formAction' value='restoreBackup'/>
-		<?=$this->element('button', ['label'=>"Restaurar"])?>
 	</div>
 </form>
 

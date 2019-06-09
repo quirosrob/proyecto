@@ -355,18 +355,7 @@ class AdminController extends AppController
 			}
 		}
 		
-		$backupFileName=null;
-		if($this->getParameter('formAction')=='createBackup'){
-			$backupFileName=$this->salfadeco->createBackup(WWW_ROOT.DS."backups");
-		}
-		
-		if($this->getParameter('formAction')=='restoreBackup'){
-			$result=$this->File->receiveBackupFromBrowser('backup');
-			$this->salfadeco->restoreBackup($result['storedFileName']);
-		}
-		
 		$this->set([
-			'backupFileName'=>$backupFileName,
 			'site_welcome'=>$this->salfadeco->getText('site_welcome'),
 			'site_rules_file'=>$this->salfadeco->getConfiguration('site_rules_file')
 		]);
@@ -460,6 +449,24 @@ class AdminController extends AppController
 		if(file_exists($filePath) && is_file($filePath)){
 			$response = $this->response->withFile($filePath, array('download'=> true, 'name'=> $fileName));
 			return $response;
+		}
+	}
+	
+	public function DownloadBackupMenu(){
+		$backupFileName=null;
+		if($this->getParameter('formAction')=='createBackup'){
+			$backupFileName=$this->salfadeco->createBackup(WWW_ROOT.DS."backups");
+		}
+		
+		$this->set([
+			'backupFileName'=>$backupFileName,
+		]);
+	}
+	
+	public function UploadBackupMenu(){
+		if($this->getParameter('formAction')=='restoreBackup'){
+			$result=$this->File->receiveBackupFromBrowser('backup');
+			$this->salfadeco->restoreBackup($result['storedFileName']);
 		}
 	}
 }
