@@ -5,7 +5,7 @@
 		<div>
 			<div>Archivo</div>
 			<div>
-				<input type='file' name='backup' />
+				<input type='file' name='backup' required/>
 			</div>
 		</div>
 	</div>
