@@ -11,4 +11,23 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	border-radius: 3px;
+	position: relative;
+}
+
+
+.image_group_admin .youtubeFrame{
+	z-index: 0; 
+	width: 146px; 
+	height: 146px; 
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.image_group_admin .deleteImageButtonWrap{
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+	top: 0;
+	left: 0;
 }

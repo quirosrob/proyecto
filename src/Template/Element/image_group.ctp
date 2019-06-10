@@ -8,14 +8,26 @@ if(!empty($images)){
 	<div class="slider-for">
 		<?php
 		foreach($images as $image){
-			$path=UPLOADS_DIRECTORY_WEB."/{$image['filename']}";
-			?>	
-			<div>
+			if(!empty($image['filename'])){
+				$path=UPLOADS_DIRECTORY_WEB."/{$image['filename']}";
+				?>
 				<div>
-					<img src="<?=$this->element('imageSrc', ['path'=>$path, 'w'=>400, 'h'=>400])?>" alt=""/>
+					<div>
+						<img src="<?=$this->element('imageSrc', ['path'=>$path, 'w'=>400, 'h'=>400])?>" alt=""/>
+					</div>
 				</div>
-			</div>
-			<?php
+				<?php
+			}
+
+			if(preg_match("/www\.youtube\.com\/watch\?v=(.*)/", $image['link'], $match)){
+				?>
+				<div>
+					<div>
+						<iframe style="height: 500px; width: 100%;" src="https://www.youtube.com/embed/<?=$match[1]?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<?php
+			}
 		}
 		?>
 	</div>
@@ -24,12 +36,23 @@ if(!empty($images)){
 		<div class="slider-nav">
 			<?php
 			foreach($images as $image){
-				$path=UPLOADS_DIRECTORY_WEB."/{$image['filename']}";
-				?>	
-				<div>
-					<img src="<?=$this->element('imageSrc', ['path'=>$path, 'w'=>40, 'h'=>40])?>" alt=""/>
-				</div>
-				<?php
+				if(!empty($image['filename'])){
+					$path=UPLOADS_DIRECTORY_WEB."/{$image['filename']}";
+					?>	
+					<div>
+						<img src="<?=$this->element('imageSrc', ['path'=>$path, 'w'=>40, 'h'=>40])?>" alt=""/>
+					</div>
+					<?php
+				}
+				
+				if(preg_match("/www\.youtube\.com\/watch\?v=(.*)/", $image['link'], $match)){
+					$path="http://img.youtube.com/vi/{$match[1]}/0.jpg";
+					?>	
+					<div>
+						<img src="<?=$path?>" alt=""/>
+					</div>
+					<?php
+				}
 			}
 			?>
 		</div>

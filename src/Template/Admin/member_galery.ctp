@@ -5,6 +5,10 @@
 			<div>Nueva Imagen</div>
 			<div><input type='file' name='image' value=''/></div>
 		</div>
+		<div>
+			<div>Link del video</div>
+			<div><input type='text' name='link' value='' class="form-control"/></div>
+		</div>
 	</div>
 
 	<div class='text-center'>

@@ -101,7 +101,8 @@ class AdminController extends AppController
     public function memberGalery($member_id){
 		if($this->getParameter('formAction')=='addImageToMember'){
 			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->addImageToMember($member_id, $image);
+			$link=$this->getParameter('link');
+			$this->salfadeco->addImageToMember($member_id, $image, $link);
 		}
 		
 		$this->set([
@@ -338,13 +339,13 @@ class AdminController extends AppController
 			
 			$logo=$this->File->receiveImageFromBrowser('logo');
 			if(!empty($logo)){
-				$site_logo_image_id=$this->salfadeco->addImage($logo, '');
+				$site_logo_image_id=$this->salfadeco->addImage($logo, '', null);
 				$this->salfadeco->setConfiguration('site_logo_image_id', $site_logo_image_id);
 			}
 			
 			$logo2=$this->File->receiveImageFromBrowser('logo2');
 			if(!empty($logo2)){
-				$site_logo2_image_id=$this->salfadeco->addImage($logo2, '');
+				$site_logo2_image_id=$this->salfadeco->addImage($logo2, '', null);
 				$this->salfadeco->setConfiguration('site_logo2_image_id', $site_logo2_image_id);
 			}
 			

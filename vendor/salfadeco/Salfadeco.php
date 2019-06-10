@@ -59,16 +59,17 @@ class Salfadeco {
 		return $crud->loadFirst();
 	}
 	
-	public function addImage($filename, $description){
+	public function addImage($filename, $description, $link){
 		$crud=new Crud();
 		$crud->setTable('image');
-		$crud->setValue('filename', $filename);
-		$crud->setValue('description', $description);
+		$crud->setValue('filename', "".$filename);
+		$crud->setValue('description', "".$description);
+		$crud->setValue('link', "".$link);
 		return $crud->insert();
 	}
 	
 	public function addEvent($name, $date, $description, $image){
-		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		$image_id=!empty($image)? $this->addImage($image, '', null) : "";
 		
 		$crud=new Crud();
 		$crud->setTable('event');
@@ -82,7 +83,7 @@ class Salfadeco {
 	}
 	
 	public function updateEvent($id, $name, $date, $description, $image){
-		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		$image_id=!empty($image)? $this->addImage($image, '', null) : "";
 		
 		$crud=new Crud();
 		$crud->setTable('event');
@@ -119,12 +120,21 @@ class Salfadeco {
 			$crud->setClausule('id', '=', $event_id);
 			$crud->update();
 		}
-		$this->addImageToImageGroup($image_group_id, $image);
+		$this->addImageToImageGroup($image_group_id, $image, null);
 	}
 	
-	public function addImageToImageGroup($image_group_id, $filename){
-		if(!empty($filename) && !empty($image_group_id)){
-			$image_id=$this->addImage($filename, '');
+	public function addImageToImageGroup($image_group_id, $filename, $link){
+		if(!empty($image_group_id) && !empty($filename)){
+			$image_id=$this->addImage($filename, '', null);
+			$crud=new Crud();
+			$crud->setTable('image_group_item');
+			$crud->setValue('image_group_id', $image_group_id);
+			$crud->setValue('image_id', $image_id);
+			$crud->insert();
+		}
+		
+		if(!empty($image_group_id) && !empty($link)){
+			$image_id=$this->addImage(null, '', $link);
 			$crud=new Crud();
 			$crud->setTable('image_group_item');
 			$crud->setValue('image_group_id', $image_group_id);
@@ -156,7 +166,7 @@ class Salfadeco {
 	}
 	
 	public function addSport($name, $description, $image, $color){
-		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		$image_id=!empty($image)? $this->addImage($image, '', null) : "";
 		
 		$crud=new Crud();
 		$crud->setTable('sport');
@@ -210,7 +220,7 @@ class Salfadeco {
 	}
 	
 	public function updateSport($id, $name, $description, $image, $color){
-		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		$image_id=!empty($image)? $this->addImage($image, '', null) : "";
 		
 		$crud=new Crud();
 		$crud->setTable('sport');
@@ -235,7 +245,7 @@ class Salfadeco {
 			$crud->setClausule('id', '=', $sport_id);
 			$crud->update();
 		}
-		$this->addImageToImageGroup($image_group_id, $image);
+		$this->addImageToImageGroup($image_group_id, $image, null);
 	}
         
 	public function getDirectorsTeams($start, $quantity){
@@ -265,7 +275,7 @@ class Salfadeco {
 	}
 	
 	public function addDirectorsTeam($name, $description, $image){
-		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		$image_id=!empty($image)? $this->addImage($image, '', null) : "";
 		
 		$crud=new Crud();
 		$crud->setTable('directors_team');
@@ -286,7 +296,7 @@ class Salfadeco {
 	}
         
 	public function updateDirectorsTeam($id, $name, $description, $image){
-		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		$image_id=!empty($image)? $this->addImage($image, '', null) : "";
 		
 		$crud=new Crud();
 		$crud->setTable('directors_team');
@@ -310,11 +320,11 @@ class Salfadeco {
 			$crud->setClausule('id', '=', $directors_team_id);
 			$crud->update();
 		}
-		$this->addImageToImageGroup($image_group_id, $image);
+		$this->addImageToImageGroup($image_group_id, $image, null);
 	}
 	
 	public function addMember($name, $date_entry, $biography, $sport_ids, $image, $year_birth, $year_death, $number){
-		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		$image_id=!empty($image)? $this->addImage($image, '', null) : "";
 		
 		$crud=new Crud();
 		$crud->setTable('member');
@@ -437,7 +447,7 @@ class Salfadeco {
 	}
 	
 	public function updateMember($member_id, $name, $date_entry, $biography, $sport_ids, $image, $year_birth, $year_death, $number){
-		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		$image_id=!empty($image)? $this->addImage($image, '', null) : "";
 		
 		$crud=new Crud();
 		$crud->setTable('member');
@@ -470,7 +480,7 @@ class Salfadeco {
 		$this->makeQrMember($member_id);
 	}
 	
-	public function addImageToMember($member_id, $image){
+	public function addImageToMember($member_id, $image, $link){
 		$member=$this->getMember($member_id);
 		$image_group_id=$member['image_group_id'];
 		if(empty($image_group_id)){
@@ -481,11 +491,11 @@ class Salfadeco {
 			$crud->setClausule('id', '=', $member_id);
 			$crud->update();
 		}
-		$this->addImageToImageGroup($image_group_id, $image);
+		$this->addImageToImageGroup($image_group_id, $image, $link);
 	}
 	
 	public function addGallery($name, $description, $image){
-		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		$image_id=!empty($image)? $this->addImage($image, '', null) : "";
 		
 		$crud=new Crud();
 		$crud->setTable('gallery');
@@ -536,7 +546,7 @@ class Salfadeco {
 	}
 	
 	public function updateGallery($id, $name, $description, $image){
-		$image_id=!empty($image)? $this->addImage($image, '') : "";
+		$image_id=!empty($image)? $this->addImage($image, '', null) : "";
 		
 		$crud=new Crud();
 		$crud->setTable('gallery');
@@ -561,7 +571,7 @@ class Salfadeco {
 			$crud->setClausule('id', '=', $gallery_id);
 			$crud->update();
 		}
-		$this->addImageToImageGroup($image_group_id, $image);
+		$this->addImageToImageGroup($image_group_id, $image, null);
 	}
 	
 	public function setConfiguration($key, $value){
@@ -602,7 +612,7 @@ class Salfadeco {
 			$image_group_id=$this->createImageGroup();
 			$this->setConfiguration('history_image_group_id', $image_group_id);
 		}
-		$this->addImageToImageGroup($image_group_id, $image);
+		$this->addImageToImageGroup($image_group_id, $image, null);
 	}
 	
 	public function getImagesHistory(){
