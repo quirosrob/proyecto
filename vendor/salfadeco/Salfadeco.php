@@ -411,9 +411,11 @@ class Salfadeco {
 		$crud->setTable('member');
 		$crud->setClausule('id', '=', $member_id);
 		$member=$crud->loadFirst();
-		$member['image']=$this->getImage($member['image_id']);
-		$member['imageGroupItems']=$this->getImageGroupImages($member['image_group_id']);
-		$member['sports']=$this->getSportsMember($member['id']);
+		if(!empty($member)){
+			$member['image']=$this->getImage($member['image_id']);
+			$member['imageGroupItems']=$this->getImageGroupImages($member['image_group_id']);
+			$member['sports']=$this->getSportsMember($member['id']);
+		}
 		return $member;
 	}
 	
@@ -431,19 +433,20 @@ class Salfadeco {
 	
 	public function deleteMember($member_id){
 		$member=$this->getMember($member_id);
-		
-		$this->deleteImage($member['image_id']);
-		$this->deleteImageGroup($member['image_group_id']);
-		
-		$crud=new Crud();
-		$crud->setTable('member_sport');
-		$crud->setClausule('member_id', '=', $member_id);
-		$crud->delete();
-		
-		$crud=new Crud();
-		$crud->setTable('member');
-		$crud->setClausule('id', '=', $member_id);
-		$crud->delete();
+		if(!empty($member)){
+			$this->deleteImage($member['image_id']);
+			$this->deleteImageGroup($member['image_group_id']);
+
+			$crud=new Crud();
+			$crud->setTable('member_sport');
+			$crud->setClausule('member_id', '=', $member_id);
+			$crud->delete();
+
+			$crud=new Crud();
+			$crud->setTable('member');
+			$crud->setClausule('id', '=', $member_id);
+			$crud->delete();
+		}
 	}
 	
 	public function updateMember($member_id, $name, $date_entry, $biography, $sport_ids, $image, $year_birth, $year_death, $number){
