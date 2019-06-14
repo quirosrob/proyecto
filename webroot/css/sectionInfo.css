@@ -78,11 +78,20 @@
 	height: 50px;
 }
 
+.sportCheckboxesWrap > div{
+	display: inline-block;
+	width: 33%;
+	float: left;
+}
 
 @media (max-width: 992px) {
     .sectionInfo .main-image-floating{
 		display: inline;
 		width: 100%;
 		
+	}
+	
+	.sportCheckboxesWrap > div{
+		width: 50%;
 	}
 }

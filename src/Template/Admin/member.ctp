@@ -54,18 +54,20 @@
 			<div>
 				<div>Deporte</div>
 				<div>
-					<?php
-					foreach($sports as $sport){
-						?>
-						<div>
-							<label>
-								<input type='checkbox' name='sport_<?=$sport['id']?>' value='Y' <?=isset($member['sports'][$sport['id']])? "checked='true'":""?> />
-								<?=$sport['name']?>
-							</label>
-						</div>
+					<div class="sportCheckboxesWrap">
 						<?php
-					}
-					?>
+						foreach($sports as $sport){
+							?>
+							<div>
+								<label>
+									<input type='checkbox' name='sport_<?=$sport['id']?>' value='Y' <?=isset($member['sports'][$sport['id']])? "checked='true'":""?> />
+									<?=$sport['name']?>
+								</label>
+							</div>
+							<?php
+						}
+						?>
+					</div>
 				</div>
 			</div>
 		</div>
