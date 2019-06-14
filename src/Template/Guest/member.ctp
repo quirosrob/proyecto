@@ -1,7 +1,7 @@
 <?php ?>
 <div class="sectionInfo">
 	<div class='title'><?=$member['name']?></div>
-	<div class='sports'>
+	<div class='sports sportsList'>
 		<?php
 		foreach($member['sports'] as $sport){
 			if(!empty($sport['image']['filename'])){
@@ -11,7 +11,7 @@
 				<?php
 			}
 			?>
-			<?=$sport['name']?>
+			<div><?=$sport['name']?></div>
 			<?php
 		}
 		?>

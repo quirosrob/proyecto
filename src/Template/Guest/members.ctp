@@ -57,17 +57,17 @@
 					?>
 					<div class='details'>
 						<div class="name"><?=$member['name']?></div>
-						<div class="sports">
+						<div class="sports sportsList">
 							<?php
 							foreach($member['sports'] as $sport){
 								if(!empty($sport['image']['filename'])){
 									$path=UPLOADS_DIRECTORY_WEB."/{$sport['image']['filename']}";
 									?>
-									<div class='sportIcon' style='background-image: url("<?=$this->element('imageSrc', ['path'=>$path, 'w'=>30, 'h'=>30])?>");'></div>
+									<div class='sportIcon' style='background-image: url("<?=$this->element('imageSrc', ['path'=>$path, 'w'=>50, 'h'=>50])?>");'></div>
 									<?php
 								}
 								?>
-								<?=$sport['name']?>
+								<div><?=$sport['name']?></div>
 								<?php
 							}
 							?>
