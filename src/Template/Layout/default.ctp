@@ -49,6 +49,15 @@
 		<div id="fullWrap">
 			<div id='mainHead'>
 				<?=$this->element('header')?>
+				<?php
+				if(!empty($myUsername)){
+					?>
+					<div id="floatingUsername">
+						Bienvenido <?=$myUsername?>
+					</div>
+					<?php
+				}
+				?>
 			</div>
 			<div id='mainBody'>
 				<div id="mainBodyPadding">

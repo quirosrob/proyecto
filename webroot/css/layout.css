@@ -30,6 +30,18 @@ body.adminMode #fullWrap{
     /*border: 1px solid #9F9D4F;*/
     height: 100px;
     /*border-radius: 8px 8px 0 0;*/
+	position: relative;
+}
+
+#floatingUsername{
+	position: absolute;
+	top: 0;
+	right: 10px;
+	background-color: #C6C6C6;
+	padding: 1px 10px;
+	font-weight: bold;
+	border-radius: 0 0 4px 4px;
+	border: 1px solid #B1B1B1;
 }
 
 #mainBody{

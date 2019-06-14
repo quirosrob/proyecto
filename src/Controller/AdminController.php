@@ -28,7 +28,8 @@ class AdminController extends AppController
 		}
 		
 		$this->set([
-			'adminMode'=>true
+			'adminMode'=>true,
+			'myUsername'=>$user['username']
 		]);
     }
 
