@@ -20,9 +20,9 @@ class Configuration {
 //			'SMTP_SMTPSecure'=>'ssl', /* 'ssl', 'tls', false */
 			
 			'SMTP_Host'=>'p3plcpnl1008.prod.phx3.secureserver.net',
-			'SMTP_Username'=>'salfadeco@quirosrob.com',
+			'SMTP_Username'=>'salfadeco@galdepo.com',
 			'SMTP_Password'=>'Azsxdcfv1',
-			'SMTP_From'=>'salfadeco@quirosrob.com',
+			'SMTP_From'=>'salfadeco@galdepo.com',
 			'SMTP_FromName'=>'Salon de la fama',
 			'SMTP_Port'=>'465', /* 465, 587 */
 			'SMTP_SMTPSecure'=>'ssl', /* 'ssl', 'tls', false */
