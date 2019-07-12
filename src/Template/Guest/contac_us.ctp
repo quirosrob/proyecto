@@ -19,13 +19,14 @@
 		<div>
 			<div>Comentario</div>
 			<div>
-				<textarea class="form-control" style="height: 150px;"></textarea>
+				<textarea class="form-control" name='comment' style="height: 150px;"></textarea>
 			</div>
 		</div>
 	</div>
 
 	<div class='text-center'>
 		<?=$this->element("button", ['label'=>"Enviar"])?>
+		<input type='hidden' name='formAction' value='sendContactMail'/>
 	</div>
 </form>
 

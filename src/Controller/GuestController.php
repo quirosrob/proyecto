@@ -147,6 +147,13 @@ class GuestController extends AppController
 	}
 	
 	public function contacUs(){
+		if($this->getParameter('formAction')=='sendContactMail'){
+			$this->salfadeco->sendContactMail(	$this->getParameter('name'),
+												$this->getParameter('email'),
+												$this->getParameter('phone'),
+												$this->getParameter('comment'));
+		}
+		
 		$this->set([
 			'contact_us_email'=>$this->salfadeco->getConfiguration('contact_us_email'),
 			'contact_us_phone'=>$this->salfadeco->getConfiguration('contact_us_phone'),

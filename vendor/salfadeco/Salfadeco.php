@@ -1094,4 +1094,19 @@ class Salfadeco {
 			echo "{$member['id']};;; {$member['name']}<br/>";
 		}
 	}
+	
+	public function sendContactMail($name, $email, $phone, $comment){
+		$subject= "Contacto por web";
+		$body = "
+				<h1>Contacto por web</h1>
+				<div>Nombre: {$name}</div>
+				<div>Email: {$email}</div>
+				<div>Telefono: {$phone}</div>
+				<div>Comentario: {$comment}</div>
+				";
+
+		$emailAdmin=$this->getConfiguration('contact_us_email');
+		$emailHelper =new EmailHelper();
+		$emailHelper->sentEmail($emailAdmin, null, null, $subject, $body);
+	}
 }
