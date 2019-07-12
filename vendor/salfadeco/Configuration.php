@@ -5,8 +5,8 @@ class Configuration {
 	public function getConfiguration(){
 		return [
 			'db_host'=>'localhost',
-			'db_user'=>'root',
-			'db_password'=>'',
+			'db_user'=>'salfadeco',
+			'db_password'=>'Azsxdcfv1',
 			'db_db'=>'salfadeco',
 			'db_port'=>'3306',
 			
