@@ -688,15 +688,40 @@ class Salfadeco {
 	private function makeQrMember($member_id){
 		try{
 			$qrLink="{$_SERVER['SERVER_NAME']}/Guest/Member/{$member_id}";
-			$qrSize=300;
 			$qrPath=realpath(dirname(__FILE__))."/../../webroot/img/qr/member_{$member_id}.png";
+			$qrSize=300;
+			
+			$currentQrLink=$this->getMemberQrLink($member_id);
+			if($qrLink!=$currentQrLink){
+				if(file_exists($qrPath)){
+					unlink($qrPath);
+				}
+			}
+			
 			if(!file_exists($qrPath)){
 				$qrData=file_get_contents("http://chart.googleapis.com/chart?cht=qr&chs={$qrSize}x{$qrSize}&chl={$qrLink}");
 				file_put_contents($qrPath, $qrData);
+				$this->saveMemberQrLink($member_id, $qrLink);
 			}
 		} catch (Exception $ex) {
 			
 		}
+	}
+	
+	private function getMemberQrLink($member_id){
+		$crud=new Crud();
+		$crud->setTable('member');
+		$crud->setClausule('id', '=', $member_id);
+		$member=$crud->loadFirst();
+		return $member['qrlink'];
+	}
+	
+	private function saveMemberQrLink($member_id, $qrLink){
+		$crud=new Crud();
+		$crud->setTable('member');
+		$crud->setValue('qrlink', $qrLink);
+		$crud->setClausule('id', '=', $member_id);
+		$crud->update();
 	}
 	
 	public function makePdfQrs($sport_id, $creationDateStart, $creationDateEnd){
