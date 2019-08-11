@@ -9,7 +9,7 @@
 		</title>
 
 		<?php
-		$version=10;
+		$version=11;
 		?>
 
 		<link href="/bootstrap-3.3.5-dist/css/bootstrap.css?<?=$version?>" rel="stylesheet" type="text/css">
@@ -48,28 +48,30 @@
 	</head>
 	<body class="<?=@$adminMode? "adminMode" : ""?>">
 		<div id="fullWrap">
-			<div id='mainHead'>
-				<?=$this->element('header')?>
-				<?php
-				if(!empty($myUsername)){
-					?>
-					<div id="floatingUsername">
-						Bienvenido <?=$myUsername?>
-					</div>
+			<div>
+				<div id='mainHead'>
+					<?=$this->element('header')?>
 					<?php
-				}
-				?>
-			</div>
-			<div id='mainBody'>
-				<div id="mainBodyPadding">
-					<?= $this->fetch('content')?>
+					if(!empty($myUsername)){
+						?>
+						<div id="floatingUsername">
+							Bienvenido <?=$myUsername?>
+						</div>
+						<?php
+					}
+					?>
 				</div>
-			</div>
-			<div id='mainFooter'>
-				<div id="mainFooterPadding">
-					<?=nl2br($site_footer)?>
-					<div class="text-center">
-						<div class='logo_image' style='background-image: url(<?=$this->element('imageSrc', ['path'=>UPLOADS_DIRECTORY_WEB."/{$site_logo2_image['filename']}", 'w'=>100, 'h'=>100])?>);'></div>
+				<div id='mainBody'>
+					<div id="mainBodyPadding">
+						<?= $this->fetch('content')?>
+					</div>
+				</div>
+				<div id='mainFooter'>
+					<div id="mainFooterPadding">
+						<?=nl2br($site_footer)?>
+						<div class="text-center">
+							<div class='logo_image' style='background-image: url(<?=$this->element('imageSrc', ['path'=>UPLOADS_DIRECTORY_WEB."/{$site_logo2_image['filename']}", 'w'=>100, 'h'=>100])?>);'></div>
+						</div>
 					</div>
 				</div>
 			</div>

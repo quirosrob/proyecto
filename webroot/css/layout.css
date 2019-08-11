@@ -22,6 +22,12 @@ body.adminMode #fullWrap{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#CEF9D4', endColorstr='#fffffc',GradientType=0 ); /* IE6-9 */
 }
 
+#fullWrap > div{
+	display: inline-block;
+	width: 100%;
+    max-width: 1000px;
+}
+
 #mainHead{
     display: inline-block;
     /*background-color: #DEDDAA;*/
