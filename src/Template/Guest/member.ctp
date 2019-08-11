@@ -52,7 +52,7 @@
 	<div class='year'><?=!empty($member['date_entry'])? date("Y", strtotime($member['date_entry'])) : ""?></div>
 	
 	<?php
-	if(!empty($member['year_birth']) || !empty($member['year_death'])){
+	if(!empty($member['number'])){
 		?>
 		<div class='number'>No. <?=$member['number']?></div>
 		<?php

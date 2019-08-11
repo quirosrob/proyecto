@@ -392,6 +392,7 @@ class Salfadeco {
 		}
 		
 		$crud->setLimits($start, $quantity);
+		$crud->setOrder('number');
 		$crud->setOrder('name');
 		$members=$crud->load(['m.*']);
 		foreach($members as &$member){
