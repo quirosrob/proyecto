@@ -70,7 +70,7 @@
 			</div>
 		</div>
 		<div>
-			<div>Imagen Inicio</div>
+			<div>Imagen Inicio <br/>(1000px x 300px)</div>
 			<div>
 				<div class='logo_image' style='background-image: url(<?=$this->element('imageSrc', ['path'=>UPLOADS_DIRECTORY_WEB."/{$site_welcome_image['filename']}", 'w'=>100, 'h'=>100])?>);'></div>
 				<input type='file' name='site_welcome_image' />
