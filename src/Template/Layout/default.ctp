@@ -45,6 +45,26 @@
 		<script src="/js/formHelper.js?<?=$version?>" type="text/javascript"></script>
 		<script src="/anytime/anytime.5.1.2.js?<?=$version?>" type="text/javascript"></script>
 		
+		<style>
+			<?php
+			if(!empty($site_background_image)){
+				?>
+				body{
+					background-repeat: no-repeat;
+					background-size: cover;
+					background-attachment: fixed;
+					background-image: url(<?=$this->element('imageSrc', ['path'=>UPLOADS_DIRECTORY_WEB."/{$site_background_image['filename']}", 'w'=>1290, 'h'=>960])?>);
+				}
+			
+				#fullWrap,
+				body.adminMode #fullWrap{
+					background: none
+				}
+				<?php
+			}
+			?>
+		</style>
+		
 	</head>
 	<body class="<?=@$adminMode? "adminMode" : ""?>">
 		<div id="fullWrap">
@@ -88,24 +108,6 @@
 			setFormsSubmitEvent();
 		</script>
 		
-		<style>
-			<?php
-			if(!empty($site_background_image)){
-				?>
-				body{
-					background-repeat: no-repeat;
-					background-size: cover;
-					background-attachment: fixed;
-					background-image: url(<?=$this->element('imageSrc', ['path'=>UPLOADS_DIRECTORY_WEB."/{$site_background_image['filename']}", 'w'=>1290, 'h'=>960])?>);
-				}
-			
-				#fullWrap,
-				body.adminMode #fullWrap{
-					background: none
-				}
-				<?php
-			}
-			?>
-		</style>
+		
 	</body>
 </html>
