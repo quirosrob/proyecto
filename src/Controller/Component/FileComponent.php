@@ -14,6 +14,29 @@ class FileComponent extends Component
 		return in_array(strtolower($ext), ['jpg', 'png', 'jpeg', 'bmp']);
 	}
 	
+	public function receiveImagesFromBrowser($fileId){
+		$storedFileNames=[];
+		if(isset($_FILES[$fileId])){
+			foreach($_FILES[$fileId]['name'] as $index => $name){
+				$fileName = $_FILES[$fileId]['name'][$index];
+				$fileNameTmp = $_FILES[$fileId]['tmp_name'][$index];
+				
+				if(empty($fileName) || empty($fileNameTmp) || !$this->fileIsImage($fileName)){
+					continue;
+				}
+
+				if(!file_exists(UPLOADS_DIRECTORY)){
+					mkdir(UPLOADS_DIRECTORY, 0777);
+				}
+
+				$storedFileName=microtime(true).".".$this->getFileExtension($fileName);
+				move_uploaded_file($fileNameTmp, UPLOADS_DIRECTORY.DS.$storedFileName);
+				$storedFileNames[]=$storedFileName;
+			}
+		}
+		return $storedFileNames;
+	}
+	
 	public function receiveImageFromBrowser($fileId){
 		if(isset($_FILES[$fileId])){
 			$fileName = $_FILES[$fileId]['name'];

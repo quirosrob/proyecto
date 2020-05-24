@@ -131,8 +131,10 @@ class AdminController extends AppController
     
     public function sportGalery($sport_id){
 		if($this->getParameter('formAction')=='addImageToSport'){
-			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->addImageToSport($sport_id, $image);
+			$images=$this->File->receiveImagesFromBrowser('images');
+			foreach($images as $image){
+				$this->salfadeco->addImageToSport($sport_id, $image);
+			}
 		}
 		
 		$this->set([
@@ -178,8 +180,10 @@ class AdminController extends AppController
     
     public function directorsTeamGallery($directors_team_id){
         if($this->getParameter('formAction')=='addImageToDirectorsTeam'){
-			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->addImageToDirectorsTeam($directors_team_id, $image);
+			$images=$this->File->receiveImagesFromBrowser('images');
+			foreach($images as $image){
+				$this->salfadeco->addImageToDirectorsTeam($directors_team_id, $image);
+			}
 		}
 
 		$this->set([
@@ -227,8 +231,10 @@ class AdminController extends AppController
 	
     public function eventGalery($event_id){
 		if($this->getParameter('formAction')=='addImageToEvent'){
-			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->addImageToEvent($event_id, $image);
+			$images=$this->File->receiveImagesFromBrowser('images');
+			foreach($images as $image){
+				$this->salfadeco->addImageToEvent($event_id, $image);
+			}
 		}
 		
 		$this->set([
@@ -279,8 +285,10 @@ class AdminController extends AppController
     
     public function galleryImages($gallery_id){
 		if($this->getParameter('formAction')=='addImageToGallery'){
-			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->addImageToGallery($gallery_id, $image);
+			$images=$this->File->receiveImagesFromBrowser('images');
+			foreach($images as $image){
+				$this->salfadeco->addImageToGallery($gallery_id, $image);
+			}
 		}
 		
 		$this->set([
@@ -307,8 +315,10 @@ class AdminController extends AppController
 	
 	public function historyGalery(){
 		if($this->getParameter('formAction')=='addImageToHistory'){
-			$image=$this->File->receiveImageFromBrowser('image');
-			$this->salfadeco->addImageToHistory($image);
+			$images=$this->File->receiveImagesFromBrowser('images');
+			foreach($images as $image){
+				$this->salfadeco->addImageToHistory($image);
+			}
 		}
 		
 		$this->set([

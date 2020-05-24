@@ -3,7 +3,7 @@
 	<div class="formResponsive">
 		<div>
 			<div>Nueva Imagen</div>
-			<div><input type='file' name='image' value=''/></div>
+			<div><input type='file' name='images[]' value='' multiple/></div>
 		</div>
 	</div>
 
