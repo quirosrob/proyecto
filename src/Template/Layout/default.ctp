@@ -96,7 +96,7 @@
 					background-repeat: no-repeat;
 					background-size: cover;
 					background-attachment: fixed;
-					background-image: url('<?=UPLOADS_DIRECTORY_WEB."/{$site_background_image['filename']}"?>');
+					background-image: url(<?=$this->element('imageSrc', ['path'=>UPLOADS_DIRECTORY_WEB."/{$site_background_image['filename']}", 'w'=>1290, 'h'=>960])?>);
 				}
 			
 				#fullWrap,
