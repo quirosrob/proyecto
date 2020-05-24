@@ -23,6 +23,7 @@
 .itemListDetails .info{
     display: table;
     width: 100%;
+	min-height: 130px;
 }
 
 .itemListDetails .main_image{
