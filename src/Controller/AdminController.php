@@ -366,7 +366,11 @@ class AdminController extends AppController
 				$this->salfadeco->setConfiguration('site_welcome_image_id', $site_welcome_image_id);
 			}
 			
-			
+			$site_background_image=$this->File->receiveImageFromBrowser('site_background_image');
+			if(!empty($site_background_image)){
+				$site_background_image_id=$this->salfadeco->addImage($site_background_image, '', null);
+				$this->salfadeco->setConfiguration('site_background_image', $site_background_image_id);
+			}
 			
 			$site_rules_file_result=$this->File->receiveFileFromBrowser('site_rules_file');
 			if(!empty($site_rules_file_result)){
@@ -379,6 +383,7 @@ class AdminController extends AppController
 			'site_welcome'=>$this->salfadeco->getText('site_welcome'),
 			'site_rules_file'=>$this->salfadeco->getConfiguration('site_rules_file'),
 			'site_welcome_image'=>$this->salfadeco->getImage($this->salfadeco->getConfiguration('site_welcome_image_id')),
+			'site_background_image'=>$this->salfadeco->getImage($this->salfadeco->getConfiguration('site_background_image')),
 		]);
 	}
 	

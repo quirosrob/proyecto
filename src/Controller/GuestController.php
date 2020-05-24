@@ -16,6 +16,7 @@ class GuestController extends AppController
 			'site_rules_file'=>$this->salfadeco->getConfiguration('site_rules_file'),
 			'site_rules_file_org_name'=>$this->salfadeco->getConfiguration('site_rules_file_org_name'),
 			'site_welcome_image'=>$this->salfadeco->getImage($this->salfadeco->getConfiguration('site_welcome_image_id')),
+			'site_background_image'=>$this->salfadeco->getImage($this->salfadeco->getConfiguration('site_background_image')),
 		]);
 	}
     

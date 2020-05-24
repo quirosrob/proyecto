@@ -76,6 +76,13 @@
 				<input type='file' name='site_welcome_image' />
 			</div>
 		</div>
+		<div>
+			<div>Imagen Fondo</div>
+			<div>
+				<div class='logo_image' style='background-image: url(<?=$this->element('imageSrc', ['path'=>UPLOADS_DIRECTORY_WEB."/{$site_background_image['filename']}", 'w'=>100, 'h'=>100])?>);'></div>
+				<input type='file' name='site_background_image' />
+			</div>
+		</div>
 	</div>
 
 	<div class='text-center'>

@@ -88,7 +88,7 @@ class AppController extends Controller
 			'site_logo2_image_id'=>$this->salfadeco->getConfiguration('site_logo2_image_id'),
 			'site_logo2_image'=>$this->salfadeco->getImage($this->salfadeco->getConfiguration('site_logo2_image_id')),
 			'facebook_appId'=>$this->salfadeco->getConfiguration('facebook_appId'),
-			
+			'site_background_image'=>$this->salfadeco->getImage($this->salfadeco->getConfiguration('site_background_image')),
 		]);
 	}
 	

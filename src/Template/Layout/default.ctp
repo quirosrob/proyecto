@@ -87,5 +87,25 @@
 		<script>
 			setFormsSubmitEvent();
 		</script>
+		
+		<style>
+			<?php
+			if(!empty($site_background_image)){
+				?>
+				body{
+					background-repeat: no-repeat;
+					background-size: cover;
+					background-attachment: fixed;
+					background-image: url('<?=UPLOADS_DIRECTORY_WEB."/{$site_background_image['filename']}"?>');
+				}
+			
+				#fullWrap,
+				body.adminMode #fullWrap{
+					background: none
+				}
+				<?php
+			}
+			?>
+		</style>
 	</body>
 </html>
